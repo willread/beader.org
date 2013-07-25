@@ -1,0 +1,23 @@
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>Beader</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}" />
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="{% static 'app/js/beader.js' %}"></script>
+	</head>
+	<body>
+		<header class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href=""><img src="{% static 'app/images/logo.png' %}"></a>
+				</div>
+			</div>
+		</header>
+		<article class="container">
+			{% block content %}{% endblock %}
+		</article>
+	</body>
+</html>

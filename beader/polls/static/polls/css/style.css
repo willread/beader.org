@@ -1,0 +1,15 @@
+body {
+	background: #666 url("../images/bg.png");
+}
+
+li a {
+    color: green;
+    text-decoration: none;
+}
+
+.content {
+	width: 900px;
+	margin: 20px auto;
+	padding: 10px;
+	background: #fff;
+}

@@ -8,3 +8,5 @@
 [ ] Search
 [ ] View patterns by user
 [ ] Single pattern view
+[ ] Edit patterns
+[ ] Clone patterns

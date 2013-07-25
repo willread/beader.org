@@ -196,19 +196,18 @@ Beader.prototype.savePattern = function(e){
 	var canvas = $(e.data.scope.options.els.grid)[0];
 	var context = canvas.getContext("2d");
 
-	// Save document to CouchDB
-	var data = canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/, "");
 	var doc = {
 		"name": $(e.data.scope.options.els.name).val(),
 		"width": $(e.data.scope.options.els.width).val(),
 		"height": $(e.data.scope.options.els.height).val(),
 		"mode": e.data.scope.mode,
-		"data": e.data.scope.data,
+		"data": JSON.stringify(e.data.scope.data),
+		"image": canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/i, ""),
 		"csrfmiddlewaretoken": e.data.scope.options.csrfToken
 	}
-	
 	$.post(e.data.scope.options.saveURL, doc, function(data, status, jqxhr){
 		console.log("saved"); // FIXME
+		console.log(data);
 	});
 }
 
@@ -229,7 +228,6 @@ Beader.prototype.drag = function(e){
 };
 
 Beader.prototype.click = function(e){
-	console.log(e.data.scope.mode);
 	if(e.data.scope.mode == 0){
 		e.data.scope.stopDrawing(e);
 		e.data.scope.draw(e);

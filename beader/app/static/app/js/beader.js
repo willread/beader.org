@@ -17,6 +17,8 @@ var Beader = function(options){
 		if(options.els.grid) this.options.els.grid = options.els.grid;
 		if(options.els.palette) this.options.els.palette = options.els.palette;
 		if(options.els.color) this.options.els.color = color;
+		if(options.saveURL) this.options.saveURL = options.saveURL;
+		if(options.csrfToken) this.options.csrfToken = options.csrfToken;
 	}
 	if(options.defaultColor) this.options.defaultColor = options.defaultColor;
 	if(options.clearColor) this.options.defaultColor = options.clearColor;
@@ -73,7 +75,9 @@ Beader.prototype.options = {
 		"color": null
 	},
 	defaultColor: "000000",
-	clearColor: "ffffff"
+	clearColor: "ffffff",
+	saveURL: "",
+	csrfToken: ""
 };
 
 Beader.prototype.mode = 0; // Single bead mode, 1 = fill mode
@@ -200,25 +204,12 @@ Beader.prototype.savePattern = function(e){
 		"height": $(e.data.scope.options.els.height).val(),
 		"mode": e.data.scope.mode,
 		"data": e.data.scope.data,
-		"_attachments": {
-			"image.png": {
-				"content-type": "image/png",
-				"data": data
-			}
-		}
+		"csrfmiddlewaretoken": e.data.scope.options.csrfToken
 	}
 	
-	$.couch.db("patterns").saveDoc(doc, {
-	    success: function(){
-	    	// TODO
-			console.log(arguments);
-	    },
-	    error: function(){
-	    	// TODO
-	    	console.log(arguments);
-	    }
+	$.post(e.data.scope.options.saveURL, doc, function(data, status, jqxhr){
+		console.log("saved"); // FIXME
 	});
-
 }
 
 Beader.prototype.drawing = false;

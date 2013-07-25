@@ -7,6 +7,7 @@ class Pattern(models.Model):
 	pub_date = models.DateTimeField('date published')
 	width = models.PositiveIntegerField()
 	height = models.PositiveIntegerField()
+	alignment = models.PositiveIntegerField()
 	data = models.CharField(max_length=1024)
 	def __unicode__(self):
 		return self.name

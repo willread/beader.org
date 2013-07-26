@@ -8,6 +8,6 @@ class Pattern(models.Model):
 	width = models.PositiveIntegerField()
 	height = models.PositiveIntegerField()
 	mode = models.PositiveIntegerField()
-	data = models.CharField(max_length=1024)
+	data = models.CharField(max_length=(1024 * 100))
 	def __unicode__(self):
 		return self.name

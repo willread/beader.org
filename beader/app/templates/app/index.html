@@ -2,15 +2,16 @@
 
 {% block content %}
 
-	<div class="row">
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-		<div class="span3"><img class="img-polaroid thumb"></div>
-	</div>
+	{% if patterns %}
+	    {% for pattern in patterns %}
+	    	<a href="{% url 'app:single' pattern.id %}">
+				<img class="thumb" src="/app/pattern/{{ pattern.pk }}.png">
+			</a>
+	    {% endfor %}
+	{% else %}
+		<div class="alert alert-block">
+			<h4>No patterns available</h4>
+		</div>
+	{% endif %}
 
 {% endblock %}

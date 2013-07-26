@@ -87,4 +87,14 @@ STATIC_URL = '/static/'
 
 # Path to store uploaded images
 
-IMAGES_PATH = '/tmp/' # FIXME
+IMAGES_PATH = os.path.join(BASE_DIR, 'images')
+
+# Alternative authentication backend to handle emails as usernames
+
+AUTHENTICATION_BACKENDS = ('app.backends.EmailAuthBackend',)
+
+# Insert request scope into extended templates
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth', 
+)

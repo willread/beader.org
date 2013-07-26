@@ -11,3 +11,12 @@
 [ ] Edit patterns
 [ ] Clone patterns
 [ ] Port over all user accounts and data from existing site
+[ ] All to reverse URLs
+[ ] Properly configurable image upload directory
+[ ] Thumbnail generation
+[ ] Make number per page configurable
+[ ] Write tests
+[ ] Max pattern size
+[ ] Handle save errors
+[ ] Redirect when saved
+[ ] Grey out inputs when saving

@@ -6,13 +6,80 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}" />
 		<link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}" />
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 		<script src="{% static 'app/js/beader.js' %}"></script>
 	</head>
 	<body>
 		<header class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a href=""><img src="{% static 'app/images/logo.png' %}"></a>
+					<a class="pull-left" href="{% url 'app:index' %}"><img src="{% static 'app/images/logo.png' %}"></a>
+				    <ul class="nav pull-right">
+						<li><a href="{% url 'app:index' %}">Pattern Gallery</a></li>
+						<li><a href="{% url 'app:new' %}">Design a Pattern</a></li>
+						<li id="register-item" class="dropdown{% if not user.is_anonymous %} hidden{% endif %}">
+				            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Register</a>
+				            <div id="register" class="dropdown-menu">
+								<form class="form"> 
+									<div id="register-error" class="alert alert-error">There was an error.</div>
+									<input name="email" id="register-email" type="text" placeholder="Email Address"> 
+									<input name="name" id="register-name" type="text" placeholder="Your Name"> 
+									<input name="password" id="register-password" type="password" placeholder="Password"><br>
+									<button type="button" id="register-button" class="btn">Register</button>
+								</form>
+				            </div>
+						</li>
+						<li id="login-item" class="dropdown{% if not user.is_anonymous %} hidden{% endif %}">
+				            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>
+				            <div id="login" class="dropdown-menu">
+								<form id="login-form" class="form"> 
+									<div id="login-error" class="alert alert-error">There was an error.</div>
+									<input name="username" id="login-email" type="text" placeholder="Email Address"> 
+									<input name="password" id="login-password" type="password" placeholder="Password"><br>
+									<button type="button" id="login-button" class="btn pull-left">Login</button>
+									<a class="pull-right" href="#" id="forgot-password">Forgot Password?</a>
+								</form>
+								<form id="forgot-form" class="form"> 
+									<div id="forgot-info" class="alert alert-info">Check your email.</div>
+									<input name="username" id="forgot-email" type="text" placeholder="Email Address"> 
+									<button type="button" id="forgot-button" class="btn">Reset Password</button>
+								</form>
+				            </div>
+						</li>
+						<li id="logout-item" class="{% if user.is_anonymous %}hidden{% endif %}"><a href="{% url 'app:logout' %}">Logout</a></li>
+						<script>
+							$(function(){
+								$("#login-item > a").click(function(){
+									$("#login-form").show();
+									$("#forgot-form").hide();
+								});
+								
+								$("#login-button").click(function(){
+									var options = {
+										username: $("#login-email").val(),
+										password: $("#login-password").val(),
+										csrfmiddlewaretoken: "{{ csrf_token }}"
+									};
+									$.post("{% url 'app:login' %}", options)
+										.done(function(){
+											$("#login-error").hide();
+											$("#login-item").hide();
+											$("#register-item").hide();
+											$("#logout-item").show();
+											
+										})
+										.fail(function(){
+											$("#login-error").show();
+										});
+								});
+								
+								$("#forgot-password").click(function(){
+									$("#login-form").hide();
+									$("#forgot-form").show();
+								});
+							});
+						</script>
+				    </ul>
 				</div>
 			</div>
 		</header>

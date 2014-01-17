@@ -65,6 +65,116 @@ angular.module("Beader.controllers", []).controller("DesignerCtrl", ["$scope", "
             $("#color").css("backgroundColor", "#" + $scope.color);
         };
 
+        $scope.drawing = false;
+
+        $scope.startDrawing = function($event){
+            $scope.drawing = true;
+        };
+
+        $scope.stopDrawing = function($event){
+            $scope.drawing = false;
+        };
+
+        $scope.drag = function($event){
+            if($scope.drawing && $scope.mode == "brush"){
+                $scope.draw($event);
+            }
+        };
+
+        $scope.click = function($event){
+            if($scope.mode == "brush"){
+                $scope.stopDrawing($event);
+                $scope.draw($event);
+            }
+
+            if($scope.mode == "fill"){
+                var canvas = $("#grid")[0];
+                var context = canvas.getContext("2d");
+                
+                var size = $scope.width > $scope.height ? $(canvas).width() / width : $(canvas).height() / $scope.height;
+                var x = Math.floor($event.offsetX / size);
+                var y = Math.floor($event.offsetY / size);
+                
+                $scope.fill($event, x, y);
+                $scope.renderGrid($event);
+            }
+        };
+
+        $scope.draw = function($event){
+            var canvas = $("#grid")[0];
+            var context = canvas.getContext("2d");
+
+            var size = $scope.width > $scope.height ? $(canvas).width() / width : $(canvas).height() / $scope.height;
+            var x = Math.floor($event.offsetX / size);
+            var y = Math.floor($event.offsetY / size);
+
+            $scope.data[x + "x" + y] = $scope.color;
+            $scope.renderGrid($event);
+        };
+
+        $scope.fill = function($event, x, y){
+            var oldColor = $scope.data[x + "x" + y] || $scope.clearColor;
+            if(oldColor == $.color) return;
+
+            var stack = [[x, y]];
+            
+            while(stack.length){
+
+                var cell = stack.pop();
+                var x = cell[0];
+                var y = cell[1];
+
+                $scope.data[x + "x" + y] = $scope.color;
+                
+                if(x - 1 >= 0 && oldColor == ($scope.data[(x - 1) + "x" + y] || "ffffff"))
+                    stack.push([x - 1, y]);
+
+                if(x + 1 < $scope.width && oldColor == ($scope.data[(x + 1) + "x" + y] || "ffffff"))
+                    stack.push([x + 1, y]);
+
+                if(y - 1 >= 0 && oldColor == ($scope.data[x + "x" + (y - 1)] || "ffffff"))
+                    stack.push([x, y - 1]);
+
+                if(y + 1 < $scope.height && oldColor == ($scope.data[x + "x" + (y + 1)] || "ffffff"))
+                    stack.push([x, y + 1]);    
+            }
+        };
+
+        $scope.renderGrid = function($event){
+            var canvas = $(e.data.scope.options.els.grid)[0];
+            var context = canvas.getContext("2d");
+            
+            var align = e.data.scope.align;
+            
+            var width = parseInt($(e.data.scope.options.els.width).val());
+            var height = parseInt($(e.data.scope.options.els.height).val());
+            var size = width > height ? $(canvas).width() / width : $(canvas).height() / height;
+            
+            if(align)
+                size = width > height ? size - size / width / 2 : size - size / height / 2;
+            
+            var horizontalOffset = align == 1 ? size / 2 : 0;
+            var verticalOffset = align == 2 ? size / 2 : 0;
+            
+            canvas.width = canvas.width; // Clear canvas
+            
+            for(var x = 0; x < width; x ++){
+            
+                for(var y = 0; y < height; y ++){
+                
+                    context.beginPath();
+                    context.arc(x * size + size / 2 + (y % 2 ? horizontalOffset : 0), y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
+                    context.fillStyle = e.data.scope.data[x+"x"+y] || e.data.scope.options.clearColor;
+                    context.fill();
+                    context.lineWidth = 1;
+                    context.strokeStyle = "#ddd";
+                    context.stroke();
+                
+                }
+            
+            }
+        };
+
 /*
  
         // Bind events
@@ -238,82 +348,6 @@ angular.module("Beader.controllers", []).controller("DesignerCtrl", ["$scope", "
         });
     }
 
-    Beader.prototype.drawing = false;
-
-    Beader.prototype.startDrawing = function(e){
-        e.data.scope.drawing = true;
-    }
-
-    Beader.prototype.stopDrawing = function(e){
-        e.data.scope.drawing = false;
-    }
-
-    Beader.prototype.drag = function(e){
-        if(e.data.scope.drawing && e.data.scope.mode == 0){
-            e.data.scope.draw(e);
-        }
-    };
-
-    Beader.prototype.click = function(e){
-        if(e.data.scope.mode == 0){
-            e.data.scope.stopDrawing(e);
-            e.data.scope.draw(e);
-        }
-        if(e.data.scope.mode == 1){
-            var canvas = $(e.data.scope.options.els.grid)[0];
-            var context = canvas.getContext("2d");
-            
-            var width = parseInt($(e.data.scope.options.els.width).val());
-            var height = parseInt($(e.data.scope.options.els.height).val());
-            var size = width > height ? $(canvas).width() / width : $(canvas).height() / height;
-            var x = Math.floor(e.offsetX / size);
-            var y = Math.floor(e.offsetY / size);
-            
-            e.data.scope.fill(e, x, y);
-            e.data.scope.renderGrid(e);
-        }
-    };
-
-    Beader.prototype.draw = function(e){
-        var canvas = $(e.data.scope.options.els.grid)[0];
-        var context = canvas.getContext("2d");
-        
-        var width = parseInt($(e.data.scope.options.els.width).val());
-        var height = parseInt($(e.data.scope.options.els.height).val());
-        var size = width > height ? $(canvas).width() / width : $(canvas).height() / height;
-        var x = Math.floor(e.offsetX / size);
-        var y = Math.floor(e.offsetY / size);
-        
-        e.data.scope.data[x+"x"+y] = e.data.scope.color;
-        e.data.scope.renderGrid(e);
-
-    }
-
-    Beader.prototype.fill = function(e, x, y){
-        var oldColor = e.data.scope.data[x + "x" + y] || e.data.scope.options.clearColor;
-        if(oldColor == e.data.scope.color) return;
-
-        var stack = [[x, y]];
-        
-        var width = parseInt($(e.data.scope.options.els.width).val());
-        var height = parseInt($(e.data.scope.options.els.height).val());
-        
-        while(stack.length){
-
-            var cell = stack.pop();
-            var x = cell[0];
-            var y = cell[1];
-
-            e.data.scope.data[x + "x" + y] = e.data.scope.color;
-            
-            if(x - 1 >= 0 && oldColor == (e.data.scope.data[(x - 1) + "x" + y] || "ffffff"))
-                stack.push([x - 1, y]);
-            if(x + 1 < width && oldColor == (e.data.scope.data[(x + 1) + "x" + y] || "ffffff"))
-                stack.push([x + 1, y]);
-            if(y - 1 >= 0 && oldColor == (e.data.scope.data[x + "x" + (y - 1)] || "ffffff"))
-                stack.push([x, y - 1]);
-            if(y + 1 < height && oldColor == (e.data.scope.data[x + "x" + (y + 1)] || "ffffff"))
-                stack.push([x, y + 1]);         
-        }
+ 
     */
     }]);

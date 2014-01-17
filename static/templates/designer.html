@@ -26,7 +26,7 @@
                             
                 </div>
             
-                <canvas id="grid" width="700" height="700"></canvas>
+                <canvas ng-mouse-move="drag($event)" ng-mouse-up="click($event)" ng-mouse-down="startDrawing($event)" ng-mouse-leave="stopDrawing($event)" id="grid" width="700" height="700"></canvas>
             
             </div>
             

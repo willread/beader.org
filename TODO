@@ -1,3 +1,4 @@
 [ ] Facebook login support
 [ ] Twitter login support
 [ ] Ensure toDataURL support exists in browser
+[ ] Remove redundant code from designer ($"#canvas"), etc..

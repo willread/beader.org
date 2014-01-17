@@ -2,10 +2,17 @@ var express = require("express");
 var http = require("http");
 var path = require("path");
 var passport = require("passport");
+var im = require("imagemagick");
+var tmp = require("tmp");
 
 var MongoClient = require("mongodb").MongoClient;
 var ObjectID = require("mongodb").ObjectID;
 var GoogleStrategy = require("passport-google").Strategy;
+var S3Client = require("knox").createClient({
+    key:    process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
+    bucket: process.env.S3_BUCKET
+});
 
 var fs = require("fs");
 var sys = require("sys");
@@ -97,4 +104,34 @@ app.get("/logout", function(req, res){
     res.redirect("/");
 });
 
-// Create or update a pattern
+// Create a pattern
+
+app.post("/pattern", function(req, res){
+    // Generate image
+    tmp.file(function(error, path, fd){
+        if(error){
+            res.json(500, {error: "Could not create temporary file"});
+        }else{
+            // Write image to temporary file
+            var buffer = new Buffer(req.body.image, "base64");
+            fs.writeFile(path, buffer, function(error){
+                if(error){
+                    res.json(500, {error: "Could not create temporary file"});
+                }else{
+                    // Validate image
+                    im.identify(path, function(error, features){
+                        if(error || features.format !== "PNG"){
+                            res.json(500, {error: "Invalid image"});
+                        }else{
+                            // Upload to S3
+                            S3Client.putFile(path, "/patterns/FIXME.png", {"x-amz-acl": "public-read"}, function(res){
+                                console.log("Uploaded image to S3");
+                                res.json(200, {message: "Saved successfully"});
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+});

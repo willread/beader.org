@@ -1,2 +1,3 @@
 [ ] Facebook login support
 [ ] Twitter login support
+[ ] Ensure toDataURL support exists in browser

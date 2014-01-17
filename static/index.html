@@ -18,7 +18,7 @@
         <header class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="pull-left" href="{% url 'app:index' %}"><img src="/images/logo.png"></a>
+                    <a class="pull-left" href="{% url 'app:index"><img src="/images/logo.png"></a>
                     <ul class="nav pull-right">
                         <li><a href="">Pattern Gallery</a></li>
                         <li><a href="">Design a Pattern</a></li>
@@ -33,7 +33,98 @@
             </div>
         </header>
         <article class="container">
-            {% block content %}{% endblock %}
+
+
+
+
+
+
+
+    <div id="editor">
+        
+        <input type="hidden" id="data" value="">
+        <input type="hidden" id="id" value="">
+        
+        <div class="row">
+        
+            <div class="span2">
+                
+                <div id="color-wrapper">
+                    <div id="color"></div>
+                </div>
+                <div id="palette-wrapper"><canvas id="palette" width="133" height="600"></canvas></div>
+            
+            </div>
+        
+            <div class="span9">
+            
+                <div class="form-inline" id="meta">
+                    <div class="input-prepend">
+                      <span class="add-on">Width</span><input class="input-mini" id="width" type="text" value="20">
+                    </div>
+                    <div class="input-prepend">
+                      <span class="add-on">Height</span><input class="input-mini" id="height" type="text" value="20">
+                    </div>              
+                    <input type="text" id="name" placeholder="Pattern Name">
+                    <button class="btn btn-success" id="save-button">Save</button>
+                            
+                </div>
+            
+                <canvas id="grid" width="700" height="700"></canvas>
+            
+            </div>
+            
+            <div class="span1" id="toolbar">
+                <div class="btn-group btn-group-vertical" data-toggle="buttons-radio">
+                    <button id="align-normal" class="btn"><img src="/images/align-normal.png" width="30" height="30"></button>
+                    <button id="align-horizontal" class="btn"><img src="/images/align-horizontal.png" width="30" height="30"></button>
+                    <button id="align-vertical" class="btn"><img src="/images/align-vertical.png" width="30" height="30"></button>
+                </div>
+                <div class="btn-group btn-group-vertical" data-toggle="buttons-radio">
+                    <button id="mode-brush" class="btn"><img src="/images/brush.png" width="30" height="30"></button>
+                    <button id="mode-fill" class="btn"><img src="/images/fill.png" width="30" height="30"></button>
+                </div>
+            </div>
+
+        </div>
+        
+        <div id="palette-highlight"></div>
+        
+        <label id="save-error"></label>
+        
+    </div>
+    
+    <script src="js/app/beader.js"></script>
+    <script>
+        window.onload = function(){
+            var beader = new Beader({
+                els: {
+                    save: document.getElementById("save-button"),
+                    width: document.getElementById("width"),
+                    height: document.getElementById("height"),
+                    name: document.getElementById("name"),
+                    alignNormal: document.getElementById("align-normal"),
+                    alignHorizontal: document.getElementById("align-horizontal"),
+                    alignVertical: document.getElementById("align-vertical"),
+                    brush: document.getElementById("mode-brush"),
+                    fill: document.getElementById("mode-fill"),
+                    grid: document.getElementById("grid"),
+                    palette: document.getElementById("palette"),
+                    color: document.getElementById("color")
+                },
+                csrfToken: "{{ csrf_token }}",
+                saveURL: "{% url 'app:save"
+            });
+        };
+    </script>
+
+
+
+
+
+
+
+
         </article>
 
         <script src="js/main.js"></script>

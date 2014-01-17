@@ -205,6 +205,8 @@ Beader.prototype.savePattern = function(e){
 		"image": canvas.toDataURL("image/png").replace(/^data:image\/(png|jpg);base64,/i, ""),
 		"csrfmiddlewaretoken": e.data.scope.options.csrfToken
 	}
+
+	console.log("DOC", doc);
 	$.post(e.data.scope.options.saveURL, doc, function(data, status, jqxhr){
 		console.log("saved"); // FIXME
 		console.log(data);

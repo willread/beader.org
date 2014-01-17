@@ -13,7 +13,8 @@
         "js/lib/modernizr.js",
         "js/lib/moment.min.js",
         "js/config.js",
-        "js/app/app.js"
+        "js/app/app.js",
+        "js/app/controllers/designer.js"
     ];
 
     for(var s in scripts){

@@ -108,24 +108,29 @@ app.get("/logout", function(req, res){
 
 app.post("/pattern", function(req, res){
     // Generate image
+    
     tmp.file(function(error, path, fd){
         if(error){
             res.json(500, {error: "Could not create temporary file"});
         }else{
             // Write image to temporary file
+
             var buffer = new Buffer(req.body.image, "base64");
             fs.writeFile(path, buffer, function(error){
                 if(error){
                     res.json(500, {error: "Could not create temporary file"});
                 }else{
                     // Validate image
+
                     im.identify(path, function(error, features){
                         if(error || features.format !== "PNG"){
                             res.json(500, {error: "Invalid image"});
                         }else{
                             // Upload to S3
+
                             S3Client.putFile(path, "/patterns/FIXME.png", {"x-amz-acl": "public-read"}, function(res){
                                 console.log("Uploaded image to S3");
+
                                 res.json(200, {message: "Saved successfully"});
                             });
                         }

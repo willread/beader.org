@@ -17,6 +17,10 @@ angular.module("Beader.controllers", []).controller("DesignerCtrl", ["$scope", "
         $scope.color = "000000";
         $scope.clearColor = "ffffff";
 
+        // Set color
+
+        $("#color").css("backgroundColor", "#" + $scope.color);
+
         $scope.renderPalette = function(){
             var palette = $("#palette")[0];
             var context = palette.getContext("2d");
@@ -39,7 +43,7 @@ angular.module("Beader.controllers", []).controller("DesignerCtrl", ["$scope", "
             
             }
         };
-        
+
         $scope.renderPalette();
 
         $scope.selectColor = function($event){

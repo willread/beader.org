@@ -1,6 +1,10 @@
 angular.module("Beader", ["ngCookies", "ngRoute", "Beader.controllers"]).
     
-    config(["$provide", "$routeProvider", "$httpProvider", function($provide, $routeProvider, $httpProvider){
+    config(["$provide", "$routeProvider", "$httpProvider", "$locationProvider", function($provide, $routeProvider, $httpProvider, $locationProvider){
+        // Enable HTML5 routing
+        
+        $locationProvider.html5Mode(true);
+
         // Handle application routes
 
         $routeProvider.

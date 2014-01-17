@@ -18,10 +18,10 @@
         <header class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="pull-left" href="{% url 'app:index"><img src="/images/logo.png"></a>
+                    <a class="pull-left" href="/"><img src="/images/logo.png"></a>
                     <ul class="nav pull-right">
                         <li><a href="">Pattern Gallery</a></li>
-                        <li><a href="">Design a Pattern</a></li>
+                        <li><a href="create">Design a Pattern</a></li>
                         <li id="login-item" class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>
                             <div id="login" class="dropdown-menu">
@@ -32,24 +32,7 @@
                 </div>
             </div>
         </header>
-        <article ng-view class="container">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </article>
+        <article ng-view class="container"></article>
 
         <script src="js/main.js"></script>
     </body>

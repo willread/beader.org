@@ -104,11 +104,15 @@ app.get("/logout", function(req, res){
     res.redirect("/");
 });
 
+app.get("/create", function(req, res){
+    res.sendfile("static/index.html");
+});
+
 // Create a pattern
 
 app.post("/pattern", function(req, res){
     // Generate image
-    
+
     tmp.file(function(error, path, fd){
         if(error){
             res.json(500, {error: "Could not create temporary file"});

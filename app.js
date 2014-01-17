@@ -24,7 +24,7 @@ var mongo = function(callback){
     if(!mongoDb){
         console.log("Initializing mongodb connection");
         MongoClient.connect(mongoUri, function(error, db){
-            console.log("Connected...");
+            console.log("Connected to mongodb");
             if(error){ callback(error, null); }
             mongoDb = db;
             callback(null, mongoDb);
@@ -45,8 +45,8 @@ passport.deserializeUser(function(obj, done){
 });
 
 passport.use(new GoogleStrategy({
-        returnURL: (process.env.BASE_PATH || "http://localhost:5000") + "/auth/google/return",
-        realm: process.env.BASE_PATH || "http://localhost:5000"
+        returnURL: (process.env.BASE_PATH) + "/auth/google/return",
+        realm: process.env.BASE_PATH
     },
     function(identifier, profile, done){
         process.nextTick(function(){
@@ -58,23 +58,23 @@ passport.use(new GoogleStrategy({
 
 var ensureAuthenticated = function(req, res, next) {
     if(req.isAuthenticated()){ return next(); }
-    res.redirect("#/login")
+    res.redirect("/login")
 }
 
 // App configuration
 
 app.configure(function(){
-    app.set("port", process.env.PORT || 5000);
+    app.set("port", process.env.PORT);
     app.use(express.static(path.join(__dirname, "static")));
     app.use(express.favicon());
     app.use(express.cookieParser());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    app.use(express.session({ secret: "FIXME: This is a secret" }));
+    app.use(express.session({ secret: process.env.SESSION_SECRET }));
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(app.router);
-}).listen(process.env.PORT || 5000, function(){});
+}).listen(process.env.PORT, function(){});
 
 app.get("/auth/google", passport.authenticate("google", { failureRedirect: "/" }), function(req, res){
     res.redirect("/");
@@ -95,18 +95,4 @@ app.get("/auth/google/return", passport.authenticate('google', { failureRedirect
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
-});
-
-// Get a list of all comics
-
-app.get("/comics", function(req, res){
-    mongo(function(error, db){
-        var collection = db.collection("comics");
-
-        collection.find({}, function(error, comics){
-            comics.toArray(function(error, comics){
-                res.end(JSON.stringify(comics));
-            });
-        });
-    });
 });

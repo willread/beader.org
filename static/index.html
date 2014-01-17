@@ -1,26 +1,15 @@
 <!doctype html>
-<html lang="en" ng-app="Pull" id="ng-app">
+<html lang="en" ng-app="Beader" id="ng-app">
     <head>
-        <title ng-bind-template="Pull {{title ? ' | ' + title : ''}}">Pull</title>
+        <title ng-bind-template="Beader {{title ? ' | ' + title : ''}}">Beader</title>
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
         <meta name="viewport" content="width=device-width">
     </head>
 
-    <body ng-controller="PullCtrl">
+    <body ng-controller="BeaderCtrl">
         <div class="wrapper">
-            <div class="header">
-            </div>
-                <a ng-if="!user" href="/auth/google" class="oauth-button">Log In With Google</a>
-                <span ng-if="user">{{user.displayName}}</span>
-            <div>
-                <select ng-model="publisherFilter" ng-options="publisher for publisher in publishers"></select>
-            </div>
-            <div ng-repeat="comic in comicsThisWeek() | filter: {publisher: publisherFilter}" class="comic">
-                <img ng-src="//s3.amazonaws.com/pullist/comics/{{comic._id}}.jpg">
-                <div class="title">{{comic.title}}</div>
-            </div>
-            <div class="clear"></div>
+            <div class="header"></div>
         </div>
 
         <script src="js/main.js"></script>

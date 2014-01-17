@@ -6,7 +6,7 @@ mkdir build
 mkdir build/js
 mkdir build/css
 # Concatenate all js files into main.js. Order matters here!
-cat js/lib/json2.js js/lib/uri.js js/lib/jquery.js js/lib/jquery-*.js js/lib/d3.js js/lib/moment.min.js js/lib/angular.js js/lib/angular-*.js js/lib/modernizr.js "js/config.$MODE.js" js/app/*.js js/app/controllers/*.js > build/js/main.js
+cat js/lib/json2.js js/lib/uri.js js/lib/jquery.js js/lib/bootstrap*.js js/lib/jquery-*.js js/lib/d3.js js/lib/moment.min.js js/lib/angular.js js/lib/angular-*.js js/lib/modernizr.js "js/config.$MODE.js" js/app/*.js js/app/controllers/*.js > build/js/main.js
 # Run js through ngmin first, which is an angular-specific "pre-minifier"
 node_modules/.bin/ngmin build/js/main.js build/js/main.js
 # Minify all js

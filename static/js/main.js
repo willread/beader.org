@@ -4,6 +4,7 @@
         "js/lib/uri.js",
         "js/lib/jquery.js",
         "js/lib/jquery-ui.js",
+        "js/lib/bootstrap.min.js",
         "js/lib/angular.js",
         "js/lib/angular-resource.js",
         "js/lib/angular-cookies.js",

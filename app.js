@@ -80,6 +80,10 @@ app.get("/auth/google", passport.authenticate("google", { failureRedirect: "/" }
     res.redirect("/");
 });
 
+app.get("/auth/google/return", passport.authenticate('google', { failureRedirect: "/" }), function(req, res){
+    res.redirect("/");
+});
+
 app.get("/user", function(req, res){
     if(req.user){
         res.json(200, req.user);
@@ -88,11 +92,9 @@ app.get("/user", function(req, res){
     }
 });
 
-app.get("/auth/google/return", passport.authenticate('google', { failureRedirect: "/" }), function(req, res){
-    res.redirect("/");
-});
-
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
 });
+
+// Create or update a pattern

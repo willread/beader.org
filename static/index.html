@@ -8,9 +8,33 @@
     </head>
 
     <body ng-controller="BeaderCtrl">
-        <div class="wrapper">
-            <div class="header"></div>
-        </div>
+<html>
+    <head>
+        <title>Beader</title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />w
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    </head>
+    <body>
+        <header class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="pull-left" href="{% url 'app:index' %}"><img src="/images/logo.png"></a>
+                    <ul class="nav pull-right">
+                        <li><a href="">Pattern Gallery</a></li>
+                        <li><a href="">Design a Pattern</a></li>
+                        <li id="login-item" class="dropdown">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>
+                            <div id="login" class="dropdown-menu">
+                                <a href="/auth/google" class="btn">Login with Google</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <article class="container">
+            {% block content %}{% endblock %}
+        </article>
 
         <script src="js/main.js"></script>
     </body>

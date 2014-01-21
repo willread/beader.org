@@ -22,11 +22,11 @@
                       <span class="add-on">Height</span><input ng-model="height" class="input-mini" id="height" type="text" value="20">
                     </div>              
                     <input ng-model="name" type="text" id="name" placeholder="Pattern Name">
-                    <button ng-click="save" class="btn btn-success" id="save-button">Save</button>
+                    <button ng-click="save()" class="btn btn-success" id="save-button">Save</button>
                             
                 </div>
             
-                <canvas ng-mouse-move="drag($event)" ng-mouse-up="click($event)" ng-mouse-down="startDrawing($event)" ng-mouse-leave="stopDrawing($event)" id="grid" width="700" height="700"></canvas>
+                <canvas ng-mousemove="drag($event)" ng-mouseup="click($event)" ng-mousedown="startDrawing($event)" ng-mouseleave="stopDrawing($event)" id="grid" width="700" height="700"></canvas>
             
             </div>
             

@@ -87,7 +87,7 @@ app.get("/auth/google", passport.authenticate("google", { failureRedirect: "/" }
     res.redirect("/");
 });
 
-app.get("/auth/google/return", passport.authenticate('google', { failureRedirect: "/" }), function(req, res){
+app.get("/auth/google/return", passport.authenticate("google", { failureRedirect: "/" }), function(req, res){
     res.redirect("/");
 });
 
@@ -108,9 +108,43 @@ app.get("/create", function(req, res){
     res.sendfile("static/index.html");
 });
 
+// Get a pattern by id
+
+app.get("/pattern/:id/edit", function(req, res){
+    res.sendfile("static/index.html");
+});
+
+app.get("/pattern/:id.json", function(req, res){
+    mongo(function(error, db){
+        var collection = db.collection("patterns");
+        collection.findOne({_id: new ObjectID(req.params.id)}, function(error, pattern){
+            res.json(200, pattern);
+        });
+    });
+});
+
+// Get a list of patterns
+
+app.get("/patterns", function(req, res){
+    mongo(function(error, db){
+        var collection = db.collection("patterns");
+
+        collection.find({}, {_id: true, name: true}, {}, function(error, patterns){
+            patterns.toArray(function(error, patterns){
+                res.json(200, patterns);
+            });
+        });
+    });
+});
+
 // Create a pattern
 
 app.post("/pattern", function(req, res){
+    var pattern = req.body;
+
+    // Validate pattern
+    // TODO!
+
     // Generate image
 
     tmp.file(function(error, path, fd){
@@ -120,6 +154,8 @@ app.post("/pattern", function(req, res){
             // Write image to temporary file
 
             var buffer = new Buffer(req.body.image, "base64");
+            delete req.body.image; // We don't need this anymore
+
             fs.writeFile(path, buffer, function(error){
                 if(error){
                     res.json(500, {error: "Could not create temporary file"});
@@ -130,12 +166,29 @@ app.post("/pattern", function(req, res){
                         if(error || features.format !== "PNG"){
                             res.json(500, {error: "Invalid image"});
                         }else{
-                            // Upload to S3
+                            // Save record to mongo
 
-                            S3Client.putFile(path, "/patterns/FIXME.png", {"x-amz-acl": "public-read"}, function(res){
-                                console.log("Uploaded image to S3");
+                             mongo(function(error, db){
+                                var collection = db.collection("patterns");
+                                var id = new ObjectID(pattern._id);
 
-                                res.json(200, {message: "Saved successfully"});
+                                delete(pattern._id);
+
+                                collection.findAndModify({_id: id}, null, pattern, {upsert: true}, function(error, result, details){
+                                    if(error){
+                                        res.json(500, {error: "Error inserting into database" + error}); 
+                                    }else{
+                                        var id = details.lastErrorObject.updatedExisting ? details.value._id : details.lastErrorObject.upserted;
+                                        console.log("id", id, details.lastErrorObject.upserted, details.value._id);
+
+                                        // Upload to S3
+
+                                        S3Client.putFile(path, "/patterns/" + id + ".png", {"x-amz-acl": "public-read"}, function(){
+                                            console.log("uploaded to s3")
+                                            res.json(200, {message: "Saved successfully"});
+                                        });
+                                    }
+                                });
                             });
                         }
                     });

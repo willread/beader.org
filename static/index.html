@@ -2,8 +2,8 @@
 <html lang="en" ng-app="Beader" id="ng-app">
     <head>
         <title ng-bind-template="Beader {{title ? ' | ' + title : ''}}">Beader</title>
-        <link rel="stylesheet" href="css/style.css"/>
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href="/css/style.css"/>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
         <meta name="viewport" content="width=device-width">
     </head>
 
@@ -20,8 +20,8 @@
                 <div class="container">
                     <a class="pull-left" href="/"><img src="/images/logo.png"></a>
                     <ul class="nav pull-right">
-                        <li><a href="">Pattern Gallery</a></li>
-                        <li><a href="create">Design a Pattern</a></li>
+                        <li><a href="/">Pattern Gallery</a></li>
+                        <li><a href="/create">Design a Pattern</a></li>
                         <li id="login-item" class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>
                             <div id="login" class="dropdown-menu">
@@ -34,6 +34,6 @@
         </header>
         <article ng-view class="container"></article>
 
-        <script src="js/main.js"></script>
+        <script src="/js/main.js"></script>
     </body>
 </html>

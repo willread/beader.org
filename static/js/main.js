@@ -14,6 +14,7 @@
         "/js/lib/moment.min.js",
         "/js/config.js",
         "/js/app/app.js",
+        "/js/app/controllers/auth.js",
         "/js/app/controllers/designer.js",
         "/js/app/controllers/patterns.js"
     ];

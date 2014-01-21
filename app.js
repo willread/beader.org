@@ -88,20 +88,24 @@ app.get("/auth/google", passport.authenticate("google", { failureRedirect: "/" }
 });
 
 app.get("/auth/google/return", passport.authenticate("google", { failureRedirect: "/" }), function(req, res){
-    res.redirect("/");
+    res.end();
 });
 
 app.get("/user", function(req, res){
     if(req.user){
         res.json(200, req.user);
     }else{
-        res.json(500, {error: "Not logged in"});
+        res.json(403, {error: "Not logged in"});
     }
 });
 
-app.get("/logout", function(req, res){
+app.get("/auth/logout", function(req, res){
     req.logout();
-    res.redirect("/");
+    res.redirect("/auth/logout/return");
+});
+
+app.get("/auth/logout/return", function(req, res){
+    res.end();
 });
 
 app.get("/create", function(req, res){

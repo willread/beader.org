@@ -22,10 +22,12 @@
                     <ul class="nav pull-right">
                         <li><a href="/">Pattern Gallery</a></li>
                         <li><a href="/create">Design a Pattern</a></li>
-                        <li id="login-item" class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>
+                        <li ng-controller="AuthCtrl" id="login-item" class="dropdown">
+                            <a ng-if="!user" class="dropdown-toggle" href="#" data-toggle="dropdown">Login</a>
+                            <a ng-if="user" class="dropdown-toggle" href="#" data-toggle="dropdown">{{user.displayName}}</a>
                             <div id="login" class="dropdown-menu">
-                                <a href="/auth/google" class="btn">Login with Google</a>
+                                <a ng-if="!user" ng-click="googleLogin()" href="" class="btn">Login with Google</a>
+                                <a ng-if="user" ng-click="googleLogout()" href="" class="btn">Log Out</a>
                             </div>
                         </li>
                     </ul>

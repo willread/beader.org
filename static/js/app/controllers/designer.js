@@ -196,8 +196,10 @@ angular.module("Beader.controllers").controller("DesignerCtrl", ["$scope", "$htt
 
         $scope.renderGrid();
 
-
         $scope.save = function($event){
+
+            $("#save-button").prop("disabled", true);
+            $("#save-button").text("Saving...");
 
             var canvas = $("#grid");
             var context = canvas[0].getContext("2d");
@@ -222,7 +224,9 @@ angular.module("Beader.controllers").controller("DesignerCtrl", ["$scope", "$htt
                 }).
                 error(function(response){
                     // TODO
-                    console.log("Error saving");
+                    console.log("Error saving", response);
+                    $("#save-button").prop("disabled", false);
+                    $("#save-button").text("Save");
                 });
         };
     }]);

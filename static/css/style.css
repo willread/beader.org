@@ -112,30 +112,22 @@ article.container {
 
 #color {
   width: 132px;
-  height: 23px; }
+  height: 64px; }
 
 #toolbar .btn-group {
   margin: 0 0 5px 0; }
 
 #meta {
   padding-bottom: 10px; }
+  #meta select {
+    margin: 0 10px; }
+  #meta input {
+    margin-left: 10px;
+    width: 369px; }
 
-#meta .input-prepend {
-  font-size: 12px;
-  font-weight: bold; }
-
-#meta input {
-  width: 40px;
-  height: 30px;
-  text-align: center;
-  margin-right: 10px; }
-
-#meta #name {
-  width: 405px;
-  text-align: left; }
-
-#meta #save-button {
-  width: 72px; }
+#save-button {
+  width: 100%;
+  margin-bottom: 10px; }
 
 #grid, #grid:active {
   cursor: hand;

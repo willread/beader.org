@@ -2,3 +2,4 @@
 [ ] Twitter login support
 [ ] Ensure toDataURL support exists in browser
 [ ] Remove redundant code from designer ($"#canvas"), etc..
+[ ] Fix offset bug when clicking in other alignments

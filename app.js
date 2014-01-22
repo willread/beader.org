@@ -166,10 +166,10 @@ app.post("/pattern", function(req, res){
                 }else{
                     // Validate image
 
-                    im.identify(path, function(error, features){
-                        if(error || features.format !== "PNG"){
-                            res.json(500, {error: "Invalid image"});
-                        }else{
+                    // im.identify(path, function(error, features){
+                        // if(error || features.format !== "PNG"){
+                        //    res.json(500, {error: "Invalid image"});
+                        // }else{
                             // Save record to mongo
 
                              mongo(function(error, db){
@@ -183,7 +183,7 @@ app.post("/pattern", function(req, res){
                                         res.json(500, {error: "Error inserting into database" + error}); 
                                     }else{
                                         var id = details.lastErrorObject.updatedExisting ? details.value._id : details.lastErrorObject.upserted;
-                                        console.log("id", id, details.lastErrorObject.upserted, details.value._id);
+                                        console.log("id", id, path);
 
                                         // Upload to S3
 
@@ -194,8 +194,8 @@ app.post("/pattern", function(req, res){
                                     }
                                 });
                             });
-                        }
-                    });
+                        // }
+                    // });
                 }
             });
         }

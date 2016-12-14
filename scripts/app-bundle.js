@@ -167,7 +167,7 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-http-client'], funct
       var x = Math.floor($event.offsetX / size);
       var y = Math.floor($event.offsetY / size);
 
-      this.setPtternCell(x, y, this.color);
+      this.setPatternCell(x, y, this.color);
       this.renderGrid($event);
     };
 

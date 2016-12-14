@@ -153,7 +153,7 @@ export class Designer {
     let x = Math.floor($event.offsetX / size);
     let y = Math.floor($event.offsetY / size);
 
-    this.setPtternCell(x, y, this.color);
+    this.setPatternCell(x, y, this.color);
     this.renderGrid($event);
   }
 

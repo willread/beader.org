@@ -32,7 +32,7 @@ export class Designer {
 
     // Init pattern
 
-    for(let ii = 0; ii < width * height; ii++){
+    for(let ii = 0; ii < this.width * this.height; ii++){
       pattern.push(clearColor);
     }
 

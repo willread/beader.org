@@ -4,3 +4,4 @@
 [ ] Remove redundant code from designer ($"#canvas"), etc..
 [ ] Fix offset bug when clicking in other alignments
 [ ] Deprecate old angular project files (once everything is moved over)
+[ ] Undo / redo

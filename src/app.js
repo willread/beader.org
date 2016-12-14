@@ -3,7 +3,7 @@ import {Router, RouterConfiguration} from 'aurelia-router';
 export class App {
   constructor() {}
 
-  configureRouter(config: RouterConfiguration, router: Router){
+  configureRouter(config, router){
     config.title = 'Contacts';
     config.map([
       { route: '', moduleId: 'designer', title: 'Beader.org' },

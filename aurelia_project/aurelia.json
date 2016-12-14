@@ -94,6 +94,11 @@
           "node_modules/requirejs/require.js"
         ],
         "dependencies": [
+          {
+            "name": "aurelia-auth",
+            "path": "../node_modules/aurelia-auth/dist/amd",
+            "main": "aurelia-auth"
+          },
           "aurelia-binding",
           "aurelia-bootstrapper",
           "aurelia-dependency-injection",
@@ -102,6 +107,7 @@
           "aurelia-history",
           "aurelia-history-browser",
           "aurelia-http-client",
+          "aurelia-fetch-client",
           "aurelia-loader",
           "aurelia-loader-default",
           "aurelia-logging",

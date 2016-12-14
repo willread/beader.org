@@ -33,7 +33,7 @@ export class Designer {
     // Init pattern
 
     for(let ii = 0; ii < this.width * this.height; ii++){
-      pattern.push(clearColor);
+      this.pattern.push(clearColor);
     }
 
     // We're editing a pattern, load it from the backend

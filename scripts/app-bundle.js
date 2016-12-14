@@ -66,7 +66,7 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-http-client'], funct
       $('#color').css('backgroundColor', '#' + this.color);
 
       for (var ii = 0; ii < this.width * this.height; ii++) {
-        pattern.push(clearColor);
+        this.pattern.push(clearColor);
       }
 
       this.renderPalette();

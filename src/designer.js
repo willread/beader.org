@@ -1,10 +1,10 @@
 import {inject} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-http-client';
+import {HttpClient, json} from 'aurelia-fetch-client';
 
 @inject(HttpClient)
 export class Designer {
-  constructor(httpClient) {
-    this.http = httpClient;
+  constructor(http) {
+    this.http = http;
   }
 
   // Palette colors
@@ -222,15 +222,19 @@ export class Designer {
     $('#save-button').text('Saving...');
 
     let canvas = $('#grid');
+    let http = new HttpClient();
 
-    this.http.post('https://beader-api.herokuapp.com/patterns', {
-      name: this.name,
-      description: '',
-      width: this.width,
-      height: this.height,
-      align: this.align,
-      pattern: this.pattern,
-      image: canvas[0].toDataURL('image/png')
+    this.http.fetch('https://beader-api.herokuapp.com/patterns', {
+      method: 'post',
+      body: json({
+        name: this.name,
+        description: '',
+        width: this.width,
+        height: this.height,
+        align: this.align,
+        pattern: this.pattern,
+        image: canvas[0].toDataURL('image/png')
+      })
     })
     .then(response => {
       $('#save-button').prop('disabled', false);

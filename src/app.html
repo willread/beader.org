@@ -3,18 +3,22 @@
   <require from="./styles.css"></require>
 
   <header class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-          <div class="container">
-              <a class="pull-left" href="/"><img src="/images/logo.png"></a>
-              <ul class="nav pull-right">
-                  <li><a href="/">Pattern Gallery</a></li>
-                  <li><a href="/create">Design a Pattern</a></li>
-                  <li>
-                    <a click.delegate="authenticate('google')" class="btn">Sign in with Google</a>
-                  </li>
-              </ul>
-          </div>
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="pull-left" href="/"><img src="/images/logo.png"></a>
+        <ul class="nav pull-right">
+          <li><a href="/">Pattern Gallery</a></li>
+          <li><a href="/create">Design a Pattern</a></li>
+          <li if.bind="!isAuthenticated">
+            <a click.delegate="authenticate('google')" class="btn">Sign in with Google</a>
+          </li>
+          <li if.bind="isAuthenticated">
+            <a class="btn">Welcome ${displayName}</a>
+            <a class="btn" click.trigger="logout()">Log Out</a>
+          </li>
+        </ul>
       </div>
+    </div>
   </header>
   <router-view class="container"></router-view>
 </template>

@@ -1,6 +1,132 @@
-body {
-	background: #666 url(../images/bg.png);
-}
+@import url('https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900');
+
+body
+	margin: 0
+	padding: 0
+	background: #ccc
+	color: #202121
+	font-family: 'Roboto', sans-serif
+
+*
+	box-sizing: border-box
+
+a, a:active, a:visited
+	color: #202121
+	font-size: 13px
+
+.navbar
+	position: relative
+	width: 100%
+	height: 70px
+	background: #fff
+	border-bottom: 1px solid #aaa
+
+	.logo
+		font-size: 32px
+		color: #00B7E6
+		font-family: Muli, Sans-serif
+		font-weight: 900
+		letter-spacing: -1px
+		background: -webkit-linear-gradient(#00D8D6, #00B7E6);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		text-align: center
+		line-height: 70px
+
+	.menu-left
+		position: absolute
+		left: 0
+		top: 0
+
+		a
+			display: inline-block
+			font-size: 18px
+			line-height: 69px
+			text-decoration: none
+			text-transform: uppercase
+			color: #333
+			font-size: 18px
+			font-weight: 600
+			padding: 0 20px
+			border-right: 1px solid #eee
+			float: left
+
+			&:hover
+				background: lighten(#00B7E6, 80%)
+				color: darken(#00B7E6, 20%)
+				cursor: hand
+				cursor: pointer
+
+	.menu-right
+		height: 30px
+		position: absolute
+		top: 0
+		right: 0
+		margin: 20px
+
+		.label
+			display: inline-block
+			color: #ccc
+			font-size: 12px
+			font-weight: 300
+			padding-right: 10px
+
+		a
+			display: inline-block
+			color: #333
+			font-size: 12px
+			padding: 0 10px
+			line-height: 28px
+			border: 1px solid #ccc
+			border-radius: 4px
+			font-weight: 600
+			text-transform: uppercase
+			cursor: hand
+			cursor: pointer
+
+			&:hover
+				background: lighten(#00B7E6, 80%)
+				color: darken(#00B7E6, 20%)
+				border-color: darken(#00B7E6, 20%)
+
+.pattern-tiles-container
+	margin-top: 10px
+	margin-left: 10px
+
+.pattern-tile
+	width: 170px
+	height: 230px
+	padding: 10px
+	margin-right: 10px
+	margin-bottom: 10px
+	background: #fff
+	float: left
+	border-radius: 2px
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3)
+	text-decoration: none
+
+	img
+		width: 150px
+		height: 150px
+
+.pattern-tile-name
+	font-size: 13px
+	margin-top: 5px
+	font-weight: 600
+	line-height: 16px
+	max-height: 32px
+	overflow: hidden
+
+.pattern-tile-user
+	font-size: 12px
+	font-weight: 300
+	line-height: 15px
+	max-height: 15px
+	overflow: hidden
+	margin: 5px 0
+
+a:hover .pattern-tile-name
+	color: darken(#00B7E6, 20%)
 
 header .navbar-inner {
 	height: 40px;

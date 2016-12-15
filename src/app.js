@@ -14,8 +14,9 @@ export class App {
   configureRouter(config, router){
     config.title = 'Contacts';
     config.map([
-      { route: '', moduleId: 'designer', title: 'Beader.org' },
-      { route: 'designer',  moduleId: 'designer', name:'designer' }
+      { route: '', moduleId: 'patterns', title: 'Beader.org' },
+      { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern'},
+      { route: '/designer',  moduleId: 'designer', name:'designer' }
     ]);
 
     this.router = router;

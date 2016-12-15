@@ -1,23 +1,20 @@
 <template>
-  <require from="bootstrap/css/bootstrap.css"></require>
   <require from="./styles.css"></require>
 
-  <header class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="pull-left" href="/"><img src="/images/logo.png"></a>
-        <ul class="nav pull-right">
-          <li><a href="/">Pattern Gallery</a></li>
-          <li><a href="/create">Design a Pattern</a></li>
-          <li if.bind="!isAuthenticated">
-            <a click.delegate="authenticate('google')" class="btn">Sign in with Google</a>
-          </li>
-          <li if.bind="isAuthenticated">
-            <a class="btn">Welcome ${displayName}</a>
-            <a class="btn" click.trigger="logout()">Log Out</a>
-          </li>
-        </ul>
-      </div>
+  <header class="navbar">
+    <div class="logo">beader</div>
+
+    <div class="menu-left">
+      <a href="/#">Pattern Gallery</a>
+      <a route-href="route: designer">New Pattern</a>
+    </div>
+
+    <div class="menu-right">
+      <a if.bind="!isAuthenticated" click.delegate="authenticate('google')">Sign in with Google</a>
+      <span if.bind="isAuthenticated">
+        <span class="label">Welcome ${displayName}</span>
+        <a click.trigger="logout()">Log Out</a>
+      </span>
     </div>
   </header>
   <router-view class="container"></router-view>

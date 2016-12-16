@@ -207,7 +207,7 @@ export class Designer {
     for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
         context.beginPath();
-        context.arc(x * size + size / 2 + (y % 2 ? horizontalOffset : 0), y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
+        context.arc(x * size + size / 2 + (!(y % 2) ? horizontalOffset : 0), y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
         context.fillStyle = '#' + (this.getPatternCell(x, y) || this.clearColor);
         context.fill();
         context.lineWidth = 1;

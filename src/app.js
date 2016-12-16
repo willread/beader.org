@@ -1,3 +1,4 @@
+import 'jquery';
 import {Router, RouterConfiguration} from 'aurelia-router';
 import {inject} from 'aurelia-framework';
 import {AuthService, FetchConfig} from 'aurelia-auth';

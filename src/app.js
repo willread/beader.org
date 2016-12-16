@@ -16,6 +16,7 @@ export class App {
     config.title = 'Contacts';
     config.map([
       { route: '', moduleId: 'patterns', title: 'Beader.org' },
+      { route: '/patterns', moduleId: 'patterns', title: 'Patterns', name: 'patterns' },
       { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern'},
       { route: '/designer',  moduleId: 'designer', name:'designer' }
     ]);

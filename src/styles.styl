@@ -173,3 +173,24 @@ a:hover .pattern-tile-name
 
 .show-overflow
 	overflow: visible !important
+
+.pagination
+	display: block
+	width: 100%
+	float: none
+	clear: both
+	text-align: center
+	margin: 10px 0
+
+	.button
+		font-size: 18px
+		font-weight: 600
+
+		&.previous:before
+			content: "\00AB"
+
+		&.next:after
+			content: " \00BB"
+
+		&:nth-child(2)
+			margin-left: 10px

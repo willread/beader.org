@@ -44,7 +44,7 @@ define('app',['exports', 'aurelia-router', 'aurelia-framework', 'aurelia-auth', 
 
     App.prototype.configureRouter = function configureRouter(config, router) {
       config.title = 'Contacts';
-      config.map([{ route: '', moduleId: 'patterns', title: 'Beader.org' }, { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern' }, { route: '/designer', moduleId: 'designer', name: 'designer' }]);
+      config.map([{ route: '', moduleId: 'patterns', title: 'Beader.org' }, { route: '/patterns', moduleId: 'patterns', title: 'Patterns', name: 'patterns' }, { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern' }, { route: '/designer', moduleId: 'designer', name: 'designer' }]);
 
       this.router = router;
     };
@@ -428,44 +428,6 @@ define('pattern',['exports', 'aurelia-framework', 'aurelia-fetch-client'], funct
     };
 
     return Pattern;
-  }()) || _class);
-});
-define('patterns',['exports', 'aurelia-framework', 'aurelia-fetch-client'], function (exports, _aureliaFramework, _aureliaFetchClient) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.Patterns = undefined;
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  var _dec, _class;
-
-  var Patterns = exports.Patterns = (_dec = (0, _aureliaFramework.inject)(_aureliaFetchClient.HttpClient), _dec(_class = function () {
-    function Patterns(http) {
-      _classCallCheck(this, Patterns);
-
-      this.patterns = [];
-
-      this.http = http;
-    }
-
-    Patterns.prototype.attached = function attached() {
-      var _this = this;
-
-      this.http.fetch('https://beader-api.herokuapp.com/patterns').then(function (response) {
-        return response.json();
-      }).then(function (response) {
-        return _this.patterns = response.patterns;
-      });
-    };
-
-    return Patterns;
   }()) || _class);
 });
 define('resources/index',["exports"], function (exports) {
@@ -1802,9 +1764,67 @@ define('aurelia-auth/auth-filter',["exports"], function (exports) {
     return AuthFilterValueConverter;
   }();
 });
+define('patterns',['exports', 'aurelia-framework', 'aurelia-fetch-client', 'aurelia-router'], function (exports, _aureliaFramework, _aureliaFetchClient, _aureliaRouter) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Patterns = undefined;
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _dec, _class;
+
+  var Patterns = exports.Patterns = (_dec = (0, _aureliaFramework.inject)(_aureliaFetchClient.HttpClient), _dec(_class = function () {
+    function Patterns(http) {
+      _classCallCheck(this, Patterns);
+
+      this.patterns = [];
+      this.page = 1;
+      this.limit = 20;
+      this.showNext = false;
+      this.showPrevious = false;
+
+      this.http = http;
+    }
+
+    Patterns.prototype.activate = function activate(params) {
+      this.page = params.page ? parseInt(params.page, 10) : 1;
+    };
+
+    Patterns.prototype.determineActivationStrategy = function determineActivationStrategy() {
+      return _aureliaRouter.activationStrategy.replace;
+    };
+
+    Patterns.prototype.attached = function attached() {
+      var _this = this;
+
+      this.http.fetch('https://beader-api.herokuapp.com/patterns?page=' + this.page + '&limit=' + this.limit).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        _this.patterns = response.patterns;
+
+        if (_this.page > 1) {
+          _this.showPrevious = true;
+        }
+        console.log(response.totalPages);
+        if (_this.page < response.totalPages) {
+          _this.showNext = true;
+        }
+      });
+    };
+
+    return Patterns;
+  }()) || _class);
+});
+define('text!styles.css', ['module'], function(module) { module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900\");\nbody {\n  margin: 0;\n  padding: 0;\n  background: #ccc;\n  color: #202121;\n  font-family: 'Roboto', sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\na,\na:active,\na:visited {\n  color: #202121;\n  font-size: 13px;\n}\n.navbar {\n  position: relative;\n  width: 100%;\n  height: 70px;\n  background: #fff;\n  border-bottom: 1px solid #aaa;\n}\n.navbar .logo {\n  font-size: 32px;\n  color: #00b7e6;\n  font-family: Muli, Sans-serif;\n  font-weight: 900;\n  letter-spacing: -1px;\n  background: -webkit-linear-gradient(#00d8d6, #00b7e6);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  text-align: center;\n  line-height: 70px;\n}\n.navbar .menu-left {\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.navbar .menu-left a {\n  display: inline-block;\n  font-size: 18px;\n  line-height: 69px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #333;\n  font-size: 18px;\n  font-weight: 600;\n  padding: 0 20px;\n  border-right: 1px solid #eee;\n  float: left;\n}\n.navbar .menu-left a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right {\n  height: 30px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin: 20px;\n}\n.navbar .menu-right .label {\n  display: inline-block;\n  color: #ccc;\n  font-size: 12px;\n  font-weight: 300;\n  padding-right: 10px;\n}\n.navbar .menu-right a {\n  display: inline-block;\n  color: #333;\n  font-size: 12px;\n  padding: 0 10px;\n  line-height: 28px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-weight: 600;\n  text-transform: uppercase;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  border-color: #0092b8;\n}\n.pattern-tiles-container {\n  margin-top: 10px;\n  margin-left: 10px;\n}\n.pattern-tile {\n  width: 170px;\n  height: 230px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-bottom: 10px;\n  background: #fff;\n  float: left;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px rgba(0,0,0,0.3);\n  text-decoration: none;\n}\n.pattern-tile img {\n  width: 150px;\n  height: 150px;\n}\n.pattern-tile-name {\n  font-size: 13px;\n  margin-top: 5px;\n  font-weight: 600;\n  line-height: 16px;\n  max-height: 32px;\n  overflow: hidden;\n}\n.pattern-tile-user {\n  font-size: 12px;\n  font-weight: 300;\n  line-height: 15px;\n  max-height: 15px;\n  overflow: hidden;\n  margin: 5px 0;\n}\na:hover .pattern-tile-name {\n  color: #0092b8;\n}\n.tools {\n  background: #666;\n  width: 100%;\n  height: 60px;\n  padding: 10px;\n  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3);\n  border-bottom: 1px solid #ddd;\n}\n.tools .button-group {\n  margin-right: 10px;\n  float: left;\n  border-radius: 5px;\n  overflow: hidden;\n  border: 1px solid #fff;\n  position: relative;\n}\n.tools .button-group button {\n  display: inline-block;\n  float: left;\n  width: 60px;\n  height: 40px;\n  outline: none;\n  border-top: 0;\n  border-left: 0;\n  border-bottom: 0;\n  border-right: 1px solid #fff;\n}\n.tools .button-group button:last-child {\n  border-right: 0;\n}\n.tools .button-group button.active {\n  background: #eee;\n}\n#palette-wrapper {\n  position: absolute;\n  z-index: 10;\n  top: 50px;\n  left: 0px;\n  display: none;\n}\n#color:hover + #palette-wrapper {\n  display: block;\n}\n.show-overflow {\n  overflow: visible !important;\n}\n.pagination {\n  display: block;\n  width: 100%;\n  float: none;\n  clear: both;\n  text-align: center;\n  margin: 10px 0;\n}\n.pagination .button {\n  font-size: 18px;\n  font-weight: 600;\n}\n.pagination .button.previous:before {\n  content: \"\\00AB\";\n}\n.pagination .button.next:after {\n  content: \" \\00BB\";\n}\n.pagination .button:nth-child(2) {\n  margin-left: 10px;\n}\n"; });
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <require from=\"./styles.css\"></require>\n\n  <header class=\"navbar\">\n    <div class=\"logo\">beader</div>\n\n    <div class=\"menu-left\">\n      <a href=\"/#\">Pattern Gallery</a>\n      <a route-href=\"route: designer\">New Pattern</a>\n    </div>\n\n    <div class=\"menu-right\">\n      <a if.bind=\"!isAuthenticated\" click.delegate=\"authenticate('google')\">Sign in with Google</a>\n      <span if.bind=\"isAuthenticated\">\n        <span class=\"label\">Welcome ${displayName}</span>\n        <a click.trigger=\"logout()\">Log Out</a>\n      </span>\n    </div>\n  </header>\n  <router-view class=\"container\"></router-view>\n</template>\n"; });
-define('text!styles.css', ['module'], function(module) { module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900\");\nbody {\n  margin: 0;\n  padding: 0;\n  background: #ccc;\n  color: #202121;\n  font-family: 'Roboto', sans-serif;\n}\n* {\n  box-sizing: border-box;\n}\na,\na:active,\na:visited {\n  color: #202121;\n  font-size: 13px;\n}\n.navbar {\n  position: relative;\n  width: 100%;\n  height: 70px;\n  background: #fff;\n  border-bottom: 1px solid #aaa;\n}\n.navbar .logo {\n  font-size: 32px;\n  color: #00b7e6;\n  font-family: Muli, Sans-serif;\n  font-weight: 900;\n  letter-spacing: -1px;\n  background: -webkit-linear-gradient(#00d8d6, #00b7e6);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  text-align: center;\n  line-height: 70px;\n}\n.navbar .menu-left {\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.navbar .menu-left a {\n  display: inline-block;\n  font-size: 18px;\n  line-height: 69px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #333;\n  font-size: 18px;\n  font-weight: 600;\n  padding: 0 20px;\n  border-right: 1px solid #eee;\n  float: left;\n}\n.navbar .menu-left a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right {\n  height: 30px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin: 20px;\n}\n.navbar .menu-right .label {\n  display: inline-block;\n  color: #ccc;\n  font-size: 12px;\n  font-weight: 300;\n  padding-right: 10px;\n}\n.navbar .menu-right a {\n  display: inline-block;\n  color: #333;\n  font-size: 12px;\n  padding: 0 10px;\n  line-height: 28px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-weight: 600;\n  text-transform: uppercase;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  border-color: #0092b8;\n}\n.pattern-tiles-container {\n  margin-top: 10px;\n  margin-left: 10px;\n}\n.pattern-tile {\n  width: 170px;\n  height: 230px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-bottom: 10px;\n  background: #fff;\n  float: left;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px rgba(0,0,0,0.3);\n  text-decoration: none;\n}\n.pattern-tile img {\n  width: 150px;\n  height: 150px;\n}\n.pattern-tile-name {\n  font-size: 13px;\n  margin-top: 5px;\n  font-weight: 600;\n  line-height: 16px;\n  max-height: 32px;\n  overflow: hidden;\n}\n.pattern-tile-user {\n  font-size: 12px;\n  font-weight: 300;\n  line-height: 15px;\n  max-height: 15px;\n  overflow: hidden;\n  margin: 5px 0;\n}\na:hover .pattern-tile-name {\n  color: #0092b8;\n}\n.tools {\n  background: #666;\n  width: 100%;\n  height: 60px;\n  padding: 10px;\n  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3);\n  border-bottom: 1px solid #ddd;\n}\n.tools .button-group {\n  margin-right: 10px;\n  float: left;\n  border-radius: 5px;\n  overflow: hidden;\n  border: 1px solid #fff;\n  position: relative;\n}\n.tools .button-group button {\n  display: inline-block;\n  float: left;\n  width: 60px;\n  height: 40px;\n  outline: none;\n  border-top: 0;\n  border-left: 0;\n  border-bottom: 0;\n  border-right: 1px solid #fff;\n}\n.tools .button-group button:last-child {\n  border-right: 0;\n}\n.tools .button-group button.active {\n  background: #eee;\n}\n#palette-wrapper {\n  position: absolute;\n  z-index: 10;\n  top: 50px;\n  left: 0px;\n  display: none;\n}\n#color:hover + #palette-wrapper {\n  display: block;\n}\n.show-overflow {\n  overflow: visible !important;\n}\n"; });
 define('text!designer.html', ['module'], function(module) { module.exports = "<template>\n  <div id=\"editor\">\n    <div class=\"tools\">\n        <div class=\"button-group\">\n          <button class=\"${align == 'normal' ? 'active' : ''}\" click.delegate=\"setAlign('normal')\" id=\"align-normal\">\n            <img src=\"/images/align-normal.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${align == 'horizontal' ? 'active' : ''}\" click.delegate=\"setAlign('horizontal')\" id=\"align-horizontal\">\n            <img src=\"/images/align-horizontal.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${align == 'vertical' ? 'active' : ''}\" click.delegate=\"setAlign('vertical')\" id=\"align-vertical\">\n            <img src=\"/images/align-vertical.png\" width=\"30\" height=\"30\">\n          </button>\n        </div>\n\n        <div class=\"button-group\">\n          <button class=\"${mode == 'brush' ? 'active' : ''}\" click.delegate=\"setMode('brush')\" id=\"mode-brush\">\n            <img src=\"/images/brush.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${mode == 'fill' ? 'active' : ''}\" click.delegate=\"setMode('fill')\" id=\"mode-fill\">\n            <img src=\"/images/fill.png\" width=\"30\" height=\"30\">\n          </button>\n        </div>\n\n        <div class=\"button-group show-overflow\">\n          <button id=\"color\"></button>\n\n          <div id=\"palette-wrapper\">\n            <canvas click.trigger=\"selectColor($event)\" id=\"palette\" width=\"133\" height=\"600\"></canvas>\n          </div>\n        </div>\n    </div>\n\n    <div class=\"row\">\n      <div class=\"span9\">\n        <div class=\"form-inline\" id=\"meta\">\n          <label>Width: </label>\n\n          <select value.bind=\"width\" class=\"input-mini\" id=\"width\" value=\"20\">\n            <option value=\"10\">10</option>\n          </select>\n\n          <label>Height: </label>\n\n          <select value.bind=\"height\" class=\"input-mini\" id=\"width\" value=\"20\">\n            <option value=\"10\">10</option>\n          </select>\n\n          <label>Name: </label>\n\n          <input value.bind=\"name\" type=\"text\" id=\"name\" placeholder=\"Pattern Name\">\n        </div>\n\n        <canvas mousemove.delegate=\"drag($event)\" mouseup.trigger=\"click($event)\" mousedown.trigger=\"startDrawing($event)\" mouseleave.trigger=\"stopDrawing($event)\" id=\"grid\" width=\"700\" height=\"700\"></canvas>\n      </div>\n    </div>\n\n    <div id=\"palette-highlight\"></div>\n    <label id=\"save-error\"></label>\n  </div>\n\n  <button click.trigger=\"save()\" class=\"btn btn-success\" id=\"save-button\">Save</button>\n</template>\n"; });
-define('text!pattern.html', ['module'], function(module) { module.exports = "<template>\n  <div if.bind=\"!errorMessage\">\n    <img src=\"${pattern.imageUrl}\">\n    <div>${pattern.name}</div>\n    <div>${pattern.description}</div>\n    <div>${pattern.user.displayName}</div>\n  </div>\n\n  <h1 if.bind=\"errorMessage\">${errorMessage}</h1>\n</template>\n"; });
-define('text!patterns.html', ['module'], function(module) { module.exports = "<template>\n  <div class=\"pattern-tiles-container\">\n    <div repeat.for=\"pattern of patterns\">\n      <a route-href=\"route: pattern; params.bind: {id: pattern._id}\" class=\"pattern-tile\">\n        <img src=\"${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}\" />\n        <div class=\"pattern-tile-name\">${pattern.name}</div>\n        <div class=\"pattern-tile-user\">by ${pattern.user.displayName}</div>\n      </a>\n    </div>\n  </div>\n</template>\n"; });
+define('text!pattern.html', ['module'], function(module) { module.exports = "<template>\n  <div if.bind=\"!errorMessage\">\n    <img src=\"${pattern.imageUrl}\">\n    <div>${pattern.name}</div>\n    <div>${pattern.description}</div>\n    <div>by ${pattern.user.displayName}</div>\n  </div>\n\n  <h1 if.bind=\"errorMessage\">${errorMessage}</h1>\n</template>\n"; });
+define('text!patterns.html', ['module'], function(module) { module.exports = "<template>\n  <div class=\"pattern-tiles-container\">\n    <div repeat.for=\"pattern of patterns\">\n      <a route-href=\"route: pattern; params.bind: {id: pattern._id}\" class=\"pattern-tile\">\n        <img src=\"${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}\" />\n        <div class=\"pattern-tile-name\">${pattern.name}</div>\n        <div class=\"pattern-tile-user\">by ${pattern.user.displayName}</div>\n      </a>\n    </div>\n  </div>\n\n  <div class=\"pagination\">\n    <a if.bind=\"showPrevious\" class=\"button previous\" route-href=\"route: patterns; params.bind: {page: page - 1}\">Previous Page</a>\n    <a if.bind=\"showNext\" class=\"button next\" route-href=\"route: patterns; params.bind: {page: page + 1}\">Next Page</a>\n  </div>\n</template>\n"; });
 //# sourceMappingURL=app-bundle.js.map

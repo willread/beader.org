@@ -6,3 +6,8 @@
 [ ] Search
 [ ] Patterns by author
 [ ] Loading indicators
+[ ] Strip private user info from patterns (ie: email)
+[ ] Cloudfront
+[ ] Fix sort order in gallery
+[ ] Mobile css
+[ ] 404 page

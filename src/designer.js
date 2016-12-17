@@ -13,51 +13,57 @@ export class Designer {
 
   // Defaults
 
-  width = 10;
-  height = 10;
-  name = 'Untitled Pattern';
-  align = 'normal';
-  mode = 'brush';
-  color = '000000';
-  clearColor = 'ffffff';
+  width = 10
+  height = 10
+  previousWidth = 10
+  previousHeight = 10
+  name = 'Untitled Pattern'
+  align = 'normal'
+  mode = 'brush'
+  color = '000000'
+  clearColor = 'ffffff'
   drawing = false
 
   pattern = [];
 
-  attached() {
+  initPattern() {
+    let newPattern = [];
 
-    // Set color
-
-    $('#color').css('backgroundColor', '#' + this.color);
-
-    // Init pattern
+    // Clear pattern to new size
 
     for(let ii = 0; ii < this.width * this.height; ii++){
-      this.pattern.push(this.clearColor);
+      newPattern.push(this.clearColor);
     }
 
-    // We're editing a pattern, load it from the backend
+    // Copy previous pattern
 
-    // if($routeParams.id){
-    //     $http.get('/pattern/' + $routeParams.id + '.json').
-    //         success(function(pattern){
-    //             this.width = pattern.width;
-    //             this.height = pattern.height;
-    //             this.name = pattern.name;
-    //             this.align = pattern.align;
-    //             this.mode = pattern.mode;
-    //             this.data = pattern.data;
-    //             this._id = pattern._id;
-    //
-    //             this.renderGrid();
-    //         });
-    // }
+    for(let ii = 0; ii < this.previousWidth; ii++){
+      if(ii >= this.width) break;
+      for(let jj = 0; jj < this.previousHeight; jj++){
+        if(jj >= this.height) break;
+        newPattern[ii + jj * this.width] = this.pattern[ii + jj * this.previousWidth];
+      }
+    }
 
-    this.renderPalette();
+    this.pattern = newPattern;
+    this.previousWidth = this.width;
+    this.previousHeight = this.height;
+  }
+
+  changePatternSize() {
+    this.initPattern();
     this.renderGrid();
   }
 
-  // Render render the palette canvas
+  attached() {
+    $('#color').css('backgroundColor', '#' + this.color);
+
+    this.initPattern();
+    this.renderGrid();
+    this.renderPalette();
+  }
+
+  // Render the palette canvas
 
   renderPalette() {
     let palette = $('#palette')[0];

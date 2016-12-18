@@ -1,13 +1,19 @@
-[ ] Facebook login support
-[ ] Remove redundant code from designer ($"#canvas"), etc..
-[ ] Fix offset bug when clicking in other alignments
-[ ] Deprecate old angular project files (once everything is moved over)
-[ ] Undo / redo
-[ ] Search
 [ ] Patterns by author
 [ ] Loading indicators
 [ ] Strip private user info from patterns (ie: email)
 [ ] Cloudfront
 [ ] Fix sort order in gallery
 [ ] Mobile css
+[ ] Designer css
+[ ] Pattern css
+[ ] Edit patterns
+[ ] Delete patterns
 [ ] 404 page
+[ ] Remove redundant code from designer ($"#canvas"), etc..
+[ ] Fix offset bug when clicking in other alignments
+[ ] Deprecate old angular project files (once everything is moved over)
+
+[ ] Facebook login support
+[ ] Undo / redo
+[ ] Search
+[ ] Comments

@@ -7,7 +7,7 @@ body
 	color: #202121
 	font-family: 'Roboto', sans-serif
 
-*
+*, input
 	box-sizing: border-box
 
 a, a:active, a:visited
@@ -136,6 +136,57 @@ a:hover .pattern-tile-name
 	box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3)
 	border-bottom: 1px solid #ddd
 
+	.right
+		float: right
+
+	.label
+		display: inline-block
+		font-size: 12px
+		font-weight: 900
+		color: #aaa
+		line-height: 40px
+		margin: 0 10px
+		float: left
+
+	input
+		border: 1px solid #ccc
+		border-radius: 3px
+		height: 42px
+		float: left
+		padding: 13px 8px
+		box-shadow: none
+		background: #fff
+		-webkit-appearance: none
+		font-size: 14px
+		line-height: 14px
+		margin-left: 10px
+		margin-right: 10px
+
+		&:focus
+			outline: none
+
+	.select
+		border: 1px solid #ccc
+		width: 50px
+		border-radius: 3px
+		overflow: hidden
+		background: #fff url(/images/arrowdown.gif) no-repeat 90% 50%
+		float: left
+
+		select
+			padding: 13px 8px
+			width: 50px
+			border: none
+			box-shadow: none
+			background: transparent
+			background-image: none
+			-webkit-appearance: none
+			font-size: 14px
+			line-height: 14px
+
+		select:focus
+			outline: none
+
 	.button-group
 		margin-right: 10px
 		float: left
@@ -160,6 +211,22 @@ a:hover .pattern-tile-name
 
 			&.active
 				background: #00B7E6
+
+	.save-button
+		display: inline-block
+		float: right
+		height: 42px
+		outline: none
+		background: #20e65c
+		color: #fff
+		font-size: 14px
+		padding: 0 20px
+		line-height: 42px
+		border: none
+		border-radius: 5px
+
+		&:disabled
+		opacity: 0.5
 
 #palette-wrapper
 	position: absolute
@@ -194,3 +261,13 @@ a:hover .pattern-tile-name
 
 		&:nth-child(2)
 			margin-left: 10px
+
+.grid-wrapper
+	display: block
+	margin: 20px auto
+	padding: 10px
+	border-radius: 2px
+
+#grid
+	display: block
+	margin: 0 auto

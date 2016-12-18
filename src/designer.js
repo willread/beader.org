@@ -23,8 +23,8 @@ export class Designer {
   color = '000000'
   clearColor = 'ffffff'
   drawing = false
-
   pattern = [];
+  saving = false;
 
   initPattern() {
     let newPattern = [];
@@ -224,8 +224,7 @@ export class Designer {
   }
 
   save() {
-    $('#save-button').prop('disabled', true);
-    $('#save-button').text('Saving...');
+    this.saving = true;
 
     let canvas = $('#grid');
     let http = new HttpClient();
@@ -245,9 +244,11 @@ export class Designer {
     .then(response => {
       $('#save-button').prop('disabled', false);
       $('#save-button').text('Save');
+      this.saving = false;
     })
     .catch(error => {
       alert('Error: ' + error);
+      this.saving = false;
     });
   }
 }

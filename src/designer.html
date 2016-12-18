@@ -22,12 +22,14 @@
           </button>
         </div>
 
-        <div class="button-group show-overflow">
-          <div id="palette-wrapper">
-            <canvas click.trigger="selectColor($event)" id="palette" width="133" height="600"></canvas>
-          </div>
+        <div class="button-group show-overflow color-wrapper">
+          <button id="color">
+            <img src="/images/picker.png" width="30" height="30">
+          </button>
 
-          <button id="color"></button>
+          <div id="palette-wrapper">
+            <canvas click.trigger="selectColor($event)" id="palette" width.bind="paletteWidth" height.bind="paletteHeight"></canvas>
+          </div>
         </div>
 
         <div class="right">
@@ -114,7 +116,7 @@
     </div>
 
     <div class="grid-wrapper">
-      <canvas mousemove.delegate="drag($event)" mouseup.trigger="click($event)" mousedown.trigger="startDrawing($event)" mouseleave.trigger="stopDrawing($event)" id="grid" width="700" height="700"></canvas>
+      <canvas mousemove.delegate="drag($event)" mouseup.trigger="click($event)" mousedown.trigger="startDrawing($event)" mouseleave.trigger="stopDrawing($event)" id="grid" width.bind="canvasWidth" height.bind="canvasHeight"></canvas>
     </div>
   </div>
 </template>

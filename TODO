@@ -4,14 +4,12 @@
 [ ] Cloudfront
 [ ] Fix sort order in gallery
 [ ] Mobile css
-[ ] Designer css
 [ ] Pattern css
 [ ] Edit patterns
 [ ] Delete patterns
 [ ] 404 page
-[ ] Remove redundant code from designer ($"#canvas"), etc..
-[ ] Fix offset bug when clicking in other alignments
 [ ] Deprecate old angular project files (once everything is moved over)
+[ ] Add highlights to buttons
 
 [ ] Facebook login support
 [ ] Undo / redo

@@ -127,9 +127,15 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
     function Designer(http) {
       _classCallCheck(this, Designer);
 
-      this.colors = ['000000', '002000', '003400', '006700', '009b00', '00ce00', '00ff00', '070707', '000035', '003333', '006731', '009b2c', '00ce23', '00ff10', '0e0e0e', '000068', '003268', '006667', '009a64', '00ce62', '00ff5d', '151515', '00009c', '002f9c', '00659b', '009a9a', '00cd98', '00ff95', '1c1c1c', '0000d0', '0029cf', '0063cf', '0099cf', '00cccd', '00ffcc', '232323', '0000ff', '0021ff', '0060ff', '0096ff', '00cbff', '00ffff', '2a2a2a', '340000', '333300', '316700', '2d9a00', '26ce00', '1bff00', '313131', '340034', '333333', '316731', '2d9a2b', '26ce22', '1aff0f', '383838', '330068', '333268', '306666', '2d9a64', '26ce61', '1aff5c', '3f3f3f', '32009b', '332f9c', '30649a', '2d999a', '25cd98', '19ff96', '464646', '3300d0', '3129cf', '3063cf', '2c99cf', '24cccd', '17ffcb', '4d4d4d', '3100ff', '3021ff', '2e60ff', '2a96ff', '23cbff', '15ffff', '545454', '670000', '673300', '676700', '649a00', '62ce00', '5fff00', '5b5b5b', '670033', '673332', '666730', '659a2a', '62ce21', '5eff0b', '626262', '670068', '673167', '666666', '649a64', '61cd60', '5eff5c', '696969', '67009c', '672e9c', '66659b', '64999a', '61cd97', '5eff95', '707070', '6600cf', '6729d0', '6663cf', '6498ce', '62cdcd', '5dffcb', '777777', '6700ff', '6621ff', '655fff', '6497ff', '61cbff', '5dffff', '7e7e7e', '9b0000', '9a3200', '9a6700', '999a00', '98ce00', '96ff00', '858585', '9a0031', '9b3230', '9a672e', '999a28', '98ce1e', '96ff05', '8c8c8c', '9b0067', '9a3066', '9a6665', '999a64', '97cd60', '95ff5b', '939393', '9b009b', '9a2d9a', '9a659a', '999999', '98cd97', '95ff94', '9a9a9a', '9a00cf', '9a28cf', '9a63cf', '9897cd', '97cccc', '95ffcb', 'a1a1a1', '9a00ff', '9a1fff', '995fff', '9997ff', '97cbff', '95ffff', 'a8a8a8', 'cf0000', 'cf3200', 'ce6600', 'cd9a00', 'cdce00', 'cbff00', 'afafaf', 'cf002e', 'ce312d', 'ce662a', 'cd9a24', 'cccd19', 'cbff00', 'b6b6b6', 'ce0065', 'ce3065', 'cd6563', 'cd9962', 'cccd5e', 'cbff5a', 'bdbdbd', 'ce009a', 'ce2d9a', 'cd6499', 'cd9998', 'cccc96', 'cbff94', 'c4c4c4', 'ce00cf', 'ce27ce', 'ce62ce', 'cd97cd', 'cccccc', 'cbffcb', 'cbcbcb', 'ce00ff', 'ce1eff', 'cd5fff', 'cd96ff', 'cccbff', 'caffff', 'd2d2d2', 'ff0000', 'ff3000', 'ff6600', 'ff9a00', 'ffce00', 'ffff00', 'd9d9d9', 'ff002a', 'ff3028', 'ff6525', 'ff991e', 'ffcd0f', 'ffff00', 'e0e0e0', 'ff0064', 'ff2e64', 'ff6563', 'ff9960', 'ffcd5d', 'ffff58', 'e7e7e7', 'ff0099', 'ff2b99', 'ff6398', 'ff9998', 'ffcd96', 'ffff92', 'eeeeee', 'ff00ce', 'ff25ce', 'ff61cd', 'ff98cd', 'ffcccb', 'ffffc9', 'f5f5f5', 'ff00ff', 'ff1cff', 'ff5eff', 'ff96ff', 'ffcbff', 'ffffff'];
+      this.colors = ['000000', '412000', '451904', '5d1f0c', '4a1700', '490036', '48036c', '051e81', '0b0779', '1d295a', '004b59', '004800', '164000', '2c3500', '463a09', '401a02', '252525', '542800', '721e11', '7a240d', '721f00', '66004b', '5c0488', '0626a5', '201c8e', '1d3876', '005d6e', '005400', '1c5300', '384400', '4d3f09', '581f05', '343434', '763700', '9f241e', '982c0e', 'a81300', '80035f', '650d90', '082fca', '3531a3', '1d4892', '006f84', '036b03', '236600', '445200', '544509', '702408', '4e4e4e', '9a5000', 'b33a20', 'b02f0f', 'c8210a', '950f74', '7b23a7', '263dd4', '4642b4', '1d5cac', '00849c', '0e760e', '287800', '495600', '6c5809', '8d3a13', '686868', 'c36806', 'c85120', 'bf3624', 'df2512', 'aa2288', '933bbf', '444cde', '5753c5', '1d71c6', '0099bf', '188018', '2e8c00', '607100', '907609', 'ab511f', '757575', 'e47b07', 'e36920', 'd34e2a', 'ec3b24', 'ba3d99', '9d45c9', '4f5aec', '615dcf', '3286cf', '00abca', '279227', '3a980c', '6c7f00', 'ab8b0a', 'b56427', '8e8e8e', 'ff911a', 'fc8120', 'e7623e', 'fa5236', 'ca4da9', 'a74fd3', '5a68ff', '6d69db', '489bd9', '00bcde', '36a436', '47a519', '798d0a', 'c1a120', 'bf7730', 'a4a4a4', 'ffab1d', 'fd8c25', 'f36e4a', 'fc6148', 'd75ab6', 'b25ade', '6575ff', '7b77e9', '4ea8ec', '00d0f5', '4eb94e', '51af23', '8b9f1c', 'd0b02f', 'd0853a', 'b8b8b8', 'ffc51f', 'fe982c', 'fd7854', 'ff705f', 'e467c3', 'bd65e9', '7183ff', '8985f7', '55b6ff', '10dcff', '51cd51', '5cba2e', '9eb22f', 'debe3d', 'e19344', 'c5c5c5', 'ffd03b', 'ffae38', 'ff8a6a', 'ff7e7e', 'ef72ce', 'c56df1', '8091ff', '918dff', '69caff', '3ee1ff', '72da72', '71cf43', 'abbf3c', 'e6c645', 'eda04e', 'd0d0d0', 'ffd84c', 'ffb946', 'ff987c', 'ff8f8f', 'fb7eda', 'ce76fa', '90a0ff', '9c98ff', '74cbff', '64e7ff', '7ce47c', '85e357', 'b8cc49', 'edcd4c', 'f9ad58', 'd7d7d7', 'ffe651', 'ffbf51', 'ffa48b', 'ff9d9e', 'ff8de1', 'd583ff', '97a9ff', 'a7a4ff', '82d3ff', '76eaff', '85ed85', '8deb5f', 'c2d653', 'f5d862', 'fcb75c', 'e1e1e1', 'fff456', 'ffc66d', 'ffb39e', 'ffabad', 'ff9de5', 'da90ff', '9fb2ff', 'b2afff', '8ddaff', '8bedff', '99f299', '97f569', 'cde153', 'fbe276', 'ffc160', 'eaeaea', 'fff970', 'ffd587', 'ffc2b2', 'ffb9bd', 'ffa5e7', 'de9cff', 'afbeff', 'bbb8ff', '9fd4ff', '9aefff', 'b3f7b3', 'a0fe72', 'dbef6c', 'fcee98', 'ffca69', 'f4f4f4', 'ffff90', 'ffe498', 'ffd0c3', 'ffc7ce', 'ffafea', 'e2a9ff', 'c0cbff', 'c3c1ff', 'b4e2ff', 'b1f3ff', 'c3f9c3', 'b1ff8a', 'e8fc79', 'fdf3a9', 'ffcf7e', 'ffffff', 'ffffaa', 'ffe6ab', 'ffdad0', 'ffcade', 'ffb8ec', 'e6b6ff', 'cdd3ff', 'd3d1ff', 'c0ebff', 'c7f6ff', 'cdfccd', 'bcff9a', 'f2ffab', 'fdf3be', 'ffda96'];
       this.width = 10;
       this.height = 10;
+      this.canvasWidth = 700;
+      this.canvasHeight = 700;
+      this.paletteWidth = 400;
+      this.paletteHeight = 300;
+      this.paletteCols = 16;
+      this.paletteRows = 16;
       this.previousWidth = 10;
       this.previousHeight = 10;
       this.name = 'Untitled Pattern';
@@ -139,6 +145,7 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
       this.clearColor = 'ffffff';
       this.drawing = false;
       this.pattern = [];
+      this.saving = false;
 
       this.http = http;
     }
@@ -180,35 +187,37 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
       var palette = $('#palette')[0];
       var context = palette.getContext('2d');
 
-      var width = ($(palette).width() - 1) / 7 - 1;
-      var height = ($(palette).height() - 1) / 36 - 1;
+      var width = (this.paletteWidth - 1) / this.paletteCols - 1;
+      var height = (this.paletteHeight - 1) / this.paletteRows - 1;
 
-      for (var y = 0; y < 36; y++) {
-        for (var x = 0; x < 7; x++) {
+      for (var y = 0; y < this.paletteRows; y++) {
+        for (var x = 0; x < this.paletteCols; x++) {
           context.beginPath();
-          context.fillStyle = '#' + this.colors[y * 7 + x];
+          context.fillStyle = '#' + this.colors[y * this.paletteCols + x];
           context.fillRect(x * (width + 1), y * (height + 1), width, height);
           context.strokeStyle = '#ffffff';
           context.lineWidth = 1;
           context.stroke();
         }
       }
+
+      $('#palette-wrapper').addClass('hidden');
     };
 
     Designer.prototype.selectColor = function selectColor($event) {
       var palette = $('#palette')[0];
       var context = palette.getContext('2d');
 
-      var width = Math.floor(($(palette).width() - 1) / 7 - 1);
-      var height = Math.floor(($(palette).height() - 1) / 36 - 1);
+      var width = Math.floor(this.paletteWidth / this.paletteCols);
+      var height = Math.floor(this.paletteHeight / this.paletteRows);
 
       var offsetX = $event.pageX - $(palette).offset().left;
       var offsetY = $event.pageY - $(palette).offset().top;
 
-      var x = Math.floor(offsetX / (width + 1));
-      var y = Math.floor(offsetY / (height + 1));
+      var x = Math.floor(offsetX / width);
+      var y = Math.floor(offsetY / height);
 
-      this.color = this.colors[y * 7 + x];
+      this.color = this.colors[y * this.paletteCols + x];
 
       $('#color').css('backgroundColor', '#' + this.color);
     };
@@ -222,35 +231,62 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
       this.renderGrid();
     };
 
-    Designer.prototype.startDrawing = function startDrawing($event) {
+    Designer.prototype.startDrawing = function startDrawing() {
       this.drawing = true;
     };
 
-    Designer.prototype.stopDrawing = function stopDrawing($event) {
+    Designer.prototype.stopDrawing = function stopDrawing() {
       this.drawing = false;
     };
 
     Designer.prototype.drag = function drag($event) {
       if (this.drawing && this.mode == 'brush') {
-        this.draw($event);
+        this.draw.apply(this, this.getXY($event));
       }
+    };
+
+    Designer.prototype.getXY = function getXY($event) {
+      var canvas = $('#grid')[0];
+      var size = this.width > this.height ? this.canvasWidth / this.width : this.canvasHeight / this.height;
+
+      if (this.align !== 'normal') {
+        size = this.width > this.height ? size - size / this.width / 2 : size - size / this.height / 2;
+      }
+
+      var x = void 0,
+          y = void 0;
+      var centeringOffset = (this.canvasWidth - size * this.width) / 2;
+
+      if (this.align == 'horizontal') {
+        y = Math.floor($event.offsetY / size);
+        var horizontalOffset = !(y % 2) ? size / 2 : 0;
+        centeringOffset -= size / 4;
+        x = Math.floor(($event.offsetX - centeringOffset - horizontalOffset) / size);
+        console.log(y, horizontalOffset, centeringOffset, x);
+      }
+
+      if (this.align == 'vertical') {
+        x = Math.floor(($event.offsetX - centeringOffset) / size);
+        var verticalOffset = x % 2 ? size / 2 : 0;
+        y = Math.floor(($event.offsetY - verticalOffset) / size);
+      }
+
+      if (this.align == 'normal') {
+        x = Math.floor(($event.offsetX - centeringOffset) / size);
+        y = Math.floor($event.offsetY / size);
+      }
+
+      return [x, y];
     };
 
     Designer.prototype.click = function click($event) {
       if (this.mode == 'brush') {
         this.stopDrawing($event);
-        this.draw($event);
+        this.draw.apply(this, this.getXY($event));
       }
 
       if (this.mode == 'fill') {
-        var canvas = $('#grid')[0];
-        var context = canvas.getContext('2d');
-
-        var size = this.width > this.height ? $(canvas).width() / width : $(canvas).height() / this.height;
-        var x = Math.floor($event.offsetX / size);
-        var y = Math.floor($event.offsetY / size);
-
-        this.fill($event, x, y);
+        this.fill.apply(this, this.getXY($event));
       }
     };
 
@@ -262,19 +298,15 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
       this.pattern[x + y * this.width] = color;
     };
 
-    Designer.prototype.draw = function draw($event) {
+    Designer.prototype.draw = function draw(x, y) {
       var canvas = $('#grid')[0];
       var context = canvas.getContext('2d');
 
-      var size = this.width > this.height ? $(canvas).width() / width : $(canvas).height() / this.height;
-      var x = Math.floor($event.offsetX / size);
-      var y = Math.floor($event.offsetY / size);
-
       this.setPatternCell(x, y, this.color);
-      this.renderGrid($event);
+      this.renderGrid();
     };
 
-    Designer.prototype.fill = function fill($event, x, y) {
+    Designer.prototype.fill = function fill(x, y) {
       var oldColor = this.getPatternCell(x, y) || this.clearColor;
       if (oldColor == $.color) return;
 
@@ -297,14 +329,14 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
         if (_y + 1 < this.height && oldColor == (this.getPatternCell(_x, _y + 1) || 'ffffff')) stack.push([_x, _y + 1]);
       }
 
-      this.renderGrid($event);
+      this.renderGrid();
     };
 
-    Designer.prototype.renderGrid = function renderGrid($event) {
+    Designer.prototype.renderGrid = function renderGrid() {
       var canvas = $('#grid');
       var context = canvas[0].getContext('2d');
 
-      var size = this.width > this.height ? canvas.width() / this.width : canvas.height() / this.height;
+      var size = this.width > this.height ? this.canvasWidth / this.width : this.canvasHeight / this.height;
 
       if (this.align !== 'normal') {
         size = this.width > this.height ? size - size / this.width / 2 : size - size / this.height / 2;
@@ -312,13 +344,14 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
 
       var horizontalOffset = this.align == 'horizontal' ? size / 2 : 0;
       var verticalOffset = this.align == 'vertical' ? size / 2 : 0;
+      var centeringOffset = (this.canvasWidth - size * this.width - horizontalOffset) / 2;
 
       canvas.attr('width', canvas.attr('width'));
 
       for (var x = 0; x < this.width; x++) {
         for (var y = 0; y < this.height; y++) {
           context.beginPath();
-          context.arc(x * size + size / 2 + (!(y % 2) ? horizontalOffset : 0), y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
+          context.arc(x * size + size / 2 + (!(y % 2) ? horizontalOffset : 0) + centeringOffset, y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
           context.fillStyle = '#' + (this.getPatternCell(x, y) || this.clearColor);
           context.fill();
           context.lineWidth = 1;
@@ -329,8 +362,9 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
     };
 
     Designer.prototype.save = function save() {
-      $('#save-button').prop('disabled', true);
-      $('#save-button').text('Saving...');
+      var _this = this;
+
+      this.saving = true;
 
       var canvas = $('#grid');
       var http = new _aureliaFetchClient.HttpClient();
@@ -349,8 +383,10 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client'], func
       }).then(function (response) {
         $('#save-button').prop('disabled', false);
         $('#save-button').text('Save');
+        _this.saving = false;
       }).catch(function (error) {
         alert('Error: ' + error);
+        _this.saving = false;
       });
     };
 
@@ -1845,9 +1881,9 @@ define('aurelia-auth/auth-filter',["exports"], function (exports) {
     return AuthFilterValueConverter;
   }();
 });
-define('text!styles.css', ['module'], function(module) { module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900\");\nbody {\n  margin: 0;\n  padding: 0;\n  background: #ccc;\n  color: #202121;\n  font-family: 'Roboto', sans-serif;\n}\n*,\ninput {\n  box-sizing: border-box;\n}\na,\na:active,\na:visited {\n  color: #202121;\n  font-size: 13px;\n}\n.navbar {\n  position: relative;\n  width: 100%;\n  height: 70px;\n  background: #fff;\n  border-bottom: 1px solid #aaa;\n}\n.navbar .logo {\n  font-size: 32px;\n  color: #00b7e6;\n  font-family: Muli, Sans-serif;\n  font-weight: 900;\n  letter-spacing: -1px;\n  background: -webkit-linear-gradient(#00d8d6, #00b7e6);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  text-align: center;\n  line-height: 70px;\n}\n.navbar .menu-left {\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.navbar .menu-left a {\n  display: inline-block;\n  font-size: 18px;\n  line-height: 69px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #333;\n  font-size: 18px;\n  font-weight: 600;\n  padding: 0 20px;\n  border-right: 1px solid #eee;\n  float: left;\n}\n.navbar .menu-left a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right {\n  height: 30px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin: 20px;\n}\n.navbar .menu-right .label {\n  display: inline-block;\n  color: #ccc;\n  font-size: 12px;\n  font-weight: 300;\n  padding-right: 10px;\n}\n.navbar .menu-right a {\n  display: inline-block;\n  color: #333;\n  font-size: 12px;\n  padding: 0 10px;\n  line-height: 28px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-weight: 600;\n  text-transform: uppercase;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  border-color: #0092b8;\n}\n.pattern-tiles-container {\n  margin-top: 10px;\n  margin-left: 10px;\n}\n.pattern-tile {\n  width: 170px;\n  height: 230px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-bottom: 10px;\n  background: #fff;\n  float: left;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px rgba(0,0,0,0.3);\n  text-decoration: none;\n}\n.pattern-tile img {\n  width: 150px;\n  height: 150px;\n}\n.pattern-tile-name {\n  font-size: 13px;\n  margin-top: 5px;\n  font-weight: 600;\n  line-height: 16px;\n  max-height: 32px;\n  overflow: hidden;\n}\n.pattern-tile-user {\n  font-size: 12px;\n  font-weight: 300;\n  line-height: 15px;\n  max-height: 15px;\n  overflow: hidden;\n  margin: 5px 0;\n}\na:hover .pattern-tile-name {\n  color: #0092b8;\n}\n.tools {\n  background: #666;\n  width: 100%;\n  height: 60px;\n  padding: 10px;\n  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3);\n  border-bottom: 1px solid #ddd;\n}\n.tools .right {\n  float: right;\n}\n.tools .label {\n  display: inline-block;\n  font-size: 12px;\n  font-weight: 900;\n  color: #aaa;\n  line-height: 40px;\n  margin: 0 10px;\n  float: left;\n}\n.tools input {\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  height: 42px;\n  float: left;\n  padding: 13px 8px;\n  box-shadow: none;\n  background: #fff;\n  -webkit-appearance: none;\n  font-size: 14px;\n  line-height: 14px;\n  margin-left: 10px;\n  margin-right: 10px;\n}\n.tools input:focus {\n  outline: none;\n}\n.tools .select {\n  border: 1px solid #ccc;\n  width: 50px;\n  border-radius: 3px;\n  overflow: hidden;\n  background: #fff url(\"/images/arrowdown.gif\") no-repeat 90% 50%;\n  float: left;\n}\n.tools .select select {\n  padding: 13px 8px;\n  width: 50px;\n  border: none;\n  box-shadow: none;\n  background: transparent;\n  background-image: none;\n  -webkit-appearance: none;\n  font-size: 14px;\n  line-height: 14px;\n}\n.tools .select select:focus {\n  outline: none;\n}\n.tools .button-group {\n  margin-right: 10px;\n  float: left;\n  border-radius: 2px;\n  overflow: hidden;\n  border: 1px solid #fff;\n  position: relative;\n}\n.tools .button-group button {\n  display: inline-block;\n  float: left;\n  width: 60px;\n  height: 40px;\n  outline: none;\n  border-top: 0;\n  border-left: 0;\n  border-bottom: 0;\n  border-right: 1px solid #fff;\n}\n.tools .button-group button:last-child {\n  border-right: 0;\n}\n.tools .button-group button.active {\n  background: #00b7e6;\n}\n.tools .save-button {\n  display: inline-block;\n  float: right;\n  height: 42px;\n  outline: none;\n  background: #20e65c;\n  color: #fff;\n  font-size: 14px;\n  padding: 0 20px;\n  line-height: 42px;\n  border: none;\n  border-radius: 5px;\n}\n#palette-wrapper {\n  position: absolute;\n  z-index: 10;\n  top: 50px;\n  left: 0px;\n  display: none;\n}\n#color:hover + #palette-wrapper {\n  display: block;\n}\n.show-overflow {\n  overflow: visible !important;\n}\n.pagination {\n  display: block;\n  width: 100%;\n  float: none;\n  clear: both;\n  text-align: center;\n  margin: 10px 0;\n}\n.pagination .button {\n  font-size: 18px;\n  font-weight: 600;\n}\n.pagination .button.previous:before {\n  content: \"\\00AB\";\n}\n.pagination .button.next:after {\n  content: \" \\00BB\";\n}\n.pagination .button:nth-child(2) {\n  margin-left: 10px;\n}\n.grid-wrapper {\n  display: block;\n  margin: 20px auto;\n  padding: 10px;\n  border-radius: 2px;\n}\n#grid {\n  display: block;\n  margin: 0 auto;\n}\n"; });
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <require from=\"./styles.css\"></require>\n\n  <header class=\"navbar\">\n    <div class=\"logo\">beader</div>\n\n    <div class=\"menu-left\">\n      <a href=\"/#\">Pattern Gallery</a>\n      <a route-href=\"route: designer\">New Pattern</a>\n    </div>\n\n    <div class=\"menu-right\">\n      <a if.bind=\"!isAuthenticated\" click.delegate=\"authenticate('google')\">Sign in with Google</a>\n      <span if.bind=\"isAuthenticated\">\n        <span class=\"label\">Welcome ${displayName}</span>\n        <a click.trigger=\"logout()\">Log Out</a>\n      </span>\n    </div>\n  </header>\n  <router-view class=\"container\"></router-view>\n</template>\n"; });
-define('text!designer.html', ['module'], function(module) { module.exports = "<template>\n  <div id=\"editor\">\n    <div class=\"tools\">\n        <div class=\"button-group\">\n          <button class=\"${align == 'normal' ? 'active' : ''}\" click.delegate=\"setAlign('normal')\" id=\"align-normal\">\n            <img src=\"/images/align-normal.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${align == 'horizontal' ? 'active' : ''}\" click.delegate=\"setAlign('horizontal')\" id=\"align-horizontal\">\n            <img src=\"/images/align-horizontal.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${align == 'vertical' ? 'active' : ''}\" click.delegate=\"setAlign('vertical')\" id=\"align-vertical\">\n            <img src=\"/images/align-vertical.png\" width=\"30\" height=\"30\">\n          </button>\n        </div>\n\n        <div class=\"button-group\">\n          <button class=\"${mode == 'brush' ? 'active' : ''}\" click.delegate=\"setMode('brush')\" id=\"mode-brush\">\n            <img src=\"/images/brush.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${mode == 'fill' ? 'active' : ''}\" click.delegate=\"setMode('fill')\" id=\"mode-fill\">\n            <img src=\"/images/fill.png\" width=\"30\" height=\"30\">\n          </button>\n        </div>\n\n        <div class=\"button-group show-overflow\">\n          <div id=\"palette-wrapper\">\n            <canvas click.trigger=\"selectColor($event)\" id=\"palette\" width=\"133\" height=\"600\"></canvas>\n          </div>\n\n          <button id=\"color\"></button>\n        </div>\n\n        <div class=\"right\">\n          <div class=\"select\">\n            <select value.bind=\"width\" change.trigger=\"changePatternSize()\">\n              <option value=\"10\">10</option>\n              <option value=\"11\">11</option>\n              <option value=\"12\">12</option>\n              <option value=\"13\">13</option>\n              <option value=\"14\">14</option>\n              <option value=\"15\">15</option>\n              <option value=\"16\">16</option>\n              <option value=\"17\">17</option>\n              <option value=\"18\">18</option>\n              <option value=\"19\">19</option>\n              <option value=\"20\">20</option>\n              <option value=\"21\">21</option>\n              <option value=\"22\">22</option>\n              <option value=\"23\">23</option>\n              <option value=\"24\">24</option>\n              <option value=\"25\">25</option>\n              <option value=\"26\">26</option>\n              <option value=\"27\">27</option>\n              <option value=\"28\">28</option>\n              <option value=\"29\">29</option>\n              <option value=\"30\">30</option>\n              <option value=\"31\">31</option>\n              <option value=\"32\">32</option>\n              <option value=\"33\">33</option>\n              <option value=\"34\">34</option>\n              <option value=\"35\">35</option>\n              <option value=\"36\">36</option>\n              <option value=\"37\">37</option>\n              <option value=\"38\">38</option>\n              <option value=\"39\">39</option>\n              <option value=\"40\">40</option>\n            </select>\n          </div>\n\n          <div class=\"label\">x</div>\n\n          <div class=\"select\">\n            <select value.bind=\"height\" change.trigger=\"changePatternSize()\">\n              <option value=\"10\">10</option>\n              <option value=\"11\">11</option>\n              <option value=\"12\">12</option>\n              <option value=\"13\">13</option>\n              <option value=\"14\">14</option>\n              <option value=\"15\">15</option>\n              <option value=\"16\">16</option>\n              <option value=\"17\">17</option>\n              <option value=\"18\">18</option>\n              <option value=\"19\">19</option>\n              <option value=\"20\">20</option>\n              <option value=\"21\">21</option>\n              <option value=\"22\">22</option>\n              <option value=\"23\">23</option>\n              <option value=\"24\">24</option>\n              <option value=\"25\">25</option>\n              <option value=\"26\">26</option>\n              <option value=\"27\">27</option>\n              <option value=\"28\">28</option>\n              <option value=\"29\">29</option>\n              <option value=\"30\">30</option>\n              <option value=\"31\">31</option>\n              <option value=\"32\">32</option>\n              <option value=\"33\">33</option>\n              <option value=\"34\">34</option>\n              <option value=\"35\">35</option>\n              <option value=\"36\">36</option>\n              <option value=\"37\">37</option>\n              <option value=\"38\">38</option>\n              <option value=\"39\">39</option>\n              <option value=\"40\">40</option>\n            </select>\n          </div>\n\n          <input value.bind=\"name\" type=\"text\" placeholder=\"Pattern Name\">\n          <button click.trigger=\"save()\" class=\"save-button\">Save</button>\n        </div>\n    </div>\n\n    <div class=\"grid-wrapper\">\n      <canvas mousemove.delegate=\"drag($event)\" mouseup.trigger=\"click($event)\" mousedown.trigger=\"startDrawing($event)\" mouseleave.trigger=\"stopDrawing($event)\" id=\"grid\" width=\"700\" height=\"700\"></canvas>\n    </div>\n  </div>\n</template>\n"; });
+define('text!styles.css', ['module'], function(module) { module.exports = "@import url(\"https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900\");\nbody {\n  margin: 0;\n  padding: 0;\n  background: #ccc;\n  color: #202121;\n  font-family: 'Roboto', sans-serif;\n}\n*,\ninput {\n  box-sizing: border-box;\n}\na,\na:active,\na:visited {\n  color: #202121;\n  font-size: 13px;\n}\n.navbar {\n  position: relative;\n  width: 100%;\n  height: 70px;\n  background: #fff;\n  border-bottom: 1px solid #aaa;\n}\n.navbar .logo {\n  font-size: 32px;\n  color: #00b7e6;\n  font-family: Muli, Sans-serif;\n  font-weight: 900;\n  letter-spacing: -1px;\n  background: -webkit-linear-gradient(#00d8d6, #00b7e6);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  text-align: center;\n  line-height: 70px;\n}\n.navbar .menu-left {\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n.navbar .menu-left a {\n  display: inline-block;\n  font-size: 18px;\n  line-height: 69px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #333;\n  font-size: 18px;\n  font-weight: 600;\n  padding: 0 20px;\n  border-right: 1px solid #eee;\n  float: left;\n}\n.navbar .menu-left a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right {\n  height: 30px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin: 20px;\n}\n.navbar .menu-right .label {\n  display: inline-block;\n  color: #ccc;\n  font-size: 12px;\n  font-weight: 300;\n  padding-right: 10px;\n}\n.navbar .menu-right a {\n  display: inline-block;\n  color: #333;\n  font-size: 12px;\n  padding: 0 10px;\n  line-height: 28px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-weight: 600;\n  text-transform: uppercase;\n  cursor: hand;\n  cursor: pointer;\n}\n.navbar .menu-right a:hover {\n  background: #c7f4ff;\n  color: #0092b8;\n  border-color: #0092b8;\n}\n.pattern-tiles-container {\n  margin-top: 10px;\n  margin-left: 10px;\n}\n.pattern-tile {\n  width: 170px;\n  height: 230px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-bottom: 10px;\n  background: #fff;\n  float: left;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px rgba(0,0,0,0.3);\n  text-decoration: none;\n}\n.pattern-tile img {\n  width: 150px;\n  height: 150px;\n}\n.pattern-tile-name {\n  font-size: 13px;\n  margin-top: 5px;\n  font-weight: 600;\n  line-height: 16px;\n  max-height: 32px;\n  overflow: hidden;\n}\n.pattern-tile-user {\n  font-size: 12px;\n  font-weight: 300;\n  line-height: 15px;\n  max-height: 15px;\n  overflow: hidden;\n  margin: 5px 0;\n}\na:hover .pattern-tile-name {\n  color: #0092b8;\n}\n.tools {\n  background: #666;\n  width: 100%;\n  height: 60px;\n  padding: 10px;\n  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3);\n  border-bottom: 1px solid #ddd;\n}\n.tools .right {\n  float: right;\n}\n.tools .label {\n  display: inline-block;\n  font-size: 12px;\n  font-weight: 900;\n  color: #aaa;\n  line-height: 40px;\n  margin: 0 10px;\n  float: left;\n}\n.tools input {\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  height: 42px;\n  float: left;\n  padding: 13px 8px;\n  box-shadow: none;\n  background: #fff;\n  -webkit-appearance: none;\n  font-size: 14px;\n  line-height: 14px;\n  margin-left: 10px;\n  margin-right: 10px;\n}\n.tools input:focus {\n  outline: none;\n}\n.tools .select {\n  border: 1px solid #ccc;\n  width: 50px;\n  border-radius: 3px;\n  overflow: hidden;\n  background: #fff url(\"/images/arrowdown.gif\") no-repeat 90% 50%;\n  float: left;\n}\n.tools .select select {\n  padding: 13px 8px;\n  width: 50px;\n  border: none;\n  box-shadow: none;\n  background: transparent;\n  background-image: none;\n  -webkit-appearance: none;\n  font-size: 14px;\n  line-height: 14px;\n}\n.tools .select select:focus {\n  outline: none;\n}\n.tools .button-group {\n  margin-right: 10px;\n  float: left;\n  border-radius: 2px;\n  overflow: hidden;\n  border: 1px solid #fff;\n  position: relative;\n}\n.tools .button-group button {\n  display: inline-block;\n  float: left;\n  width: 60px;\n  height: 40px;\n  outline: none;\n  border-top: 0;\n  border-left: 0;\n  border-bottom: 0;\n  border-right: 1px solid #fff;\n}\n.tools .button-group button:last-child {\n  border-right: 0;\n}\n.tools .button-group button.active {\n  background: #00b7e6;\n}\n.tools .save-button {\n  display: inline-block;\n  float: right;\n  height: 42px;\n  outline: none;\n  background: #20e65c;\n  color: #fff;\n  font-size: 14px;\n  padding: 0 20px;\n  line-height: 42px;\n  border: none;\n  border-radius: 5px;\n}\n.tools .save-button:disabled {\n  opacity: 0.5;\n}\n#palette-wrapper {\n  position: absolute;\n  z-index: 10;\n  top: 40px;\n  left: -1px;\n  width: 400px;\n  height: 300px;\n  background: #fff;\n  border: 1px solid #fff;\n  box-shadow: 0 2px 5px rgba(0,0,0,0.75);\n}\n#palette-wrapper.hidden {\n  display: none;\n}\n#color {\n  border-right: 0;\n}\n.color-wrapper:hover #palette-wrapper {\n  display: block;\n}\n.show-overflow {\n  overflow: visible !important;\n}\n.pagination {\n  display: block;\n  width: 100%;\n  float: none;\n  clear: both;\n  text-align: center;\n  margin: 10px 0;\n}\n.pagination .button {\n  font-size: 18px;\n  font-weight: 600;\n}\n.pagination .button.previous:before {\n  content: \"\\00AB\";\n}\n.pagination .button.next:after {\n  content: \" \\00BB\";\n}\n.pagination .button:nth-child(2) {\n  margin-left: 10px;\n}\n.grid-wrapper {\n  display: block;\n  margin: 20px auto;\n  padding: 10px;\n  border-radius: 2px;\n}\n#grid {\n  display: block;\n  margin: 0 auto;\n}\n"; });
+define('text!designer.html', ['module'], function(module) { module.exports = "<template>\n  <div id=\"editor\">\n    <div class=\"tools\">\n        <div class=\"button-group\">\n          <button class=\"${align == 'normal' ? 'active' : ''}\" click.delegate=\"setAlign('normal')\" id=\"align-normal\">\n            <img src=\"/images/align-normal.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${align == 'horizontal' ? 'active' : ''}\" click.delegate=\"setAlign('horizontal')\" id=\"align-horizontal\">\n            <img src=\"/images/align-horizontal.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${align == 'vertical' ? 'active' : ''}\" click.delegate=\"setAlign('vertical')\" id=\"align-vertical\">\n            <img src=\"/images/align-vertical.png\" width=\"30\" height=\"30\">\n          </button>\n        </div>\n\n        <div class=\"button-group\">\n          <button class=\"${mode == 'brush' ? 'active' : ''}\" click.delegate=\"setMode('brush')\" id=\"mode-brush\">\n            <img src=\"/images/brush.png\" width=\"30\" height=\"30\">\n          </button>\n          <button class=\"${mode == 'fill' ? 'active' : ''}\" click.delegate=\"setMode('fill')\" id=\"mode-fill\">\n            <img src=\"/images/fill.png\" width=\"30\" height=\"30\">\n          </button>\n        </div>\n\n        <div class=\"button-group show-overflow color-wrapper\">\n          <button id=\"color\">\n            <img src=\"/images/picker.png\" width=\"30\" height=\"30\">\n          </button>\n\n          <div id=\"palette-wrapper\">\n            <canvas click.trigger=\"selectColor($event)\" id=\"palette\" width.bind=\"paletteWidth\" height.bind=\"paletteHeight\"></canvas>\n          </div>\n        </div>\n\n        <div class=\"right\">\n          <div class=\"select\">\n            <select value.bind=\"width\" change.trigger=\"changePatternSize()\">\n              <option value=\"10\">10</option>\n              <option value=\"11\">11</option>\n              <option value=\"12\">12</option>\n              <option value=\"13\">13</option>\n              <option value=\"14\">14</option>\n              <option value=\"15\">15</option>\n              <option value=\"16\">16</option>\n              <option value=\"17\">17</option>\n              <option value=\"18\">18</option>\n              <option value=\"19\">19</option>\n              <option value=\"20\">20</option>\n              <option value=\"21\">21</option>\n              <option value=\"22\">22</option>\n              <option value=\"23\">23</option>\n              <option value=\"24\">24</option>\n              <option value=\"25\">25</option>\n              <option value=\"26\">26</option>\n              <option value=\"27\">27</option>\n              <option value=\"28\">28</option>\n              <option value=\"29\">29</option>\n              <option value=\"30\">30</option>\n              <option value=\"31\">31</option>\n              <option value=\"32\">32</option>\n              <option value=\"33\">33</option>\n              <option value=\"34\">34</option>\n              <option value=\"35\">35</option>\n              <option value=\"36\">36</option>\n              <option value=\"37\">37</option>\n              <option value=\"38\">38</option>\n              <option value=\"39\">39</option>\n              <option value=\"40\">40</option>\n            </select>\n          </div>\n\n          <div class=\"label\">x</div>\n\n          <div class=\"select\">\n            <select value.bind=\"height\" change.trigger=\"changePatternSize()\">\n              <option value=\"10\">10</option>\n              <option value=\"11\">11</option>\n              <option value=\"12\">12</option>\n              <option value=\"13\">13</option>\n              <option value=\"14\">14</option>\n              <option value=\"15\">15</option>\n              <option value=\"16\">16</option>\n              <option value=\"17\">17</option>\n              <option value=\"18\">18</option>\n              <option value=\"19\">19</option>\n              <option value=\"20\">20</option>\n              <option value=\"21\">21</option>\n              <option value=\"22\">22</option>\n              <option value=\"23\">23</option>\n              <option value=\"24\">24</option>\n              <option value=\"25\">25</option>\n              <option value=\"26\">26</option>\n              <option value=\"27\">27</option>\n              <option value=\"28\">28</option>\n              <option value=\"29\">29</option>\n              <option value=\"30\">30</option>\n              <option value=\"31\">31</option>\n              <option value=\"32\">32</option>\n              <option value=\"33\">33</option>\n              <option value=\"34\">34</option>\n              <option value=\"35\">35</option>\n              <option value=\"36\">36</option>\n              <option value=\"37\">37</option>\n              <option value=\"38\">38</option>\n              <option value=\"39\">39</option>\n              <option value=\"40\">40</option>\n            </select>\n          </div>\n\n          <input value.bind=\"name\" type=\"text\" placeholder=\"Pattern Name\">\n          <button click.trigger=\"save()\" disabled.bind=\"saving\" class=\"save-button\">\n            <span if.bind=\"!saving\">Save</span>\n            <span if.bind=\"saving\">Saving...</span>\n          </button>\n        </div>\n    </div>\n\n    <div class=\"grid-wrapper\">\n      <canvas mousemove.delegate=\"drag($event)\" mouseup.trigger=\"click($event)\" mousedown.trigger=\"startDrawing($event)\" mouseleave.trigger=\"stopDrawing($event)\" id=\"grid\" width.bind=\"canvasWidth\" height.bind=\"canvasHeight\"></canvas>\n    </div>\n  </div>\n</template>\n"; });
 define('text!pattern.html', ['module'], function(module) { module.exports = "<template>\n  <div if.bind=\"!errorMessage\">\n    <img src=\"${pattern.imageUrl}\">\n    <div>${pattern.name}</div>\n    <div>${pattern.description}</div>\n    <div>by ${pattern.user.displayName}</div>\n  </div>\n\n  <h1 if.bind=\"errorMessage\">${errorMessage}</h1>\n</template>\n"; });
 define('text!patterns.html', ['module'], function(module) { module.exports = "<template>\n  <div class=\"pattern-tiles-container\">\n    <div repeat.for=\"pattern of patterns\">\n      <a route-href=\"route: pattern; params.bind: {id: pattern._id}\" class=\"pattern-tile\">\n        <img src=\"${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}\" />\n        <div class=\"pattern-tile-name\">${pattern.name}</div>\n        <div class=\"pattern-tile-user\">by ${pattern.user.displayName}</div>\n      </a>\n    </div>\n  </div>\n\n  <div class=\"pagination\">\n    <a if.bind=\"showPrevious\" class=\"button previous\" route-href=\"route: patterns; params.bind: {page: page - 1}\">Previous Page</a>\n    <a if.bind=\"showNext\" class=\"button next\" route-href=\"route: patterns; params.bind: {page: page + 1}\">Next Page</a>\n  </div>\n</template>\n"; });
 //# sourceMappingURL=app-bundle.js.map

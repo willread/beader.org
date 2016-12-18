@@ -226,16 +226,26 @@ a:hover .pattern-tile-name
 		border-radius: 5px
 
 		&:disabled
-		opacity: 0.5
+			opacity: 0.5
 
 #palette-wrapper
 	position: absolute
 	z-index: 10
-	top: 50px
-	left: 0px
-	display: none
+	top: 40px
+	left: -1px
+	width: 400px
+	height: 300px
+	background: #fff
+	border: 1px solid #fff
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75)
 
-#color:hover + #palette-wrapper
+	&.hidden
+		display: none
+
+#color
+	border-right: 0
+
+.color-wrapper:hover #palette-wrapper
 	display: block
 
 .show-overflow

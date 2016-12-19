@@ -1,10 +1,8 @@
-[ ] 404 page
 [ ] Add highlights to buttons
 [ ] Infinite loop in fill code
 [ ] Test on mobile
 [ ] "Error: A value is required for route parameter 'id' in route 'patternsByUser'." error
 [ ] Fixed width for pattern list
-[ ] Scroll to top on route change
 
 [ ] Edit patterns
 [ ] Delete patterns

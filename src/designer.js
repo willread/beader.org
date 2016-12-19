@@ -260,6 +260,13 @@ export class Designer {
     let canvas = $('#grid');
     let http = new HttpClient();
 
+    if(!this.pattern.find(cell => {
+      return cell !== this.pattern[0];
+    })){
+      this.saving = false;
+      return alert('Pattern must have more than one color!');
+    }
+
     this.http.fetch('https://beader-api.herokuapp.com/patterns', {
       method: 'post',
       body: json({

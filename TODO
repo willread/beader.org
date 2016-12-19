@@ -1,6 +1,3 @@
-[ ] Patterns by author
-[ ] Strip private user info from patterns (ie: email)
-[ ] Fix sort order in gallery
 [ ] Pattern css
 [ ] 404 page
 [ ] Deprecate old angular project files (once everything is moved over)

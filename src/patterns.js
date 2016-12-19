@@ -14,15 +14,13 @@ export class Patterns {
     this.http = http;
   }
 
-  activate(params) {
-    this.page = params.page ? parseInt(params.page, 10) : 1;
-  }
-
   determineActivationStrategy() {
     return activationStrategy.replace;
   }
 
-  attached() {
+  activate(params, routeConfig) {
+    this.page = params.page ? parseInt(params.page, 10) : 1;
+    
     this.http.fetch(`https://beader-api.herokuapp.com/patterns?page=${this.page}&limit=${this.limit}`)
       .then(response => response.json())
       .then(response => {

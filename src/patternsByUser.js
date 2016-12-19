@@ -14,15 +14,13 @@ export class PatternsByUser {
     this.http = http;
   }
 
-  activate(params) {
-    this.page = params.page ? parseInt(params.page, 10) : 1;
-  }
-
   determineActivationStrategy() {
     return activationStrategy.replace;
   }
 
   activate(params, routeConfig) {
+    this.page = params.page ? parseInt(params.page, 10) : 1;
+
     this.http.fetch(`https://beader-api.herokuapp.com/patterns/user/${params.id}?page=${this.page}&limit=${this.limit}`)
       .then(response => response.json())
       .then(response => {
@@ -34,6 +32,8 @@ export class PatternsByUser {
         if(this.page < response.totalPages){
           this.showNext = true;
         }
+
+        routeConfig.navModel.setTitle(`Patterns by ${this.patterns[0].user.displayName}`);
       });
   }
 }

@@ -2,6 +2,12 @@
 [ ] Add highlights to buttons
 [ ] Infinite loop in fill code
 [ ] Test on mobile
+[ ] Favicon
+[ ] Google Adsense?
+[ ] "Error: A value is required for route parameter 'id' in route 'patternsByUser'." error
+[ ] Fixed width for pattern list
+[ ] Handle errors on save
+[ ] Redirect on save
 
 [ ] Edit patterns
 [ ] Delete patterns
@@ -14,3 +20,4 @@
 [ ] Comments
 [ ] Color picker hotkey
 [ ] Comments
+[ ] Pattern print button

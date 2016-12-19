@@ -125,6 +125,11 @@
           "jquery",
           "text",
           {
+            "name": "aurelia-google-analytics",
+            "path": "../node_modules/aurelia-google-analytics/dist/amd",
+            "main": "index"
+          },
+          {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
             "main": "aurelia-templating-resources"

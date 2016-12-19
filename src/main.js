@@ -15,6 +15,20 @@ export function configure(aurelia) {
     .feature('resources')
     .plugin('aurelia-auth', baseConfig => {
       baseConfig.configure(authConfig);
+    })
+    .plugin('aurelia-google-analytics', config => {
+        config.init('UA-89265200-1');
+        config.attach({
+          logging: {
+            enabled: true
+          },
+          pageTracking: {
+            enabled: true
+          },
+          clickTracking: {
+            enabled: true
+          }
+        });
     });
 
   if (environment.debug) {

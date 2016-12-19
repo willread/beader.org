@@ -1,10 +1,12 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
+import {Router} from 'aurelia-router';
 
-@inject(HttpClient)
+@inject(HttpClient, Router)
 export class Designer {
-  constructor(http) {
+  constructor(http, router) {
     this.http = http;
+    this.router = router;
   }
 
   // Palette colors
@@ -279,10 +281,12 @@ export class Designer {
         image: canvas[0].toDataURL('image/png')
       })
     })
+    .then(response => response.json())
     .then(response => {
       $('#save-button').prop('disabled', false);
       $('#save-button').text('Save');
       this.saving = false;
+      this.router.navigateToRoute('pattern', {id: response._id});
     })
     .catch(error => {
       alert('Error: ' + error);

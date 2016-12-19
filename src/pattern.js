@@ -1,7 +1,9 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
+import {App} from './app';
+import {Router} from 'aurelia-router';
 
-@inject(HttpClient)
+@inject(HttpClient, App, Router)
 export class Pattern {
   pattern = {}
   userPatterns = []
@@ -9,8 +11,10 @@ export class Pattern {
   userPatternsLimit = 10
   errorMessage = null
 
-  constructor(http) {
+  constructor(http, app, router) {
     this.http = http;
+    this.app = app;
+    this.router = router;
   }
 
   activate(params, routeConfig) {
@@ -38,5 +42,16 @@ export class Pattern {
         })
         this.totalUserPatterns = response.totalPatterns;
       });
+  }
+
+  delete() {
+    if(confirm('Are you sure you want to delete this pattern?')){
+      return this.http.fetch(`https://beader-api.herokuapp.com/patterns/${this.pattern._id}`, {
+        method: 'delete'
+      })
+        .then(response => {
+          this.router.navigateToRoute('patterns');
+        });
+    }
   }
 }

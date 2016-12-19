@@ -1,11 +1,12 @@
+[ ] Delete patterns
 [ ] Add highlights to buttons
 [ ] Infinite loop in fill code
 [ ] Test on mobile
 [ ] "Error: A value is required for route parameter 'id' in route 'patternsByUser'." error
 [ ] Fixed width for pattern list
 
+[ ] Move api path to config
 [ ] Edit patterns
-[ ] Delete patterns
 [ ] Mobile css
 [ ] Cloudfront
 [ ] Loading indicators

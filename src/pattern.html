@@ -5,6 +5,7 @@
     <div class="pattern-header-name">${pattern.name}</div>
     <div class="pattern-header-user">by ${pattern.user.displayName}</div>
 	  <div class="pattern-header-description">${pattern.description}</div>
+    <button if.bind="app.user._id == pattern.user._id" click.trigger="delete()" class="delete-button">Delete This Pattern</button>
   </div>
 
 	<div class="pattern-tile pattern-tile-full">
@@ -21,7 +22,7 @@
 	    </span>
 
 	    <div class="footer-navigation">
-	    	<a class="footer-link" if.bind="totalUserPatterns > userPatternsLimit" route-href="route: patternsByUser; params.bind: {id: pattern.user._id}">See All Patterns By ${pattern.user.displayName}</a>
+	    	<a class="footer-link" if.bind="totalUserPatterns > userPatternsLimit" route-href="route: patternsByUser; params.bind: {id: pattern.user._id}">See all patterns By ${pattern.user.displayName}</a>
 	    </div>
   	</div>
   </div>

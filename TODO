@@ -4,6 +4,7 @@
 [ ] Test on mobile
 [ ] "Error: A value is required for route parameter 'id' in route 'patternsByUser'." error
 [ ] Fixed width for pattern list
+[ ] Scroll to top on route change
 
 [ ] Edit patterns
 [ ] Delete patterns
@@ -19,3 +20,4 @@
 [ ] Pattern print button
 [ ] Google Adsense?
 [ ] Better color dropdown behavior (delay before closing, highlight current color, custom icon, close on click)
+[ ] BUG: First page of user patterns only shows 10 results

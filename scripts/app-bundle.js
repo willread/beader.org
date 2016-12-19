@@ -44,6 +44,7 @@ define('app',['exports', 'aurelia-router', 'aurelia-framework', 'aurelia-auth', 
 
     App.prototype.configureRouter = function configureRouter(config, router) {
       config.title = 'Contacts';
+      config.addPipelineStep('postcomplete', ScrollUpStep);
       config.map([{ route: '', moduleId: 'patterns', title: 'Beader' }, { route: '/patterns', moduleId: 'patterns', title: 'Patterns', name: 'patterns' }, { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern' }, { route: '/patterns/user/:id', moduleId: 'patternsByUser', name: 'patternsByUser' }, { route: '/designer', moduleId: 'designer', name: 'designer', title: 'Designer' }]);
 
       this.router = router;
@@ -88,6 +89,19 @@ define('app',['exports', 'aurelia-router', 'aurelia-framework', 'aurelia-auth', 
 
     return App;
   }()) || _class);
+
+  var ScrollUpStep = function () {
+    function ScrollUpStep() {
+      _classCallCheck(this, ScrollUpStep);
+    }
+
+    ScrollUpStep.prototype.run = function run(routingContext, next) {
+      $("body").scrollTop(0);
+      return next();
+    };
+
+    return ScrollUpStep;
+  }();
 });
 define('auth-config',['exports'], function (exports) {
   'use strict';

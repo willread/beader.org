@@ -14,6 +14,7 @@ export class App {
 
   configureRouter(config, router){
     config.title = 'Contacts';
+    config.addPipelineStep('postcomplete', ScrollUpStep);
     config.map([
       { route: '', moduleId: 'patterns', title: 'Beader' },
       { route: '/patterns', moduleId: 'patterns', title: 'Patterns', name: 'patterns' },
@@ -56,5 +57,12 @@ export class App {
 
   deactivate() {
     this.subscription.dispose();
+  }
+}
+
+class ScrollUpStep {
+  run(routingContext, next) {
+    $("body").scrollTop(0);
+    return next();
   }
 }

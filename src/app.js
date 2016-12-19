@@ -13,10 +13,10 @@ export class App {
   }
 
   configureRouter(config, router){
-    config.title = 'Contacts';
+    config.title = 'Beader';
     config.addPipelineStep('postcomplete', ScrollUpStep);
     config.map([
-      { route: '', moduleId: 'patterns', title: 'Beader' },
+      { route: '', moduleId: 'patterns', title: '' },
       { route: '/patterns', moduleId: 'patterns', title: 'Patterns', name: 'patterns' },
       { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern'},
       { route: '/patterns/user/:id', moduleId: 'patternsByUser', name: 'patternsByUser'},

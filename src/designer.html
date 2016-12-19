@@ -108,7 +108,8 @@
           </div>
 
           <input value.bind="name" type="text" placeholder="Pattern Name">
-          <button click.trigger="save()" disabled.bind="saving" class="save-button">
+          <button if.bind="!isAuthenticated" disabled class="save-button">Log in to Save</button>
+          <button if.bind="isAuthenticated" click.trigger="save()" disabled.bind="saving" class="save-button">
             <span if.bind="!saving">Save</span>
             <span if.bind="saving">Saving...</span>
           </button>

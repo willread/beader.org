@@ -1,12 +1,14 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
+import {AuthService} from 'aurelia-auth';
 
-@inject(HttpClient, Router)
+@inject(HttpClient, Router, AuthService)
 export class Designer {
-  constructor(http, router) {
+  constructor(http, router, auth) {
     this.http = http;
     this.router = router;
+    this.auth = auth;
   }
 
   // Palette colors
@@ -292,5 +294,10 @@ export class Designer {
       alert('Error: ' + error);
       this.saving = false;
     });
+  }
+
+  get isAuthenticated() {
+    let isAuthenticated = this.auth.isAuthenticated();
+    return isAuthenticated;
   }
 }

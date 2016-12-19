@@ -1,5 +1,5 @@
 import environment from './environment';
-import authConfig from './auth-config';
+import authConfig from './authConfig';
 
 //Configure Bluebird Promises.
 Promise.config({

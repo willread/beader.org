@@ -5,7 +5,7 @@ import {AuthService, FetchConfig} from 'aurelia-auth';
 
 @inject(AuthService, FetchConfig)
 export class App {
-  displayName = '';
+  user = '';
 
   constructor(auth, fetchConfig) {
     this.auth = auth;
@@ -18,6 +18,7 @@ export class App {
       { route: '', moduleId: 'patterns', title: 'Beader.org' },
       { route: '/patterns', moduleId: 'patterns', title: 'Patterns', name: 'patterns' },
       { route: '/pattern/:id', moduleId: 'pattern', name: 'pattern'},
+      { route: '/patterns/user/:id', moduleId: 'patternsByUser', name: 'patternsByUser'},
       { route: '/designer',  moduleId: 'designer', name:'designer' }
     ]);
 
@@ -31,8 +32,8 @@ export class App {
 
   fetchUser() {
     this.auth.getMe()
-      .then(data => {
-        return this.displayName = data.displayName;
+      .then(user => {
+        return this.user = user;
       });
   }
 

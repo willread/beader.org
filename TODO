@@ -1,17 +1,20 @@
 [ ] Patterns by author
-[ ] Loading indicators
 [ ] Strip private user info from patterns (ie: email)
-[ ] Cloudfront
 [ ] Fix sort order in gallery
-[ ] Mobile css
 [ ] Pattern css
-[ ] Edit patterns
-[ ] Delete patterns
 [ ] 404 page
 [ ] Deprecate old angular project files (once everything is moved over)
 [ ] Add highlights to buttons
+[ ] Infinite loop in fill code
+[ ] Test on mobile
 
+[ ] Edit patterns
+[ ] Delete patterns
+[ ] Mobile css
+[ ] Cloudfront
+[ ] Loading indicators
 [ ] Facebook login support
 [ ] Undo / redo
 [ ] Search
 [ ] Comments
+[ ] Color picker hotkey

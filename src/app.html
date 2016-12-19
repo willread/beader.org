@@ -7,12 +7,15 @@
     <div class="menu-left">
       <a href="/#">Pattern Gallery</a>
       <a route-href="route: designer">New Pattern</a>
+      <span if.bind="isAuthenticated">
+        <a route-href="route: patternsByUser; params.bind: {id: user._id}">My Patterns</a>
+      </span>
     </div>
 
     <div class="menu-right">
       <a if.bind="!isAuthenticated" click.delegate="authenticate('google')">Sign in with Google</a>
       <span if.bind="isAuthenticated">
-        <span class="label">Welcome ${displayName}</span>
+        <span class="label">Welcome ${user.displayName}</span>
         <a click.trigger="logout()">Log Out</a>
       </span>
     </div>

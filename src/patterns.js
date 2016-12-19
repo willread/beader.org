@@ -31,7 +31,6 @@ export class Patterns {
         if(this.page > 1){
           this.showPrevious = true;
         }
-        console.log(response.totalPages);
         if(this.page < response.totalPages){
           this.showNext = true;
         }

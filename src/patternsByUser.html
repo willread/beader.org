@@ -1,5 +1,6 @@
 <template>
   <div class="pattern-tiles-container">
+    <h3 class="pattern-tiles-container-header">Patterns By ${patterns[0].user.displayName}</h3>
     <div repeat.for="pattern of patterns">
       <a route-href="route: pattern; params.bind: {id: pattern._id}" class="pattern-tile">
         <img src="${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}" />
@@ -9,8 +10,8 @@
     </div>
   </div>
 
-  <div class="pagination">
-    <a if.bind="showPrevious" class="button previous" route-href="route: patterns; params.bind: {page: page - 1}">Previous Page</a>
-    <a if.bind="showNext" class="button next" route-href="route: patterns; params.bind: {page: page + 1}">Next Page</a>
+  <div class="pagination footer-navigation">
+    <a if.bind="showPrevious" class="footer-link previous" route-href="route: patterns; params.bind: {page: page - 1}">Previous Page</a>
+    <a if.bind="showNext" class="footer-link next" route-href="route: patterns; params.bind: {page: page + 1}">Next Page</a>
   </div>
 </template>

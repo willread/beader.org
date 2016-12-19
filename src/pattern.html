@@ -1,9 +1,26 @@
 <template>
   <div if.bind="!errorMessage">
-    <img src="${pattern.imageUrl}">
-    <div>${pattern.name}</div>
-    <div>${pattern.description}</div>
-    <div>by ${pattern.user.displayName}</div>
+    <div class="pattern-sidebar-name">${pattern.name}</div>
+    <div class="pattern-sidebar-user">by ${pattern.user.displayName}</div>
+	<div class="pattern-sidebar-description">${pattern.description}</div>
+
+  	<div class="pattern-tile pattern-tile-full">
+    	<img src="${pattern.imageUrl}">
+    </div>
+
+    <div class="pattern-tiles-container pattern-tiles-container-small">
+    	<div if.bind="userPatterns.length > 0" class="user-patterns">
+    		<h3 class="pattern-tiles-container-header">More patterns by ${pattern.user.displayName}</h3>
+		    <span repeat.for="pattern of userPatterns">
+		      <a route-href="route: pattern; params.bind: {id: pattern._id}" class="pattern-tile pattern-tile-small">
+		        <img src="${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_100,h_100')}" />
+		      </a>
+		    </span>
+
+		    <div class="footer-navigation">
+		    	<a class="footer-link" if.bind="totalUserPatterns < userPatternsLimit" route-href="route: patternsByUser; params.bind: {id: pattern.user._id}">See All Patterns By ${pattern.user.displayName}</a>
+		    </div>
+    	</div>
   </div>
 
   <h1 if.bind="errorMessage">${errorMessage}</h1>

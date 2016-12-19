@@ -9,8 +9,8 @@
     </div>
   </div>
 
-  <div class="pagination">
-    <a if.bind="showPrevious" class="button previous" route-href="route: patterns; params.bind: {page: page - 1}">Previous Page</a>
-    <a if.bind="showNext" class="button next" route-href="route: patterns; params.bind: {page: page + 1}">Next Page</a>
+  <div class="pagination footer-navigation">
+    <a if.bind="showPrevious" class="footer-link previous" route-href="route: patterns; params.bind: {page: page - 1}">Previous Page</a>
+    <a if.bind="showNext" class="footer-link next" route-href="route: patterns; params.bind: {page: page + 1}">Next Page</a>
   </div>
 </template>

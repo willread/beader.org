@@ -91,15 +91,29 @@ a, a:active, a:visited
 .pattern-tiles-container
 	margin-top: 10px
 	margin-left: 10px
+	
+	.pattern-tile
+		margin-right: 10px
+		margin-bottom: 10px
+		float: left
+		
+.pattern-tiles-container-small
+	width: 720px
+	margin: 0 auto
+	text-align: center
+	
+	.pattern-tile
+		float: none
+		display: inline-block
+		
+.pattern-tiles-container-header
+	font-size: 22px
 
 .pattern-tile
 	width: 170px
 	height: 230px
 	padding: 10px
-	margin-right: 10px
-	margin-bottom: 10px
 	background: #fff
-	float: left
 	border-radius: 2px
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3)
 	text-decoration: none
@@ -107,6 +121,23 @@ a, a:active, a:visited
 	img
 		width: 150px
 		height: 150px
+
+.pattern-tile-full
+	width: 720px
+	height: 720px
+	margin: 20px auto
+	
+	img
+		width: 700px
+		height: 700px
+
+.pattern-tile-small
+	width: 120px
+	height: 120px
+	
+	img
+		width: 100px
+		height: 100px
 
 .pattern-tile-name
 	font-size: 13px
@@ -250,26 +281,28 @@ a:hover .pattern-tile-name
 .show-overflow
 	overflow: visible !important
 
-.pagination
+.footer-navigation
 	display: block
 	width: 100%
 	float: none
 	clear: both
 	text-align: center
-	margin: 10px 0
+	margin: 10px 0 40px 0
 
-	.button
-		font-size: 18px
+	.footer-link
+		font-size: 14px
 		font-weight: 600
 
+		&:nth-child(2)
+			margin-left: 10px
+
+.pagination
+	.footer-link
 		&.previous:before
 			content: "\00AB"
 
 		&.next:after
 			content: " \00BB"
-
-		&:nth-child(2)
-			margin-left: 10px
 
 .grid-wrapper
 	display: block

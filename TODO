@@ -1,15 +1,14 @@
-[ ] Delete patterns
+[ ] Mobile css
+[ ] Loading indicators
 [ ] Add highlights to buttons
 [ ] Infinite loop in fill code
-[ ] Test on mobile
 [ ] "Error: A value is required for route parameter 'id' in route 'patternsByUser'." error
 [ ] Fixed width for pattern list
+[ ] Disable aurelia debug output
 
 [ ] Move api path to config
 [ ] Edit patterns
-[ ] Mobile css
 [ ] Cloudfront
-[ ] Loading indicators
 [ ] Facebook login support
 [ ] Undo / redo
 [ ] Search

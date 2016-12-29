@@ -155,7 +155,6 @@ export class Designer {
       let horizontalOffset = !(y % 2) ? size / 2 : 0;  
       centeringOffset -= size / 4;
       x = Math.floor(($event.offsetX - centeringOffset - horizontalOffset) / size);
-      console.log(y, horizontalOffset, centeringOffset, x);
     }
 
     if(this.align == 'vertical'){

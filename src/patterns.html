@@ -1,4 +1,6 @@
 <template>
+  <loading-indicator loading.bind="!patterns.length"></loading-indicator>
+
   <div class="pattern-tiles-container">
     <div repeat.for="pattern of patterns">
       <a route-href="route: pattern; params.bind: {id: pattern._id}" class="pattern-tile">
@@ -8,6 +10,8 @@
       </a>
     </div>
   </div>
+
+  <div class="not-found" if.bind="!loading && patterns.length == 0">No patterns found</div>
 
   <div class="pagination footer-navigation">
     <a if.bind="showPrevious" class="footer-link previous" route-href="route: patterns; params.bind: {page: page - 1}">Previous Page</a>

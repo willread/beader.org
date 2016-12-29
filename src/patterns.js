@@ -9,6 +9,7 @@ export class Patterns {
   limit = 20
   showNext = false
   showPrevious = false
+  loading = true
 
   constructor(http) {
     this.http = http;
@@ -32,6 +33,8 @@ export class Patterns {
         if(this.page < response.totalPages){
           this.showNext = true;
         }
+
+        this.loading = false;
       });
   }
 }

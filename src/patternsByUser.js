@@ -9,6 +9,7 @@ export class PatternsByUser {
   limit = 20
   showNext = false
   showPrevious = false
+  loading = true
 
   constructor(http) {
     this.http = http;
@@ -33,7 +34,11 @@ export class PatternsByUser {
           this.showNext = true;
         }
 
-        routeConfig.navModel.setTitle(`Patterns by ${this.patterns[0].user.displayName}`);
+        if(this.patterns.length){
+          routeConfig.navModel.setTitle(`Patterns by ${this.patterns[0].user.displayName}`);
+        }
+
+        this.loading = false
       });
   }
 }

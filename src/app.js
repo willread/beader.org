@@ -3,14 +3,21 @@ import 'whatwg-fetch';
 import {Router, RouterConfiguration} from 'aurelia-router';
 import {inject} from 'aurelia-framework';
 import {AuthService, FetchConfig} from 'aurelia-auth';
+import {HttpClient, json} from 'aurelia-fetch-client';
 
-@inject(AuthService, FetchConfig)
+@inject(AuthService, FetchConfig, HttpClient)
 export class App {
   user = '';
 
-  constructor(auth, fetchConfig) {
+  constructor(auth, fetchConfig, http) {
     this.auth = auth;
     this.fetchConfig = fetchConfig;
+    this.http = http;
+
+    http.configure(config => {
+      config
+        .withBaseUrl("https://beader-api.herokuapp.com");
+    });
   }
 
   configureRouter(config, router){

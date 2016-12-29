@@ -18,7 +18,7 @@ export class Pattern {
   }
 
   activate(params, routeConfig) {
-    return this.http.fetch('https://beader-api.herokuapp.com/patterns/' + params.id)
+    return this.http.fetch(`/patterns/${params.id}`)
       .then(response => response.json())
       .then(pattern => {
         this.pattern = pattern;
@@ -31,7 +31,7 @@ export class Pattern {
   }
 
   fetchUserPatterns(userId) {
-    return this.http.fetch(`https://beader-api.herokuapp.com/patterns/user/${userId}?page=1&limit=${this.userPatternsLimit}`)
+    return this.http.fetch(`/patterns/user/${userId}?page=1&limit=${this.userPatternsLimit}`)
       .then(response => response.json())
       .then(response => {
         this.userPatterns = response.patterns.filter(pattern => {
@@ -46,7 +46,7 @@ export class Pattern {
 
   delete() {
     if(confirm('Are you sure you want to delete this pattern?')){
-      return this.http.fetch(`https://beader-api.herokuapp.com/patterns/${this.pattern._id}`, {
+      return this.http.fetch(`/patterns/${this.pattern._id}`, {
         method: 'delete'
       })
         .then(response => {

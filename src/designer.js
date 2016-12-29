@@ -273,7 +273,7 @@ export class Designer {
       return alert('Pattern must have more than one color!');
     }
 
-    this.http.fetch('https://beader-api.herokuapp.com/patterns', {
+    this.http.fetch('/patterns', {
       method: 'post',
       body: json({
         name: this.name,

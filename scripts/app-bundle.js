@@ -1,4 +1,4 @@
-define('app',['exports', 'aurelia-router', 'aurelia-framework', 'aurelia-auth', 'jquery', 'whatwg-fetch'], function (exports, _aureliaRouter, _aureliaFramework, _aureliaAuth) {
+define('app',['exports', 'aurelia-router', 'aurelia-framework', 'aurelia-auth', 'aurelia-fetch-client', 'jquery', 'whatwg-fetch'], function (exports, _aureliaRouter, _aureliaFramework, _aureliaAuth, _aureliaFetchClient) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -32,14 +32,19 @@ define('app',['exports', 'aurelia-router', 'aurelia-framework', 'aurelia-auth', 
 
   var _dec, _class;
 
-  var App = exports.App = (_dec = (0, _aureliaFramework.inject)(_aureliaAuth.AuthService, _aureliaAuth.FetchConfig), _dec(_class = function () {
-    function App(auth, fetchConfig) {
+  var App = exports.App = (_dec = (0, _aureliaFramework.inject)(_aureliaAuth.AuthService, _aureliaAuth.FetchConfig, _aureliaFetchClient.HttpClient), _dec(_class = function () {
+    function App(auth, fetchConfig, http) {
       _classCallCheck(this, App);
 
       this.user = '';
 
       this.auth = auth;
       this.fetchConfig = fetchConfig;
+      this.http = http;
+
+      http.configure(function (config) {
+        config.withBaseUrl("https://beader-api.herokuapp.com");
+      });
     }
 
     App.prototype.configureRouter = function configureRouter(config, router) {
@@ -393,7 +398,7 @@ define('designer',['exports', 'aurelia-framework', 'aurelia-fetch-client', 'aure
         return alert('Pattern must have more than one color!');
       }
 
-      this.http.fetch('https://beader-api.herokuapp.com/patterns', {
+      this.http.fetch('/patterns', {
         method: 'post',
         body: (0, _aureliaFetchClient.json)({
           name: this.name,
@@ -521,7 +526,7 @@ define('pattern',['exports', 'aurelia-framework', 'aurelia-fetch-client', './app
     Pattern.prototype.activate = function activate(params, routeConfig) {
       var _this = this;
 
-      return this.http.fetch('https://beader-api.herokuapp.com/patterns/' + params.id).then(function (response) {
+      return this.http.fetch('/patterns/' + params.id).then(function (response) {
         return response.json();
       }).then(function (pattern) {
         _this.pattern = pattern;
@@ -535,7 +540,7 @@ define('pattern',['exports', 'aurelia-framework', 'aurelia-fetch-client', './app
     Pattern.prototype.fetchUserPatterns = function fetchUserPatterns(userId) {
       var _this2 = this;
 
-      return this.http.fetch('https://beader-api.herokuapp.com/patterns/user/' + userId + '?page=1&limit=' + this.userPatternsLimit).then(function (response) {
+      return this.http.fetch('/patterns/user/' + userId + '?page=1&limit=' + this.userPatternsLimit).then(function (response) {
         return response.json();
       }).then(function (response) {
         _this2.userPatterns = response.patterns.filter(function (pattern) {
@@ -550,7 +555,7 @@ define('pattern',['exports', 'aurelia-framework', 'aurelia-fetch-client', './app
       var _this3 = this;
 
       if (confirm('Are you sure you want to delete this pattern?')) {
-        return this.http.fetch('https://beader-api.herokuapp.com/patterns/' + this.pattern._id, {
+        return this.http.fetch('/patterns/' + this.pattern._id, {
           method: 'delete'
         }).then(function (response) {
           _this3.router.navigateToRoute('patterns');
@@ -600,7 +605,7 @@ define('patterns',['exports', 'aurelia-framework', 'aurelia-fetch-client', 'aure
 
       this.page = params.page ? parseInt(params.page, 10) : 1;
 
-      this.http.fetch('https://beader-api.herokuapp.com/patterns?page=' + this.page + '&limit=' + this.limit).then(function (response) {
+      this.http.fetch('/patterns?page=' + this.page + '&limit=' + this.limit).then(function (response) {
         return response.json();
       }).then(function (response) {
         _this.patterns = response.patterns;
@@ -658,7 +663,7 @@ define('patternsByUser',['exports', 'aurelia-framework', 'aurelia-fetch-client',
 
       this.page = params.page ? parseInt(params.page, 10) : 1;
 
-      this.http.fetch('https://beader-api.herokuapp.com/patterns/user/' + params.id + '?page=' + this.page + '&limit=' + this.limit).then(function (response) {
+      this.http.fetch('/patterns/user/' + params.id + '?page=' + this.page + '&limit=' + this.limit).then(function (response) {
         return response.json();
       }).then(function (response) {
         _this.patterns = response.patterns;

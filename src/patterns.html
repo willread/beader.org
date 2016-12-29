@@ -5,8 +5,10 @@
     <div repeat.for="pattern of patterns">
       <a route-href="route: pattern; params.bind: {id: pattern._id}" class="pattern-tile">
         <img src="${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}" />
-        <div class="pattern-tile-name">${pattern.name}</div>
-        <div class="pattern-tile-user">by ${pattern.user.displayName}</div>
+        <div class="pattern-tile-meta">
+          <div class="pattern-tile-name">${pattern.name}</div>
+          <div class="pattern-tile-user">by ${pattern.user.displayName}</div>
+        </div>
       </a>
     </div>
   </div>

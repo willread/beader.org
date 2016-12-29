@@ -6,7 +6,7 @@
 
     <div class="menu-left">
       <a href="/#">Pattern Gallery</a>
-      <a route-href="route: designer">New Pattern</a>
+      <a route-href="route: designer" class="new-pattern">New Pattern</a>
       <span if.bind="isAuthenticated">
         <a route-href="route: patternsByUser; params.bind: {id: user._id}">My Patterns</a>
       </span>

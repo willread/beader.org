@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900');
 
+$mobileWidth = 640px
+
 body
 	margin: 0
 	padding: 0
@@ -88,9 +90,36 @@ a, a:active, a:visited
 				color: darken(#00B7E6, 20%)
 				border-color: darken(#00B7E6, 20%)
 
+@media screen and (max-width: $mobileWidth)
+	.navbar
+		height: auto
+		
+		.menu-left, .menu-right
+			position: relative
+			display: block
+			left: auto
+			right: auto
+			
+		.menu-left
+			a
+				width: 100%
+				float: none
+				border-top: 1px solid #ccc
+				text-align: center
+				
+				&.new-pattern
+					display: none /* HACK: Hide pattern editor on mobile */
+				
+		.menu-right
+			border-top: 1px solid #ccc
+			text-align: center
+			height: 70px
+			padding-top: 20px
+			margin: 0
+
 .pattern-tiles-container
-	margin-top: 10px
-	margin-left: 10px
+	margin: 10px auto
+	width: 900px
 	
 	.pattern-tile
 		margin-right: 10px
@@ -139,6 +168,9 @@ a, a:active, a:visited
 		width: 100px
 		height: 100px
 
+.pattern-tile-meta
+	height: 47px
+
 .pattern-tile-name
 	font-size: 13px
 	margin-top: 5px
@@ -157,6 +189,26 @@ a, a:active, a:visited
 
 a:hover .pattern-tile-name
 	color: darken(#00B7E6, 20%)
+
+@media screen and (max-width: $mobileWidth)
+	.pattern-tiles-container
+		width: 100%
+		margin-left: 10px
+		
+	.pattern-tile
+		width: calc(50% - 15px)
+		height: auto
+		
+		img
+			width: 100%
+			height: auto
+			
+	.pattern-tile-full
+		width: calc(100% - 20px)
+		
+	.pattern-tiles-container-small
+		.pattern-tile
+			width: 100px
 
 .tools
 	background: #666
@@ -287,14 +339,15 @@ a:hover .pattern-tile-name
 	float: none
 	clear: both
 	text-align: center
-	margin: 10px 0 40px 0
+	margin: 40px 0
+	padding-top: 40px
 
 	.footer-link
-		font-size: 14px
+		font-size: 17px
 		font-weight: 600
 
 		&:nth-child(2)
-			margin-left: 10px
+			margin-left: 20px
 
 .pagination
 	.footer-link
@@ -347,6 +400,11 @@ a:hover .pattern-tile-name
 		&:hover
 			background: lighten(#df2512, 20%)
 			
+@media screen and (max-width: $mobileWidth)
+	.pattern-header
+		width: 100%
+		margin: 20px 10px
+
 .loading-indicator
 	background: #fff
 	border-radius: 5px

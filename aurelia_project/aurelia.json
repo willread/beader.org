@@ -144,6 +144,11 @@
             "path": "../node_modules/aurelia-testing/dist/amd",
             "main": "aurelia-testing",
             "env": "dev"
+          },
+          {
+            "name": "whatwg-fetch",
+            "path": "../node_modules/whatwg-fetch",
+            "main": "fetch"
           }
         ]
       }

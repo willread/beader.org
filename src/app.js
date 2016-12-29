@@ -1,4 +1,5 @@
 import 'jquery';
+import 'whatwg-fetch';
 import {Router, RouterConfiguration} from 'aurelia-router';
 import {inject} from 'aurelia-framework';
 import {AuthService, FetchConfig} from 'aurelia-auth';

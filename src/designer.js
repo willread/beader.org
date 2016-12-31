@@ -37,6 +37,8 @@ export class Designer {
   drawing = false
   pattern = []
   saving = false
+  oldColor = '000000'
+  hidePaletteTimeout = null
 
   initPattern() {
     let newPattern = [];
@@ -95,10 +97,27 @@ export class Designer {
       }
     }
 
-    $('#palette-wrapper').addClass('hidden');
+    this.hidePalette();
   }
 
-  selectColor($event) {
+  showPalette() {
+    this.oldColor = this.color;
+    $('#palette-wrapper').removeClass('hidden');
+    clearTimeout(this.hidePaletteTimeout);
+  }
+
+  hidePalette(delay = 0) {
+    this.hidePaletteTimeout = setTimeout(() => {
+      $('#palette-wrapper').addClass('hidden');
+    }, delay);
+  }
+
+  resetColor() {
+    this.color = this.oldColor;
+    $('#color').css('backgroundColor', '#' + this.color);
+  }
+
+  selectColor($event, hide = false) {
     let palette = $('#palette')[0];
     let context = palette.getContext('2d');
 
@@ -114,6 +133,11 @@ export class Designer {
     this.color = this.colors[y * this.paletteCols + x];
 
     $('#color').css('backgroundColor', '#' + this.color);
+
+    if(hide){
+      this.hidePalette();
+      this.oldColor = this.color;
+    }
   }
 
   setMode(mode) {

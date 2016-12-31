@@ -1,8 +1,3 @@
-[ ] Infinite loop in fill code
-[ ] "Error: A value is required for route parameter 'id' in route 'patternsByUser'." error
-[ ] Set up dns
-
-[ ] Move api path to config
 [ ] Edit patterns
 [ ] Cloudfront
 [ ] Facebook login support
@@ -10,10 +5,9 @@
 [ ] Search
 [ ] Comments
 [ ] Color picker hotkey
-[ ] Comments
 [ ] Pattern print button
 [ ] Google Adsense?
-[ ] Better color dropdown behavior (delay before closing, highlight current color, custom icon, close on click)
-[ ] BUG: First page of user patterns only shows 10 results
 [ ] Mobile designer css
 [ ] Re-enable designer link on mobile
+[ ] BUG: First page of user patterns only shows 10 results
+[ ] BUG: Infinite loop in fill code (Can't reproduce)

@@ -9,5 +9,18 @@
 
   <body aurelia-app="main">
     <script src="scripts/vendor-bundle.js" data-main="aurelia-bootstrapper"></script>
+    <script>
+      Userback = window.Userback || {};
+      Userback.access_token = '689|778|tciHxRGPtH5vgszSx50VHA7INGqIM38ggrYNjECNlHjCaSvIYw';
+
+      (function(id) {
+          if (document.getElementById(id)) {return;}
+          var s = document.createElement('script');
+          s.id = id;
+          s.src = 'https://static.userback.io/widget/v1.js';
+          var parent_node = document.head || document.body;
+          parent_node.appendChild(s);
+      })('userback-sdk');
+    </script>
   </body>
 </html>

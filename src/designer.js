@@ -35,7 +35,7 @@ export class Designer {
   color = '000000'
   clearColor = 'ffffff'
   drawing = false
-  pattern = []
+  pattern = (new Array(100)).fill('ffffff');
   saving = false
   oldColor = '000000'
   hidePaletteTimeout = null
@@ -304,8 +304,7 @@ export class Designer {
         width: this.width,
         height: this.height,
         align: this.align,
-        pattern: this.pattern,
-        image: canvas[0].toDataURL('image/png')
+        pattern: this.pattern
       })
     })
     .then(response => response.json())

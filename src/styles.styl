@@ -287,12 +287,17 @@ a:hover .pattern-tile-name
 			border-left: 0
 			border-bottom: 0
 			border-right: 1px solid #fff
+			cursor: hand
+			cursor: pointer
 
 			&:last-child
 				border-right: 0
 
 			&.active
 				background: #00B7E6
+
+			&:hover
+				background: darken(#00B7E6, 20%)
 
 	.save-button
 		display: inline-block
@@ -306,9 +311,14 @@ a:hover .pattern-tile-name
 		line-height: 42px
 		border: none
 		border-radius: 5px
+		cursor: hand
+		cursor: pointer
 
 		&:disabled
 			opacity: 0.5
+			
+		&:hover
+			background: darken(#20e65c, 20%)
 
 #palette-wrapper
 	position: absolute
@@ -320,6 +330,8 @@ a:hover .pattern-tile-name
 	background: #fff
 	border: 1px solid #fff
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75)
+	cursor: hand
+	cursor: pointer
 
 	&.hidden
 		display: none
@@ -345,6 +357,9 @@ a:hover .pattern-tile-name
 	.footer-link
 		font-size: 17px
 		font-weight: 600
+		
+		&:hover
+			color: #666
 
 		&:nth-child(2)
 			margin-left: 20px

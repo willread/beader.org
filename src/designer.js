@@ -224,7 +224,7 @@ export class Designer {
 
   fill(x, y) {
     let oldColor = this.getPatternCell(x, y) || this.clearColor;
-    if (oldColor == $.color) return;
+    if (oldColor == this.color) return;
 
     let stack = [
       [x, y]

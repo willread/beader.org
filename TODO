@@ -10,4 +10,3 @@
 [ ] Mobile designer css
 [ ] Re-enable designer link on mobile
 [ ] BUG: First page of user patterns only shows 10 results
-[ ] BUG: Infinite loop in fill code (Can't reproduce)

@@ -224,16 +224,13 @@ export class Designer {
 
   fill(x, y) {
     let oldColor = this.getPatternCell(x, y) || this.clearColor;
-    if (oldColor == this.color
-
-      ) return;
+    if (oldColor == this.color) return;
 
     let stack = [
       [x, y]
     ];
 
     while (stack.length) {
-
       let cell = stack.pop();
       let x = cell[0];
       let y = cell[1];

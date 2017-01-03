@@ -1,4 +1,5 @@
 let config = {
+  loginRedirect: '',
   profileUrl: 'https://beader-api.herokuapp.com/auth',
   providers: {
     google: {

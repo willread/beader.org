@@ -121,8 +121,8 @@ export class Designer {
     let palette = $('#palette')[0];
     let context = palette.getContext('2d');
 
-    let width = Math.floor(this.paletteWidth / this.paletteCols);
-    let height = Math.floor(this.paletteHeight / this.paletteRows);
+    let width = this.paletteWidth / this.paletteCols;
+    let height = this.paletteHeight / this.paletteRows;
 
     let offsetX = $event.pageX - $(palette).offset().left;
     let offsetY = $event.pageY - $(palette).offset().top;
@@ -224,7 +224,9 @@ export class Designer {
 
   fill(x, y) {
     let oldColor = this.getPatternCell(x, y) || this.clearColor;
-    if (oldColor == this.color) return;
+    if (oldColor == this.color
+
+      ) return;
 
     let stack = [
       [x, y]

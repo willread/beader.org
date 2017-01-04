@@ -23,6 +23,8 @@ export class Designer {
   height = 10
   canvasWidth = 700
   canvasHeight = 700
+  previewWidth = 150
+  previewHeight = 150
   paletteWidth = 400
   paletteHeight = 300
   paletteCols = 16
@@ -286,6 +288,25 @@ export class Designer {
         context.stroke();
       }
     }
+
+    // Generate preview
+    // NOTE: Because the browser doesn't provide proper antialiasing,
+    // we use a small hack to draw the image at increasingly small sizes
+    // to smooth out the final image
+
+    let preview = $('#preview');
+    let previewContext = preview[0].getContext('2d');
+
+    let step1 = document.createElement('canvas');
+    let step1Context = step1.getContext('2d');
+
+    step1.width = this.canvasWidth / 2;
+    step1.height = this.canvasHeight / 2;
+    step1Context.clearRect(0, 0, step1.width, step1.height);
+    step1Context.drawImage(context.canvas, 0, 0, this.canvasWidth, this.canvasHeight, 0, 0, step1.width, step1.height);
+
+    previewContext.clearRect(0, 0, this.previewWidth, this.previewHeight);
+    previewContext.drawImage(step1, 0, 0, step1.width, step1.height, 0, 0, this.previewWidth, this.previewHeight);
   }
 
   save() {

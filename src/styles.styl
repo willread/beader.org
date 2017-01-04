@@ -378,7 +378,20 @@ a:hover .pattern-tile-name
 #grid
 	display: block
 	margin: 0 auto
-	
+
+#preview
+	position: absolute
+	left: 10px
+	top: 140px
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	padding: 5px;
+	background: #ddd;
+	border-radius: 3px;
+
+@media screen and (max-width: 1024px)
+	#preview
+		display: none
+
 .pattern-header
 	position: relative
 	width: 720px

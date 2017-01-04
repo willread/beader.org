@@ -121,6 +121,8 @@
 
     <div class="grid-wrapper">
       <canvas mousemove.delegate="drag($event)" click.trigger="click($event)" mousedown.trigger="startDrawing($event)" mouseleave.trigger="stopDrawing($event)" id="grid" width.bind="canvasWidth" height.bind="canvasHeight"></canvas>
+
+      <canvas id="preview" width.bind="previewWidth" height.bind="previewHeight"></canvas>
     </div>
   </div>
 </template>

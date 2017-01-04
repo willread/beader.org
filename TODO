@@ -3,6 +3,8 @@
 [ ] Facebook login support
 [ ] Undo / redo
 [ ] Search
+[ ] Tags
+[ ] Descriptions
 [ ] Comments
 [ ] Color picker hotkey
 [ ] Pattern print button
@@ -10,3 +12,4 @@
 [ ] Mobile designer css
 [ ] Re-enable designer link on mobile
 [ ] BUG: First page of user patterns only shows 10 results
+[ ] BUG: Dragging off side causes drawing to opposite side

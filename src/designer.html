@@ -2,6 +2,9 @@
   <div id="editor">
     <div class="tools">
         <div class="button-group">
+          <button class="${align == 'pixel' ? 'active' : ''}" click.delegate="setAlign('pixel')" id="align-pixel">
+            <img src="./images/align-pixel.png" width="30" height="30">
+          </button>
           <button class="${align == 'normal' ? 'active' : ''}" click.delegate="setAlign('normal')" id="align-normal">
             <img src="./images/align-normal.png" width="30" height="30">
           </button>

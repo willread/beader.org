@@ -167,7 +167,7 @@ export class Designer {
     let canvas = $('#grid')[0];
     let size = this.width > this.height ? this.canvasWidth / this.width : this.canvasHeight / this.height;
 
-    if (this.align !== 'normal') {
+    if (this.align !== 'normal' && this.align !== 'pixel') {
       size = this.width > this.height ? size - size / this.width / 2 : size - size / this.height / 2;
     }
 
@@ -187,7 +187,7 @@ export class Designer {
       y = Math.floor(($event.offsetY - verticalOffset) / size);
     }
 
-    if(this.align == 'normal'){
+    if(this.align == 'normal' || this.align == 'pixel'){
       x = Math.floor(($event.offsetX - centeringOffset) / size);
       y = Math.floor($event.offsetY / size);
     }
@@ -259,7 +259,7 @@ export class Designer {
 
     let size = this.width > this.height ? this.canvasWidth / this.width : this.canvasHeight / this.height;
 
-    if (this.align !== 'normal') {
+    if (this.align !== 'normal' && this.align !== 'pixel') {
       size = this.width > this.height ? size - size / this.width / 2 : size - size / this.height / 2;
     }
 
@@ -272,7 +272,13 @@ export class Designer {
     for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
         context.beginPath();
-        context.arc(x * size + size / 2 + (!(y % 2) ? horizontalOffset : 0) + centeringOffset, y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
+
+        if(this.align == 'pixel'){
+          context.rect(x * size + centeringOffset, y * size, size, size);
+        }else{
+          context.arc(x * size + size / 2 + (!(y % 2) ? horizontalOffset : 0) + centeringOffset, y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
+        }
+
         context.fillStyle = '#' + (this.getPatternCell(x, y) || this.clearColor);
         context.fill();
         context.lineWidth = 1;

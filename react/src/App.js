@@ -4,9 +4,9 @@ import GoogleLogin from 'react-google-login';
 import store from 'store';
 
 import './App.scss';
+import { apiPath } from './config.js';
 
 // TODO: Move configs
-const apiPath = 'https://beader-api.herokuapp.com';
 const googleClientId = '204545753423-4hqlulhjt2flp93so2ouqu1d01tonfkn.apps.googleusercontent.com'; //'204545753423-3igb69ajb3be6ftc6mu8ftkgmvqe3hcv.apps.googleusercontent.com';
 const googleRedirectUri = 'http://beader.org';
 
@@ -67,7 +67,6 @@ class App extends Component {
 
   onGoogleFailure() {
     // TODO: Handle failure
-    console.log('failure', arguments);
   }
 
   render() {

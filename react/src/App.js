@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
+import store from 'store';
+
 import './App.scss';
 
+// TODO: Move configs
 const apiPath = 'https://beader-api.herokuapp.com';
+const googleClientId = '204545753423-4hqlulhjt2flp93so2ouqu1d01tonfkn.apps.googleusercontent.com'; //'204545753423-3igb69ajb3be6ftc6mu8ftkgmvqe3hcv.apps.googleusercontent.com';
+const googleRedirectUri = 'http://beader.org';
 
 class App extends Component {
   state = {
@@ -12,22 +18,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.authenticate = this.authenticate.bind(this);
     this.logout = this.logout.bind(this);
-  }
-
-  authenticate() {
-    // TODO
-    // POST `${apiPath}/auth`
-      // code: "4/8gCQSAq_jumj83OYJQyOq_xAKRxNKaNjc00oNiRo7kTlnNTlgPapLpRlXnIX8PR6a07JdbaE7HlJErFPsIoBaU8",…}
-      // clientId: "204545753423-3igb69ajb3be6ftc6mu8ftkgmvqe3hcv.apps.googleusercontent.com"
-      // code: "4/8gCQSAq_jumj83OYJQyOq_xAKRxNKaNjc00oNiRo7kTlnNTlgPapLpRlXnIX8PR6a07JdbaE7HlJErFPsIoBaU8"
-      // redirectUri: "http://beader.org"
-      // state: "p50vjtizaz"
+    this.onGoogleSuccess = this.onGoogleSuccess.bind(this);
+    this.onGoogleFailure = this.onGoogleFailure.bind(this);
   }
 
   logout() {
-    localStorage.removeItem('token');
+    store.remove('token');
     this.setState({user: undefined});
   }
 
@@ -36,7 +33,7 @@ class App extends Component {
   }
 
   async fetchUser() {
-    const token = localStorage.getItem('token');
+    const token = store.get('token');
 
     if (token) {
       const user = await fetch(`${apiPath}/auth`, {
@@ -49,6 +46,28 @@ class App extends Component {
 
       this.setState({user});
     }
+  }
+
+  async onGoogleSuccess(response) {
+    if (response.code) {
+      const result = await fetch(`${apiPath}/auth`, {
+        method: 'post',
+        body: {
+          code: response.code,
+          clientId: googleClientId,
+          redirectUri: googleRedirectUri
+        }
+      })
+        .then(response => response.json());
+
+      store.set('token', result.token);
+      this.fetchUser();
+    }
+  }
+
+  onGoogleFailure() {
+    // TODO: Handle failure
+    console.log('failure', arguments);
   }
 
   render() {
@@ -67,8 +86,15 @@ class App extends Component {
 
           <div className='menu-right'>
             {!this.state.user
-              ? <a onClick={this.authenticate}>Sign in with Google</a>
-              : <a onClick={this.logout}>Log Out</a>
+              ? <GoogleLogin
+                  clientId={googleClientId}
+                  render={props => (
+                    <button onClick={props.onClick}>Sign in with Google</button>
+                  )}
+                  onSuccess={this.onGoogleSuccess}
+                  onFailure={this.onGoogleFailure}
+                  responseType='code'></GoogleLogin>
+              : <button onClick={this.logout}>Log Out</button>
             }
           </div>
         </header>

@@ -2,3 +2,6 @@
 [ ] Multiple favicon resolutions
 [ ] manifest.json / index.html theme colors
 [ ] Google analytics
+[ ] HTTPS
+[ ] Fix lighten / darken calls in scss
+[ ] "popup_closed_by_user" error (possibly related to domain or multiple accounts?)

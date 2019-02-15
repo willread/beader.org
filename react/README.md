@@ -2,5 +2,5 @@
 
 A community for beading hobbyists built using:
 
-- Aurelia
+- React
 - Node.js / Express

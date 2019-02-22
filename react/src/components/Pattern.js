@@ -5,17 +5,15 @@ import { apiPath } from '../config';
 
 import LoadingIndicator from './LoadingIndicator';
 
-const initialState = {
-  pattern: null,
-  userPatterns: [],
-  totalUserPatterns: 0,
-  userPatternsLimit: 10,
-  errorMessage: null,
-  loading: true,
-};
-
 class Pattern extends Component {
-  state = {...initialState};
+  state = {
+    pattern: null,
+    userPatterns: [],
+    totalUserPatterns: 0,
+    userPatternsLimit: 10,
+    errorMessage: null,
+    loading: true,
+  };
 
   constructor(props) {
     super(props);

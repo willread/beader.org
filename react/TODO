@@ -4,9 +4,10 @@ TODO
 [ ] Mobile testing
 [ ] Usernames / email addresses messed up
 [ ] Fix lighten / darken calls in scss
-[ ] ads
+[ ] Ads
 [ ] Multiple favicon resolutions
 [ ] manifest.json / index.html theme colors
+[ ] Deprecate aurelia folder
 
 New Features
 ============
@@ -18,3 +19,9 @@ New Features
 [ ] Componentize css
 [ ] Center patterns vertically
 [ ] HTTPS
+
+API
+===
+
+[ ] Passing undefined in route params causes crash
+[ ] Pagination giving weird results for user patterns

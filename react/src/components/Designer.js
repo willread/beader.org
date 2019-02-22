@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { post } from '../api';
 import { UserContext } from '../App';
+import { titleSuffix } from '../config';
 
 const images = {
   alignPixel: require('../images/align-pixel.png'),
@@ -84,8 +85,8 @@ class Designer extends Component {
 
   componentDidMount() {
     this.initPattern();
-    // this.renderGrid();
     this.renderPalette();
+    document.title = `New Pattern${titleSuffix}`;
   }
 
   componentDidUpdate() {
@@ -161,7 +162,6 @@ class Designer extends Component {
 
   setAlign(align) {
     this.setState({align});
-    // this.renderGrid();
   }
 
   startDrawing() {
@@ -235,7 +235,6 @@ class Designer extends Component {
 
   draw(x, y) {
     this.setPatternCell(x, y, this.state.color);
-    // this.renderGrid();
   }
 
   fill(x, y) {
@@ -265,8 +264,6 @@ class Designer extends Component {
       if (y + 1 < this.state.height && oldColor === (this.getPatternCell(x, y + 1) || 'ffffff'))
         stack.push([x, y + 1]);
     }
-
-    // this.renderGrid();
   }
 
   renderGrid() {

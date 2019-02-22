@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { get } from '../api';
 import { UserContext } from '../App';
+import { titleSuffix } from '../config';
 
 import LoadingIndicator from './LoadingIndicator';
 
@@ -15,12 +16,6 @@ class Pattern extends Component {
     errorMessage: null,
     loading: true,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.delete = this.delete.bind(this);
-  }
 
   componentDidMount() {
     this.fetchPattern();
@@ -39,7 +34,7 @@ class Pattern extends Component {
     get(`/patterns/${this.props.match.params.id}`)
       .then(pattern => {
         this.setState({pattern});
-        // TODO: Set page title
+        document.title = `${pattern.name}${titleSuffix}`;
         this.fetchUserPatterns(pattern.user._id);
       })
       .catch(err => {
@@ -81,9 +76,11 @@ class Pattern extends Component {
                   ? <h1>{errorMessage}</h1>
                   : <div className='pattern-header'>
                       <div className='pattern-header-name'>{pattern.name}</div>
-                      <div className='pattern-header-user'>by {pattern.user.displayName}</div>
+                      <Link to={`/patterns/user/${pattern.user._id}`} className='pattern-header-user'>
+                        by {pattern.user.displayName}
+                      </Link>
                       <div className='pattern-header-description'>{pattern.description}</div>
-                      {user._id === pattern.user._id && <button onClick={this.delete} className='delete-button'>Delete This Pattern</button>}
+                      {user._id === pattern.user._id && <button onClick={() => this.delete} className='delete-button'>Delete This Pattern</button>}
                     </div>
                 }
 

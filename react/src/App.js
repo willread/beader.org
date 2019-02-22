@@ -77,7 +77,7 @@ class App extends Component {
             <Link to='/'>Pattern Gallery</Link>
             <Link to='/designer' className='new-pattern'>New Pattern</Link>
             {this.state.user &&
-              <Link to={`/patterns/user/${this.state.user.id}`}>My Patterns</Link>
+              <Link to={`/patterns/user/${this.state.user._id}`}>My Patterns</Link>
             }
           </div>
 

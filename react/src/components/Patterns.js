@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import queryString  from 'query-string';
 
-import { apiPath } from '../config';
+import { apiPath, titleSuffix } from '../config';
 import LoadingIndicator from './LoadingIndicator';
 
 class Patterns extends Component {
@@ -36,6 +36,8 @@ class Patterns extends Component {
       method: 'get'
     })
       .then(response => response.json());
+
+    document.title = `Page ${page}${titleSuffix}`;
 
     this.setState({
       page,

@@ -4,7 +4,6 @@ TODO
 [ ] Mobile testing
 [ ] Usernames / email addresses messed up
 [ ] Fix lighten / darken calls in scss
-[ ] Wrap api
 [ ] ads
 [ ] Multiple favicon resolutions
 [ ] manifest.json / index.html theme colors

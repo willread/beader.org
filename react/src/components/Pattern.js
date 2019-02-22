@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import store from 'store';
 
-import { apiPath } from '../config';
+import { get } from '../api';
 import { UserContext } from '../App';
 
 import LoadingIndicator from './LoadingIndicator';
@@ -37,8 +36,7 @@ class Pattern extends Component {
   fetchPattern() {
     this.setState({loading: true});
 
-    fetch(`${apiPath}/patterns/${this.props.match.params.id}`)
-      .then(response => response.json())
+    get(`/patterns/${this.props.match.params.id}`)
       .then(pattern => {
         this.setState({pattern});
         // TODO: Set page title
@@ -50,8 +48,7 @@ class Pattern extends Component {
   }
 
   fetchUserPatterns(userId) {
-    fetch(`${apiPath}/patterns/user/${userId}?page=1&limit=${this.state.userPatternsLimit}`)
-      .then(response => response.json())
+    get(`/patterns/user/${userId}?page=1&limit=${this.state.userPatternsLimit}`)
       .then(response => {
         this.setState({
           userPatterns: response.patterns.filter(pattern => {
@@ -65,15 +62,8 @@ class Pattern extends Component {
 
   delete() {
     if(this.state.pattern && window.confirm('Are you sure you want to delete this pattern?')){
-      const token = store.get('token');
-
-      fetch(`${apiPath}/patterns/${this.state.pattern._id}`, {
-        method: 'delete',
-        headers: new Headers({
-          'Authorization': `Bearer ${token}`,
-        })
-      })
-        .then(response => {
+      get(`/patterns/${this.state.pattern._id}`)
+        .then(() => {
           this.props.history.push('/patterns');
         });
     }

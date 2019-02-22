@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import store from 'store';
 
-import { apiPath } from '../config';
+import { post } from '../api';
 import { UserContext } from '../App';
 
 const images = {
@@ -325,7 +324,6 @@ class Designer extends Component {
   }
 
   save() {
-    const token = store.get('token');
     this.setState({saving: true});
 
     if(!this.state.pattern.find(cell => {
@@ -335,22 +333,14 @@ class Designer extends Component {
       return alert('Pattern must have more than one color!');
     }
 
-    fetch(`${apiPath}/patterns`, {
-      method: 'post',
-      body: JSON.stringify({
-        name: this.state.name,
-        description: '',
-        width: this.state.width,
-        height: this.state.height,
-        align: this.state.align,
-        pattern: this.state.pattern,
-      }),
-      headers: new Headers({
-        'Authorization': `Bearer ${token}`,
-        'Content-Type' : 'application/json',
-      })
+    post(`/patterns`, {
+      name: this.state.name,
+      description: '',
+      width: this.state.width,
+      height: this.state.height,
+      align: this.state.align,
+      pattern: this.state.pattern,
     })
-    .then(response => response.json())
     .then(response => {
       this.setState({saving: false});
       this.props.history.push(`/pattern/${response._id}`);

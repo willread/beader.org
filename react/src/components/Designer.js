@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import store from 'store';
 
 import { apiPath } from '../config';
 import { UserContext } from '../App';
@@ -45,9 +46,6 @@ class Designer extends Component {
 
   constructor(props) {
     super(props);
-
-    console.log('props', props);
-    console.log('context', this.context);
 
     this.myRefs = {
       palette: React.createRef(),
@@ -327,10 +325,11 @@ class Designer extends Component {
   }
 
   save() {
+    const token = store.get('token');
     this.setState({saving: true});
 
     if(!this.state.pattern.find(cell => {
-      return cell !== this.pattern[0];
+      return cell !== this.state.pattern[0];
     })){
       this.setState({saving: false});
       return alert('Pattern must have more than one color!');
@@ -338,14 +337,18 @@ class Designer extends Component {
 
     fetch(`${apiPath}/patterns`, {
       method: 'post',
-      body: {
+      body: JSON.stringify({
         name: this.state.name,
         description: '',
         width: this.state.width,
         height: this.state.height,
         align: this.state.align,
         pattern: this.state.pattern,
-      }
+      }),
+      headers: new Headers({
+        'Authorization': `Bearer ${token}`,
+        'Content-Type' : 'application/json',
+      })
     })
     .then(response => response.json())
     .then(response => {

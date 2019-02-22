@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import store from 'store';
 
 import { apiPath } from '../config';
 import { UserContext } from '../App';
@@ -64,8 +65,13 @@ class Pattern extends Component {
 
   delete() {
     if(this.state.pattern && window.confirm('Are you sure you want to delete this pattern?')){
+      const token = store.get('token');
+
       fetch(`${apiPath}/patterns/${this.state.pattern._id}`, {
-        method: 'delete'
+        method: 'delete',
+        headers: new Headers({
+          'Authorization': `Bearer ${token}`,
+        })
       })
         .then(response => {
           this.props.history.push('/patterns');

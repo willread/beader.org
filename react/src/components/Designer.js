@@ -39,6 +39,7 @@ class Designer extends Component {
     pattern: (new Array(100)).fill('ffffff'),
     saving: false,
     oldColor: '000000',
+    showPalette: false,
   };
 
   constructor(props) {
@@ -113,14 +114,14 @@ class Designer extends Component {
   }
 
   showPalette() {
-    this.setState({oldColor: this.state.color});
-    this.myRefs.palette.current.classList.remove('hidden');
+    console.log('show palette');
+    this.setState({oldColor: this.state.color, showPalette: true});
     clearTimeout(this.hidePaletteTimeout);
   }
 
   hidePalette(delay = 0) {
     this.hidePaletteTimeout = setTimeout(() => {
-      this.myRefs.palette.current.classList.add('hidden');
+      this.setState({showPalette: false});
     }, delay);
   }
 
@@ -391,7 +392,7 @@ class Designer extends Component {
                 <img src={images.picker} width='30' height='30' alt='Picker Tool' />
               </button>
 
-              <div id='palette-wrapper'>
+              <div id='palette-wrapper' className={this.state.showPalette ? '' : 'hidden'}>
                 <canvas
                   onClick={e => this.selectColor.bind(this, e, true)}
                   onMouseMove={e => this.selectColor.bind(this, e)}

@@ -83,13 +83,17 @@ class Designer extends Component {
 
   changePatternSize() {
     this.initPattern();
-    this.renderGrid();
+    // this.renderGrid();
   }
 
   componentDidMount() {
     this.initPattern();
-    this.renderGrid();
+    // this.renderGrid();
     this.renderPalette();
+  }
+
+  componentDidUpdate() {
+    this.renderGrid();
   }
 
   renderPalette() {
@@ -114,7 +118,6 @@ class Designer extends Component {
   }
 
   showPalette() {
-    console.log('show palette');
     this.setState({oldColor: this.state.color, showPalette: true});
     clearTimeout(this.hidePaletteTimeout);
   }
@@ -136,7 +139,6 @@ class Designer extends Component {
 
   resetColor() {
     this.setState({color: this.state.oldColor});
-    this.myRefs.color.current.style.backgroundColor = '#' + this.state.color;
   }
 
   selectColor(e, hide = false) {
@@ -150,7 +152,6 @@ class Designer extends Component {
     const y = Math.floor(offsetY / height);
 
     this.setState({color: this.colors[y * this.paletteCols + x]});
-    this.myRefs.color.current.style.backgroundColor = '#' + this.state.color;
 
     if(hide){
       this.hidePalette();
@@ -164,7 +165,7 @@ class Designer extends Component {
 
   setAlign(align) {
     this.setState({align});
-    this.renderGrid();
+    // this.renderGrid();
   }
 
   startDrawing() {
@@ -182,6 +183,7 @@ class Designer extends Component {
   }
 
   getXY(e) {
+    e = e.nativeEvent;
     let size = this.state.width > this.state.height ? this.canvasWidth / this.state.width : this.canvasHeight / this.state.height;
 
     if (this.state.align !== 'normal' && this.state.align !== 'pixel') {
@@ -214,8 +216,10 @@ class Designer extends Component {
 
   click(e) {
     if (this.state.mode === 'brush') {
+      const xy = this.getXY(e);
+
       this.stopDrawing(e);
-      this.draw(...this.getXY(e));
+      this.draw(...xy);
     }
 
     if (this.state.mode === 'fill') {
@@ -229,13 +233,13 @@ class Designer extends Component {
 
   setPatternCell(x, y, color) {
     const pattern = this.state.pattern;
-    pattern[x + y * this.width] = color;
+    pattern[x + y * this.state.width] = color;
     this.setState({pattern});
   }
 
   draw(x, y) {
     this.setPatternCell(x, y, this.state.color);
-    this.renderGrid();
+    // this.renderGrid();
   }
 
   fill(x, y) {
@@ -256,17 +260,17 @@ class Designer extends Component {
       if (x - 1 >= 0 && oldColor === (this.getPatternCell(x - 1, y) || 'ffffff'))
         stack.push([x - 1, y]);
 
-      if (x + 1 < this.width && oldColor === (this.getPatternCell(x + 1, y) || 'ffffff'))
+      if (x + 1 < this.state.width && oldColor === (this.getPatternCell(x + 1, y) || 'ffffff'))
         stack.push([x + 1, y]);
 
       if (y - 1 >= 0 && oldColor === (this.getPatternCell(x, y - 1) || 'ffffff'))
         stack.push([x, y - 1]);
 
-      if (y + 1 < this.height && oldColor === (this.getPatternCell(x, y + 1) || 'ffffff'))
+      if (y + 1 < this.state.height && oldColor === (this.getPatternCell(x, y + 1) || 'ffffff'))
         stack.push([x, y + 1]);
     }
 
-    this.renderGrid();
+    // this.renderGrid();
   }
 
   renderGrid() {
@@ -364,40 +368,40 @@ class Designer extends Component {
       <div id='editor' ref={this.myRefs.editor}>
         <div className='tools'>
             <div className='button-group'>
-              <button className={align === 'pixel' ? 'active' : ''} onClick={this.setAlign.bind(this, 'pixel')} id='align-pixel'>
+              <button className={align === 'pixel' ? 'active' : ''} onClick={() => this.setAlign('pixel')} id='align-pixel'>
                 <img src={images.alignPixel} width='30' height='30' alt='Align Pixel' />
               </button>
-              <button className={align === 'normal' ? 'active' : ''} onClick={this.setAlign.bind(this, 'normal')} id='align-normal'>
+              <button className={align === 'normal' ? 'active' : ''} onClick={() => this.setAlign('normal')} id='align-normal'>
                 <img src={images.alignNormal} width='30' height='30' alt='Align Normal' />
               </button>
-              <button className={align === 'horizontal' ? 'active' : ''} onClick={this.setAlign.bind(this, 'horizontal')} id='align-horizontal'>
+              <button className={align === 'horizontal' ? 'active' : ''} onClick={() => this.setAlign('horizontal')} id='align-horizontal'>
                 <img src={images.alignHorizontal} width='30' height='30' alt='Align Horizontal' />
               </button>
-              <button className={align === 'vertical' ? 'active' : ''} onClick={this.setAlign.bind(this, 'vertical')} id='align-vertical'>
+              <button className={align === 'vertical' ? 'active' : ''} onClick={() => this.setAlign('vertical')} id='align-vertical'>
                 <img src={images.alignVertical} width='30' height='30' alt='Align Vertical' />
               </button>
             </div>
 
             <div className='button-group'>
-              <button className={mode === 'brush' ? 'active' : ''} onClick={this.setMode.bind(this, 'brush')} id='mode-brush'>
+              <button className={mode === 'brush' ? 'active' : ''} onClick={() => this.setMode('brush')} id='mode-brush'>
                 <img src={images.brush} width='30' height='30' alt='Brush Tool' />
               </button>
-              <button className={mode === 'fill' ? 'active' : ''} onClick={this.setMode.bind(this, 'fill')} id='mode-fill'>
+              <button className={mode === 'fill' ? 'active' : ''} onClick={() => this.setMode('fill')} id='mode-fill'>
                 <img src={images.fill} width='30' height='30' alt='Fill Tool' />
               </button>
             </div>
 
-            <div className='button-group show-overflow color-wrapper' onMouseOver={this.showPalette.bind(this)} onMouseLeave={this.hidePalette.bind(this, 400)}>
-              <button id='color' style={{backgroundColor: color}} ref={this.myRefs.color}>
+            <div className='button-group show-overflow color-wrapper' onMouseOver={() => this.showPalette()} onMouseLeave={() => this.hidePalette(400)}>
+              <button id='color' style={{backgroundColor: `#${color}`}} ref={this.myRefs.color}>
                 <img src={images.picker} width='30' height='30' alt='Picker Tool' />
               </button>
 
-              <div id='palette-wrapper' className={this.state.showPalette ? '' : 'hidden'}>
+              <div id='palette-wrapper' className={this.state.showPalette ? 'show' : ''}>
                 <canvas
-                  onClick={e => this.selectColor.bind(this, e, true)}
-                  onMouseMove={e => this.selectColor.bind(this, e)}
-                  onMouseDown={e => this.selectColor.bind(this, e, true)}
-                  onMouseLeave={this.resetColor.bind(this)}
+                  onClick={e => this.selectColor(e, true)}
+                  onMouseMove={e => this.selectColor(e)}
+                  onMouseDown={e => this.selectColor(e, true)}
+                  onMouseLeave={() => this.resetColor()}
                   id='palette'
                   ref={this.myRefs.palette}
                   width={paletteWidth}
@@ -408,7 +412,7 @@ class Designer extends Component {
 
             <div className='right'>
               <div className='select'>
-                <select value={width} onChange={this.changePatternSize.bind(this)}>
+                <select value={width} onChange={() => this.changePatternSize()}>
                   <option value='10'>10</option>
                   <option value='11'>11</option>
                   <option value='12'>12</option>
@@ -446,7 +450,7 @@ class Designer extends Component {
               <div className='label'>x</div>
 
               <div className='select'>
-                <select value={height} onChange={this.changePatternSize.bind(this)}>
+                <select value={height} onChange={() => this.changePatternSize()}>
                   <option value='10'>10</option>
                   <option value='11'>11</option>
                   <option value='12'>12</option>
@@ -484,7 +488,7 @@ class Designer extends Component {
               <input value={name} type='text' placeholder='Pattern Name' />
               {!user && <button disabled className='save-button'>Sign In To Save</button>}
               {user &&
-                <button onClick={this.save.bind(this)} disabled={saving} className='save-button'>
+                <button onClick={() => this.save()} disabled={saving} className='save-button'>
                   <span>{saving ? 'Saving...' : 'Save'}</span>
                 </button>
               }
@@ -493,10 +497,10 @@ class Designer extends Component {
 
         <div className='grid-wrapper'>
           <canvas
-            onMouseMove={e => this.drag.bind(this, e)}
-            onClick={e => this.click.bind(this, e)}
-            onMouseDown={e => this.startDrawing.bind(this, e)}
-            onMouseLeave={e => this.stopDrawing.bind(this, e)}
+            onMouseMove={e => this.drag(e)}
+            onClick={e => this.click(e)}
+            onMouseDown={e => this.startDrawing(e)}
+            onMouseLeave={e => this.stopDrawing(e)}
             id='grid'
             ref={this.myRefs.grid}
             width={this.canvasWidth}

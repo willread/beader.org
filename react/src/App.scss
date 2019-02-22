@@ -390,9 +390,10 @@ a:hover .pattern-tile-name {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
   cursor: hand;
   cursor: pointer;
+  display: none;
 
-  &.hidden {
-    display: none;
+  &.show {
+    display: block;
   }
 }
 

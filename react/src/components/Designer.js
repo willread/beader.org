@@ -353,7 +353,7 @@ class Designer extends Component {
     .then(response => response.json())
     .then(response => {
       this.setState({saving: false});
-      // TODO: Navigate to pattern route (/patterns/${response._id})
+      this.props.history.push(`/pattern/${response._id}`);
     })
     .catch(error => {
       alert('Error: ' + error);

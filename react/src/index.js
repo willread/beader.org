@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Analytics from 'react-router-ga';
+import 'whatwg-fetch'
 
 import './index.scss';
 import App from './App';

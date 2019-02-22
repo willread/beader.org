@@ -2,24 +2,38 @@ import store from 'store';
 
 import { apiPath } from './config';
 
-export function get(path) {
-    return performRequest('get', path, null);
+function get(path) {
+  return performRequest('get', path, null);
 }
 
-export function post(path, body) {
-    return performRequest('post', path, body);
+function post(path, body) {
+  return performRequest('post', path, body);
 }
 
-function performRequest(method, path, body) {
-    const token = store.get('token');
-
-    return window.fetch(`${apiPath}${path}`, {
-        method,
-        body: body ? JSON.stringify(body) : null,
-        headers: new Headers({
-        'Authorization': `Bearer ${token}`,
-        'Content-Type' : 'application/json',
-        })
-    })
-    .then(response => response.json());
+function del(path) {
+  return performRequest('delete', path, undefined, false);
 }
+
+function performRequest(method, path, body, json = true) {
+  const token = store.get('token');
+  const params = {
+    method,
+    headers: new Headers({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type' : 'application/json',
+    }),
+  };
+
+  if (body) {
+    params.body = JSON.stringify(body);
+  }
+
+  return window.fetch(`${apiPath}${path}`, params)
+    .then(response => json ? response.json() : response);
+}
+
+export default {
+    get,
+    post,
+    del
+};

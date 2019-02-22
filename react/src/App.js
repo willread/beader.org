@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import store from 'store';
 
+import api from './api';
 import './App.scss';
-import { apiPath, googleClientId, googleRedirectUri } from './config.js';
+import { googleClientId, googleRedirectUri } from './config.js';
 
 export const UserContext = React.createContext();
 
@@ -12,14 +13,6 @@ class App extends Component {
   state = {
     user: undefined,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.logout = this.logout.bind(this);
-    this.onGoogleSuccess = this.onGoogleSuccess.bind(this);
-    this.onGoogleFailure = this.onGoogleFailure.bind(this);
-  }
 
   logout() {
     store.remove('token');
@@ -31,32 +24,22 @@ class App extends Component {
   }
 
   async fetchUser() {
-    const token = store.get('token');
+    const user = await api.get('/auth');
 
-    if (token) {
-      const user = await fetch(`${apiPath}/auth`, {
-        method: 'get',
-        headers: new Headers({
-          'Authorization': `Bearer ${token}`
-        })
-      })
-        .then(response => response.json());
-
+    if (user._id) {
       this.setState({user});
+    } else {
+      this.setState({user: undefined});
     }
   }
 
   async onGoogleSuccess(response) {
     if (response.code) {
-      const result = await fetch(`${apiPath}/auth`, {
-        method: 'post',
-        body: {
-          code: response.code,
-          clientId: googleClientId,
-          redirectUri: googleRedirectUri
-        }
-      })
-        .then(response => response.json());
+      const result = await api.post('/auth', {
+        code: response.code,
+        clientId: googleClientId,
+        redirectUri: googleRedirectUri
+      });
 
       store.set('token', result.token);
       this.fetchUser();
@@ -86,12 +69,12 @@ class App extends Component {
               ? <GoogleLogin
                   clientId={googleClientId}
                   render={props => (
-                    <button onClick={props.onClick}>Sign in with Google</button>
+                    <button onClick={() => props.onClick()}>Sign in with Google</button>
                   )}
-                  onSuccess={this.onGoogleSuccess}
-                  onFailure={this.onGoogleFailure}
+                  onSuccess={this.onGoogleSuccess.bind(this)}
+                  onFailure={this.onGoogleFailure.bind(this)}
                   responseType='code'></GoogleLogin>
-              : <button onClick={this.logout}>Log Out</button>
+              : <button onClick={() => this.logout()}>Log Out</button>
             }
           </div>
         </header>

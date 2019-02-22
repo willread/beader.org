@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { get } from '../api';
+import  api from '../api';
 import { UserContext } from '../App';
 import { titleSuffix } from '../config';
 
@@ -31,7 +31,7 @@ class Pattern extends Component {
   fetchPattern() {
     this.setState({loading: true});
 
-    get(`/patterns/${this.props.match.params.id}`)
+    api.get(`/patterns/${this.props.match.params.id}`)
       .then(pattern => {
         this.setState({pattern});
         document.title = `${pattern.name}${titleSuffix}`;
@@ -43,7 +43,7 @@ class Pattern extends Component {
   }
 
   fetchUserPatterns(userId) {
-    get(`/patterns/user/${userId}?page=1&limit=${this.state.userPatternsLimit}`)
+    api.get(`/patterns/user/${userId}?page=1&limit=${this.state.userPatternsLimit}`)
       .then(response => {
         this.setState({
           userPatterns: response.patterns.filter(pattern => {
@@ -57,7 +57,7 @@ class Pattern extends Component {
 
   delete() {
     if(this.state.pattern && window.confirm('Are you sure you want to delete this pattern?')){
-      get(`/patterns/${this.state.pattern._id}`)
+      api.del(`/patterns/${this.state.pattern._id}`)
         .then(() => {
           this.props.history.push('/patterns');
         });
@@ -80,7 +80,7 @@ class Pattern extends Component {
                         by {pattern.user.displayName}
                       </Link>
                       <div className='pattern-header-description'>{pattern.description}</div>
-                      {user._id === pattern.user._id && <button onClick={() => this.delete} className='delete-button'>Delete This Pattern</button>}
+                      {user._id === pattern.user._id && <button onClick={() => this.delete()} className='delete-button'>Delete This Pattern</button>}
                     </div>
                 }
 

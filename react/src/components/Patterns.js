@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import queryString  from 'query-string';
 
-import { apiPath, titleSuffix } from '../config';
+import api from '../api';
+import { titleSuffix } from '../config';
 import LoadingIndicator from './LoadingIndicator';
 
 class Patterns extends Component {
@@ -32,10 +33,7 @@ class Patterns extends Component {
 
     this.setState({loading: true});
 
-    const response = await fetch(`${apiPath}/patterns?page=${page}&limit=${this.state.limit}`, {
-      method: 'get'
-    })
-      .then(response => response.json());
+    const response = await api.get(`/patterns?page=${page}&limit=${this.state.limit}`);
 
     document.title = `Page ${page}${titleSuffix}`;
 

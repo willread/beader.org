@@ -2,7 +2,7 @@ import queryString from 'query-string';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { get } from '../api';
+import api from '../api';
 import { UserContext } from '../App';
 import { titleSuffix } from '../config';
 
@@ -37,9 +37,13 @@ class PatternsByUser extends Component {
 
     this.setState({loading: true});
 
-    const response = await get(`/patterns/user/${this.props.match.params.id}?page=${page}&limit=${this.limit}`);
+    const response = await api.get(`/patterns/user/${this.props.match.params.id}?page=${page}&limit=${this.limit}`);
 
-    document.title = `Patterns By ${response.patterns[0].user.displayName}${titleSuffix}`;
+    if (response.patterns.length) {
+      document.title = `Patterns By ${response.patterns[0].user.displayName}${titleSuffix}`;
+    } else {
+      document.title = `No Patterns Found${titleSuffix}`;
+    }
 
     this.setState({
       page,
@@ -58,7 +62,7 @@ class PatternsByUser extends Component {
           <div>
             {loading ? <LoadingIndicator loading={loading}></LoadingIndicator> :
               <div>
-                {patterns.length &&
+                {patterns.length > 0 &&
                   <div className='pattern-tiles-container'>
                     <h3 className='pattern-tiles-container-header'>Patterns By {patterns[0].user.displayName}</h3>
                     {patterns.map(pattern =>
@@ -73,7 +77,7 @@ class PatternsByUser extends Component {
                   </div>
                 }
 
-                {!patterns.length &&
+                {patterns.length === 0 &&
                   <div className='not-found'>No patterns found</div>
                 }
 

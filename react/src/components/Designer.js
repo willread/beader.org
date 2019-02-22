@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { post } from '../api';
+import api from '../api';
 import { UserContext } from '../App';
 import { titleSuffix } from '../config';
 
@@ -330,7 +330,7 @@ class Designer extends Component {
       return alert('Pattern must have more than one color!');
     }
 
-    post(`/patterns`, {
+    api.post(`/patterns`, {
       name: this.state.name,
       description: '',
       width: this.state.width,

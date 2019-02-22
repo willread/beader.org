@@ -24,4 +24,4 @@ API
 ===
 
 [ ] Passing undefined in route params causes crash
-[ ] Pagination giving weird results for user patterns
+[ ] /patterns/user/:id ignoring page and limit params

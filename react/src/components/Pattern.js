@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 
 import { apiPath } from '../config';
 
+import LoadingIndicator from './LoadingIndicator';
+
 const initialState = {
   pattern: null,
   userPatterns: [],
   totalUserPatterns: 0,
   userPatternsLimit: 10,
   errorMessage: null,
+  loading: true,
 };
 
 class Pattern extends Component {
@@ -32,7 +35,7 @@ class Pattern extends Component {
   }
 
   fetchPattern() {
-    this.setState(initialState);
+    this.setState({loading: true});
 
     fetch(`${apiPath}/patterns/${this.props.match.params.id}`)
       .then(response => response.json())
@@ -55,6 +58,7 @@ class Pattern extends Component {
             return pattern._id !== this.state.pattern._id; // Filter out the pattern we're viewing
           }),
           totalUserPatterns: response.totalPatterns,
+          loading: false,
         });
       });
   }
@@ -71,12 +75,12 @@ class Pattern extends Component {
   }
 
   render() {
-    const { pattern, userPatterns, totalUserPatterns, userPatternsLimit, errorMessage } = this.state;
+    const { loading, pattern, userPatterns, totalUserPatterns, userPatternsLimit, errorMessage } = this.state;
     const user = this.props.user || {};
 
     return (
         <div>
-          {pattern &&
+          {loading ? <LoadingIndicator loading={loading}></LoadingIndicator> :
             <div>
               {errorMessage
                 ? <h1>{errorMessage}</h1>

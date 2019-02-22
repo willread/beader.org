@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { apiPath } from '../config';
+import { UserContext } from '../App';
 
 import LoadingIndicator from './LoadingIndicator';
 
@@ -74,52 +75,53 @@ class Pattern extends Component {
 
   render() {
     const { loading, pattern, userPatterns, totalUserPatterns, userPatternsLimit, errorMessage } = this.state;
-    const user = this.props.user || {};
 
     return (
-        <div>
-          {loading ? <LoadingIndicator loading={loading}></LoadingIndicator> :
-            <div>
-              {errorMessage
-                ? <h1>{errorMessage}</h1>
-                : <div className='pattern-header'>
-                    <div className='pattern-header-name'>{pattern.name}</div>
-                    <div className='pattern-header-user'>by {pattern.user.displayName}</div>
-                    <div className='pattern-header-description'>{pattern.description}</div>
-                    {user._id === pattern.user._id && <button onClick={this.delete} className='delete-button'>Delete This Pattern</button>}
-                  </div>
-              }
-
-              <div className='pattern-tile pattern-tile-full'>
-                <img src={pattern.imageUrl} alt={pattern.name}/>
-              </div>
-
-              <div className='pattern-tiles-container pattern-tiles-container-small'>
-                {userPatterns.length > 0 &&
-                  <div className='user-patterns'>
-                    <h3 className='pattern-tiles-container-header'>More patterns by {pattern.user.displayName}</h3>
-
-                    {userPatterns.map(pattern => (
-                      <span key={pattern._id}>
-                        <Link to={`/pattern/${pattern._id}`} className='pattern-tile pattern-tile-small'>
-                          <img src={pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_100,h_100')} alt={pattern.name} />
-                        </Link>
-                      </span>
-                    ))}
-
-                    <div className='footer-navigation'>
-                      {totalUserPatterns > userPatternsLimit &&
-                        <Link to={`/patterns/user/${pattern.user._id}`} className='footer-link'>
-                          See all patterns By {pattern.user.displayName}
-                        </Link>
-                      }
+        <UserContext.Consumer>{user =>
+          <div>
+            {loading ? <LoadingIndicator loading={loading}></LoadingIndicator> :
+              <div>
+                {errorMessage
+                  ? <h1>{errorMessage}</h1>
+                  : <div className='pattern-header'>
+                      <div className='pattern-header-name'>{pattern.name}</div>
+                      <div className='pattern-header-user'>by {pattern.user.displayName}</div>
+                      <div className='pattern-header-description'>{pattern.description}</div>
+                      {user._id === pattern.user._id && <button onClick={this.delete} className='delete-button'>Delete This Pattern</button>}
                     </div>
-                  </div>
                 }
+
+                <div className='pattern-tile pattern-tile-full'>
+                  <img src={pattern.imageUrl} alt={pattern.name}/>
+                </div>
+
+                <div className='pattern-tiles-container pattern-tiles-container-small'>
+                  {userPatterns.length > 0 &&
+                    <div className='user-patterns'>
+                      <h3 className='pattern-tiles-container-header'>More patterns by {pattern.user.displayName}</h3>
+
+                      {userPatterns.map(pattern => (
+                        <span key={pattern._id}>
+                          <Link to={`/pattern/${pattern._id}`} className='pattern-tile pattern-tile-small'>
+                            <img src={pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_100,h_100')} alt={pattern.name} />
+                          </Link>
+                        </span>
+                      ))}
+
+                      <div className='footer-navigation'>
+                        {totalUserPatterns > userPatternsLimit &&
+                          <Link to={`/patterns/user/${pattern.user._id}`} className='footer-link'>
+                            See all patterns By {pattern.user.displayName}
+                          </Link>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
               </div>
-            </div>
-          }
-        </div>
+            }
+          </div>
+        }</UserContext.Consumer>
     );
   }
 }

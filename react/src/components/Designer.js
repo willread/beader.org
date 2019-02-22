@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { apiPath } from '../config';
+import { UserContext } from '../App';
 
 const images = {
   alignPixel: require('../images/align-pixel.png'),
@@ -45,6 +46,9 @@ class Designer extends Component {
   constructor(props) {
     super(props);
 
+    console.log('props', props);
+    console.log('context', this.context);
+
     this.myRefs = {
       palette: React.createRef(),
       paletteWrapper: React.createRef(),
@@ -79,11 +83,6 @@ class Designer extends Component {
       previewWidth: this.state.width,
       previousHeight: this.state.height
     });
-  }
-
-  changePatternSize() {
-    this.initPattern();
-    // this.renderGrid();
   }
 
   componentDidMount() {
@@ -362,159 +361,160 @@ class Designer extends Component {
   render() {
     const {color, align,  width, height, name, saving, mode} = this.state;
     const {paletteWidth, paletteHeight} = this;
-    const user = this.props.user;
 
     return (
-      <div id='editor' ref={this.myRefs.editor}>
-        <div className='tools'>
-            <div className='button-group'>
-              <button className={align === 'pixel' ? 'active' : ''} onClick={() => this.setAlign('pixel')} id='align-pixel'>
-                <img src={images.alignPixel} width='30' height='30' alt='Align Pixel' />
-              </button>
-              <button className={align === 'normal' ? 'active' : ''} onClick={() => this.setAlign('normal')} id='align-normal'>
-                <img src={images.alignNormal} width='30' height='30' alt='Align Normal' />
-              </button>
-              <button className={align === 'horizontal' ? 'active' : ''} onClick={() => this.setAlign('horizontal')} id='align-horizontal'>
-                <img src={images.alignHorizontal} width='30' height='30' alt='Align Horizontal' />
-              </button>
-              <button className={align === 'vertical' ? 'active' : ''} onClick={() => this.setAlign('vertical')} id='align-vertical'>
-                <img src={images.alignVertical} width='30' height='30' alt='Align Vertical' />
-              </button>
-            </div>
-
-            <div className='button-group'>
-              <button className={mode === 'brush' ? 'active' : ''} onClick={() => this.setMode('brush')} id='mode-brush'>
-                <img src={images.brush} width='30' height='30' alt='Brush Tool' />
-              </button>
-              <button className={mode === 'fill' ? 'active' : ''} onClick={() => this.setMode('fill')} id='mode-fill'>
-                <img src={images.fill} width='30' height='30' alt='Fill Tool' />
-              </button>
-            </div>
-
-            <div className='button-group show-overflow color-wrapper' onMouseOver={() => this.showPalette()} onMouseLeave={() => this.hidePalette(400)}>
-              <button id='color' style={{backgroundColor: `#${color}`}} ref={this.myRefs.color}>
-                <img src={images.picker} width='30' height='30' alt='Picker Tool' />
-              </button>
-
-              <div id='palette-wrapper' className={this.state.showPalette ? 'show' : ''}>
-                <canvas
-                  onClick={e => this.selectColor(e, true)}
-                  onMouseMove={e => this.selectColor(e)}
-                  onMouseDown={e => this.selectColor(e, true)}
-                  onMouseLeave={() => this.resetColor()}
-                  id='palette'
-                  ref={this.myRefs.palette}
-                  width={paletteWidth}
-                  height={paletteHeight}
-                ></canvas>
-              </div>
-            </div>
-
-            <div className='right'>
-              <div className='select'>
-                <select value={width} onChange={() => this.changePatternSize()}>
-                  <option value='10'>10</option>
-                  <option value='11'>11</option>
-                  <option value='12'>12</option>
-                  <option value='13'>13</option>
-                  <option value='14'>14</option>
-                  <option value='15'>15</option>
-                  <option value='16'>16</option>
-                  <option value='17'>17</option>
-                  <option value='18'>18</option>
-                  <option value='19'>19</option>
-                  <option value='20'>20</option>
-                  <option value='21'>21</option>
-                  <option value='22'>22</option>
-                  <option value='23'>23</option>
-                  <option value='24'>24</option>
-                  <option value='25'>25</option>
-                  <option value='26'>26</option>
-                  <option value='27'>27</option>
-                  <option value='28'>28</option>
-                  <option value='29'>29</option>
-                  <option value='30'>30</option>
-                  <option value='31'>31</option>
-                  <option value='32'>32</option>
-                  <option value='33'>33</option>
-                  <option value='34'>34</option>
-                  <option value='35'>35</option>
-                  <option value='36'>36</option>
-                  <option value='37'>37</option>
-                  <option value='38'>38</option>
-                  <option value='39'>39</option>
-                  <option value='40'>40</option>
-                </select>
-              </div>
-
-              <div className='label'>x</div>
-
-              <div className='select'>
-                <select value={height} onChange={() => this.changePatternSize()}>
-                  <option value='10'>10</option>
-                  <option value='11'>11</option>
-                  <option value='12'>12</option>
-                  <option value='13'>13</option>
-                  <option value='14'>14</option>
-                  <option value='15'>15</option>
-                  <option value='16'>16</option>
-                  <option value='17'>17</option>
-                  <option value='18'>18</option>
-                  <option value='19'>19</option>
-                  <option value='20'>20</option>
-                  <option value='21'>21</option>
-                  <option value='22'>22</option>
-                  <option value='23'>23</option>
-                  <option value='24'>24</option>
-                  <option value='25'>25</option>
-                  <option value='26'>26</option>
-                  <option value='27'>27</option>
-                  <option value='28'>28</option>
-                  <option value='29'>29</option>
-                  <option value='30'>30</option>
-                  <option value='31'>31</option>
-                  <option value='32'>32</option>
-                  <option value='33'>33</option>
-                  <option value='34'>34</option>
-                  <option value='35'>35</option>
-                  <option value='36'>36</option>
-                  <option value='37'>37</option>
-                  <option value='38'>38</option>
-                  <option value='39'>39</option>
-                  <option value='40'>40</option>
-                </select>
-              </div>
-
-              <input value={name} type='text' placeholder='Pattern Name' />
-              {!user && <button disabled className='save-button'>Sign In To Save</button>}
-              {user &&
-                <button onClick={() => this.save()} disabled={saving} className='save-button'>
-                  <span>{saving ? 'Saving...' : 'Save'}</span>
+      <UserContext.Consumer>{user =>
+        <div id='editor' ref={this.myRefs.editor}>
+          <div className='tools'>
+              <div className='button-group'>
+                <button className={align === 'pixel' ? 'active' : ''} onClick={() => this.setAlign('pixel')} id='align-pixel'>
+                  <img src={images.alignPixel} width='30' height='30' alt='Align Pixel' />
                 </button>
-              }
-            </div>
-        </div>
+                <button className={align === 'normal' ? 'active' : ''} onClick={() => this.setAlign('normal')} id='align-normal'>
+                  <img src={images.alignNormal} width='30' height='30' alt='Align Normal' />
+                </button>
+                <button className={align === 'horizontal' ? 'active' : ''} onClick={() => this.setAlign('horizontal')} id='align-horizontal'>
+                  <img src={images.alignHorizontal} width='30' height='30' alt='Align Horizontal' />
+                </button>
+                <button className={align === 'vertical' ? 'active' : ''} onClick={() => this.setAlign('vertical')} id='align-vertical'>
+                  <img src={images.alignVertical} width='30' height='30' alt='Align Vertical' />
+                </button>
+              </div>
 
-        <div className='grid-wrapper'>
-          <canvas
-            onMouseMove={e => this.drag(e)}
-            onClick={e => this.click(e)}
-            onMouseDown={e => this.startDrawing(e)}
-            onMouseLeave={e => this.stopDrawing(e)}
-            id='grid'
-            ref={this.myRefs.grid}
-            width={this.canvasWidth}
-            height={this.canvasHeight}
-          ></canvas>
+              <div className='button-group'>
+                <button className={mode === 'brush' ? 'active' : ''} onClick={() => this.setMode('brush')} id='mode-brush'>
+                  <img src={images.brush} width='30' height='30' alt='Brush Tool' />
+                </button>
+                <button className={mode === 'fill' ? 'active' : ''} onClick={() => this.setMode('fill')} id='mode-fill'>
+                  <img src={images.fill} width='30' height='30' alt='Fill Tool' />
+                </button>
+              </div>
 
-          <canvas
-            id='preview'
-            ref={this.myRefs.preview}
-            width={this.previewWidth}
-            height={this.previewHeight}
-          ></canvas>
+              <div className='button-group show-overflow color-wrapper' onMouseOver={() => this.showPalette()} onMouseLeave={() => this.hidePalette(400)}>
+                <button id='color' style={{backgroundColor: `#${color}`}} ref={this.myRefs.color}>
+                  <img src={images.picker} width='30' height='30' alt='Picker Tool' />
+                </button>
+
+                <div id='palette-wrapper' className={this.state.showPalette ? 'show' : ''}>
+                  <canvas
+                    onClick={e => this.selectColor(e, true)}
+                    onMouseMove={e => this.selectColor(e)}
+                    onMouseDown={e => this.selectColor(e, true)}
+                    onMouseLeave={() => this.resetColor()}
+                    id='palette'
+                    ref={this.myRefs.palette}
+                    width={paletteWidth}
+                    height={paletteHeight}
+                  ></canvas>
+                </div>
+              </div>
+
+              <div className='right'>
+                <div className='select'>
+                  <select value={width} onChange={e => this.setState({width: e.target.value})}>
+                    <option value='10'>10</option>
+                    <option value='11'>11</option>
+                    <option value='12'>12</option>
+                    <option value='13'>13</option>
+                    <option value='14'>14</option>
+                    <option value='15'>15</option>
+                    <option value='16'>16</option>
+                    <option value='17'>17</option>
+                    <option value='18'>18</option>
+                    <option value='19'>19</option>
+                    <option value='20'>20</option>
+                    <option value='21'>21</option>
+                    <option value='22'>22</option>
+                    <option value='23'>23</option>
+                    <option value='24'>24</option>
+                    <option value='25'>25</option>
+                    <option value='26'>26</option>
+                    <option value='27'>27</option>
+                    <option value='28'>28</option>
+                    <option value='29'>29</option>
+                    <option value='30'>30</option>
+                    <option value='31'>31</option>
+                    <option value='32'>32</option>
+                    <option value='33'>33</option>
+                    <option value='34'>34</option>
+                    <option value='35'>35</option>
+                    <option value='36'>36</option>
+                    <option value='37'>37</option>
+                    <option value='38'>38</option>
+                    <option value='39'>39</option>
+                    <option value='40'>40</option>
+                  </select>
+                </div>
+
+                <div className='label'>x</div>
+
+                <div className='select'>
+                  <select value={height} onChange={e => this.setState({height: e.target.value})}>
+                    <option value='10'>10</option>
+                    <option value='11'>11</option>
+                    <option value='12'>12</option>
+                    <option value='13'>13</option>
+                    <option value='14'>14</option>
+                    <option value='15'>15</option>
+                    <option value='16'>16</option>
+                    <option value='17'>17</option>
+                    <option value='18'>18</option>
+                    <option value='19'>19</option>
+                    <option value='20'>20</option>
+                    <option value='21'>21</option>
+                    <option value='22'>22</option>
+                    <option value='23'>23</option>
+                    <option value='24'>24</option>
+                    <option value='25'>25</option>
+                    <option value='26'>26</option>
+                    <option value='27'>27</option>
+                    <option value='28'>28</option>
+                    <option value='29'>29</option>
+                    <option value='30'>30</option>
+                    <option value='31'>31</option>
+                    <option value='32'>32</option>
+                    <option value='33'>33</option>
+                    <option value='34'>34</option>
+                    <option value='35'>35</option>
+                    <option value='36'>36</option>
+                    <option value='37'>37</option>
+                    <option value='38'>38</option>
+                    <option value='39'>39</option>
+                    <option value='40'>40</option>
+                  </select>
+                </div>
+
+                <input value={name} onChange={e => this.setState({name: e.target.value})} type='text' placeholder='Pattern Name' />
+                {!user && <button disabled className='save-button'>Sign In To Save</button>}
+                {user &&
+                  <button onClick={() => this.save()} disabled={saving} className='save-button'>
+                    <span>{saving ? 'Saving...' : 'Save'}</span>
+                  </button>
+                }
+              </div>
+          </div>
+
+          <div className='grid-wrapper'>
+            <canvas
+              onMouseMove={e => this.drag(e)}
+              onClick={e => this.click(e)}
+              onMouseDown={e => this.startDrawing(e)}
+              onMouseLeave={e => this.stopDrawing(e)}
+              id='grid'
+              ref={this.myRefs.grid}
+              width={this.canvasWidth}
+              height={this.canvasHeight}
+            ></canvas>
+
+            <canvas
+              id='preview'
+              ref={this.myRefs.preview}
+              width={this.previewWidth}
+              height={this.previewHeight}
+            ></canvas>
+          </div>
         </div>
-      </div>
+      }</UserContext.Consumer>
     );
   }
 }

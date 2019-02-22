@@ -10,6 +10,8 @@ import { apiPath } from './config.js';
 const googleClientId = '204545753423-4hqlulhjt2flp93so2ouqu1d01tonfkn.apps.googleusercontent.com'; //'204545753423-3igb69ajb3be6ftc6mu8ftkgmvqe3hcv.apps.googleusercontent.com';
 const googleRedirectUri = 'http://beader.org';
 
+export const UserContext = React.createContext();
+
 class App extends Component {
   state = {
     user: undefined,
@@ -97,7 +99,9 @@ class App extends Component {
             }
           </div>
         </header>
-        {React.cloneElement(this.props.children, {user: this.state.user})}
+        <UserContext.Provider value={this.state.user}>
+          {this.props.children}
+        </UserContext.Provider>
       </div>
     );
   }

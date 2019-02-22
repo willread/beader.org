@@ -58,7 +58,7 @@ class Patterns extends Component {
             {patterns.map(pattern => (
               <div key={pattern._id}>
                 <Link to={`/pattern/${pattern._id}`} className='pattern-tile'>
-                  <img src={`${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}`} />
+                  <img src={`${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}`} alt={pattern.name}/>
                   <div className="pattern-tile-meta">
                     <div className="pattern-tile-name">{pattern.name}</div>
                     <div className="pattern-tile-user">by {pattern.user.displayName}</div>

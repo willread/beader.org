@@ -5,3 +5,9 @@
 [ ] Fix lighten / darken calls in scss
 [ ] fetch polyfill
 [ ] ads
+[ ] Search
+[ ] Posted dates
+[ ] Edit patterns
+[ ] Pagination
+[ ] Componentize css
+[ ] Mobile testing

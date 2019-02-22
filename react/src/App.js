@@ -97,7 +97,7 @@ class App extends Component {
             }
           </div>
         </header>
-        {this.props.children}
+        {React.cloneElement(this.props.children, {user: this.state.user})}
       </div>
     );
   }

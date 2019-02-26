@@ -1,0 +1,35 @@
+TODO
+====
+
+[ ] Mobile testing
+[ ] Usernames / email addresses messed up
+[ ] Ads
+[ ] Multiple favicon resolutions
+[ ] manifest.json / index.html theme colors
+[ ] Deprecate aurelia folder
+[ ] Sticky preview not working
+[ ] Clear search on submit
+
+New Features
+============
+
+[ ] Force names
+[ ] Edit patterns
+[ ] Pagination
+[ ] Componentize css
+[ ] Center patterns vertically
+[ ] News section
+
+API
+===
+
+[ ] /patterns/user/:id ignoring page and limit params
+
+Changelog
+=========
+
+[ ] Enforced https
+[ ] New color scheme
+[ ] Pattern preview is sticky
+[ ] Patterns now show creation date
+[ ] Search

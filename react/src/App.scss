@@ -434,7 +434,10 @@ a:hover .pattern-tile-name {
 
 #grid {
   display: block;
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -350px;
+  top: 25px;
 }
 
 #preview {

@@ -19,9 +19,16 @@ New Features
 [ ] Componentize css
 [ ] Center patterns vertically
 [ ] HTTPS
+[ ] News section
 
 API
 ===
 
-[ ] Passing undefined in route params causes crash
 [ ] /patterns/user/:id ignoring page and limit params
+
+Changelog
+=========
+
+[ ] New color scheme
+[ ] Pattern preview is sticky
+[ ] Search

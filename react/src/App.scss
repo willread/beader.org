@@ -1,103 +1,112 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:900|Roboto:300,600,900');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
 
 $mobileWidth: 640px;
 
 body {
   margin: 0;
   padding: 0;
-  background: #ccc;
+  background: #E8EDF5;
   color: #202121;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 *, input {
   box-sizing: border-box;
 }
 
-a, a:active, a:visited {
-  color: #202121;
-  font-size: 13px;
+.app-content {
+  a, a:active, a:visited {
+    color: #202121;
+    font-size: 13px;
+  }
 }
 
 .navbar {
   position: relative;
   width: 100%;
-  height: 70px;
-  background: #fff;
-  border-bottom: 1px solid #aaa;
+  height: 50px;
+  background-image: linear-gradient(90deg, #5A3BDA 0%, #936DEF 100%);
+  box-shadow: 0 1px 0 0 rgba(0,0,0,0.18);
+  padding: 0 25px;
 
   .logo {
-    font-size: 32px;
-    color: #00B7E6;
-    font-family: Muli, Sans-serif;
-    font-weight: 900;
-    letter-spacing: -1px;
-    background: -webkit-linear-gradient(#00D8D6, #00B7E6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-    line-height: 70px;
+    float: left;
+    margin-right: 25px;
+    margin-top: 13px;
+  }
+
+  a {
+    opacity: 0.55;
+    float: left;
+    line-height: 50px;
+    margin-right: 25px;
+    text-decoration: none;
+    font-size: 11px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .menu-left {
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    a {
-      display: inline-block;
-      font-size: 12px;
-      line-height: 69px;
-      text-decoration: none;
-      text-transform: uppercase;
-      color: #333;
-      font-weight: 600;
-      padding: 0 20px;
-      border-right: 1px solid #eee;
-      float: left;
-
-      &:hover {
-        background: lighten(#00B7E6, 80%);
-        color: darken(#00B7E6, 20%);
-        cursor: hand;
-        cursor: pointer;
-      }
-    }
+    float: left;
   }
 
   .menu-right {
-    height: 30px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 20px;
+    float: right;
+  }
 
-    .label {
-      display: inline-block;
-      color: #ccc;
-      font-size: 12px;
-      font-weight: 300;
-      padding-right: 10px;
+  button {
+    border: 0;
+    outline: none;
+    border-radius: 4px;
+    background: #5A3BDA;
+    line-height: 30px;
+    padding: 0 15px;
+    border: 0;
+    outline: none;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(#000, 0.55);
+    cursor: hand;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten(#5A3BDA, 10%);
+    }
+  }
+
+  input[type=text] {
+    border-radius: 4px;
+    background: rgba(#fff, 0.1);
+    line-height: 30px;
+    padding: 0 15px;
+    border: 0;
+    outline: none;
+    margin-top: 10px;
+    color: #fff;
+    width: 200px;
+    float: left;
+
+    &, &::placeholder {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: bold;
     }
 
-    a, button {
-      background: #fff;
-      display: inline-block;
-      color: #333;
-      font-size: 12px;
-      padding: 0 10px;
-      line-height: 28px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-weight: 600;
-      text-transform: uppercase;
-      cursor: hand;
-      cursor: pointer;
+    &::placeholder {
+      color: rgba(#fff, 0.55);
+    }
 
-      &:hover {
-        background: lighten(#00B7E6, 80%);
-        color: darken(#00B7E6, 20%);
-        border-color: darken(#00B7E6, 20%);
+    &:focus {
+      &, &::placeholder {
+        color: #fff;
       }
     }
   }
@@ -105,34 +114,8 @@ a, a:active, a:visited {
 
 @media screen and (max-width: $mobileWidth) {
   .navbar {
-    height: auto;
-
-    .menu-left, .menu-right {
-      position: relative;
-      display: block;
-      left: auto;
-      right: auto;
-    }
-
-    .menu-left {
-      a {
-        width: 100%;
-        float: none;
-        border-top: 1px solid #ccc;
-        text-align: center;
-
-        &.new-pattern {
-          display: none /* HACK: Hide pattern editor on mobile */;
-        }
-      }
-    }
-
-    .menu-right {
-      border-top: 1px solid #ccc;
-      text-align: center;
-      height: 70px;
-      padding-top: 20px;
-      margin: 0;
+    a.new-pattern {
+      display: none /* HACK: Hide pattern editor on mobile */;
     }
   }
 }
@@ -253,12 +236,11 @@ a:hover .pattern-tile-name {
 }
 
 .tools {
-  background: #666;
+  background: #322178;
   width: 100%;
   height: 60px;
-  padding: 10px;
+  padding: 10px 25px;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #ddd;
 
   .right {
     float: right;
@@ -268,14 +250,14 @@ a:hover .pattern-tile-name {
     display: inline-block;
     font-size: 12px;
     font-weight: 900;
-    color: #aaa;
+    color: rgba(#fff, 0.55);
     line-height: 40px;
     margin: 0 10px;
     float: left;
   }
 
   input {
-    border: 1px solid #ccc;
+    border: 1px solid rgba(#fff, 0.55);
     border-radius: 3px;
     height: 42px;
     float: left;
@@ -283,7 +265,7 @@ a:hover .pattern-tile-name {
     box-shadow: none;
     background: #fff;
     -webkit-appearance: none;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 14px;
     margin-left: 10px;
     margin-right: 10px;
@@ -294,7 +276,7 @@ a:hover .pattern-tile-name {
   }
 
   .select {
-    border: 1px solid #ccc;
+    border: 1px solid rgba(#fff, 0.55);
     width: 50px;
     border-radius: 3px;
     overflow: hidden;
@@ -309,7 +291,7 @@ a:hover .pattern-tile-name {
       background: transparent;
       background-image: none;
       -webkit-appearance: none;
-      font-size: 14px;
+      font-size: 11px;
       line-height: 14px;
     }
 
@@ -323,7 +305,7 @@ a:hover .pattern-tile-name {
     float: left;
     border-radius: 2px;
     overflow: hidden;
-    border: 1px solid #fff;
+    border: 1px solid rgba(#fff, 0.55);
     position: relative;
 
     button {
@@ -335,7 +317,7 @@ a:hover .pattern-tile-name {
       border-top: 0;
       border-left: 0;
       border-bottom: 0;
-      border-right: 1px solid #fff;
+      border-right: 1px solid rgba(#fff, 0.55);
       cursor: hand;
       cursor: pointer;
 
@@ -344,11 +326,11 @@ a:hover .pattern-tile-name {
       }
 
       &.active {
-        background: #00B7E6;
+        background: #936DEF;
       }
 
       &:hover {
-        background: darken(#00B7E6, 20%);
+        background: lighten(#936DEF, 10%);
       }
     }
   }
@@ -358,9 +340,11 @@ a:hover .pattern-tile-name {
     float: right;
     height: 42px;
     outline: none;
-    background: #20e65c;
+    background: #5A3BDA;
     color: #fff;
-    font-size: 14px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
     padding: 0 20px;
     line-height: 42px;
     border: none;
@@ -373,7 +357,7 @@ a:hover .pattern-tile-name {
     }
 
     &:hover {
-      background: darken(#20e65c, 20%);
+      background: lighten(#5A3BDA, 10%);
     }
   }
 }
@@ -387,7 +371,7 @@ a:hover .pattern-tile-name {
   height: 300px;
   background: #fff;
   border: 1px solid #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
   cursor: hand;
   cursor: pointer;
   display: none;
@@ -442,9 +426,10 @@ a:hover .pattern-tile-name {
 
 .grid-wrapper {
   display: block;
-  margin: 20px auto;
-  padding: 10px;
+  margin: 0 auto;
+  padding: 25px;
   border-radius: 2px;
+  position: relative;
 }
 
 #grid {
@@ -453,12 +438,11 @@ a:hover .pattern-tile-name {
 }
 
 #preview {
-  position: absolute;
-  left: 10px;
-  top: 140px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  left: 25px;
+  top: 25px;
   padding: 5px;
-  background: #ddd;
+  background: transparent;
   border-radius: 3px;
 }
 

@@ -10,6 +10,7 @@ class Patterns extends Component {
   state = {
     patterns: [],
     page: undefined,
+    search: undefined,
     limit: 20,
     showNext: false,
     showPrevious: false,
@@ -30,24 +31,30 @@ class Patterns extends Component {
   async fetch() {
     const query = queryString.parse(this.props.location.search);
     const page = query.page ? parseInt(query.page, 10) : 1;
+    const search = query.search;
 
-    this.setState({loading: true});
+    this.setState({search, page, loading: true});
 
-    const response = await api.get(`/patterns?page=${page}&limit=${this.state.limit}`);
+    let url = `/patterns?page=${page}&limit=${this.state.limit}`;
+
+    if (search) {
+      url += `&search=${search}`;
+    }
+
+    const response = await api.get(url);
 
     document.title = `Page ${page}${titleSuffix}`;
 
     this.setState({
-      page,
       patterns: response.patterns,
-      showPrevious: page > 1,
-      showNext: page < response.totalPages,
+      showPrevious: this.state.page > 1,
+      showNext: this.state.page < response.totalPages,
       loading: false,
     });
   }
 
   render() {
-    const { patterns, showPrevious, showNext, loading, page } = this.state;
+    const { patterns, showPrevious, showNext, loading, page, search } = this.state;
 
     return (
       <div>
@@ -74,8 +81,8 @@ class Patterns extends Component {
         }
 
         <div className="pagination footer-navigation">
-          {showPrevious && <Link to={`/patterns?page=${page - 1}`} className='footer-link previous'>Previous Page</Link>}
-          {showNext && <Link to={`/patterns?page=${page + 1}`} className='footer-link next'>Next Page</Link>}
+          {showPrevious && <Link to={`/patterns?page=${page - 1}&search=${search}`} className='footer-link previous'>Previous Page</Link>}
+          {showNext && <Link to={`/patterns?page=${page + 1}&search=${search}`} className='footer-link next'>Next Page</Link>}
         </div>
 
         <div className="footer-ads">

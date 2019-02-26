@@ -486,6 +486,13 @@ class Designer extends Component {
 
           <div className='grid-wrapper'>
             <canvas
+              id='preview'
+              ref={this.myRefs.preview}
+              width={this.previewWidth}
+              height={this.previewHeight}
+            ></canvas>
+
+            <canvas
               onMouseMove={e => this.drag(e)}
               onClick={e => this.click(e)}
               onMouseDown={e => this.startDrawing(e)}
@@ -494,13 +501,6 @@ class Designer extends Component {
               ref={this.myRefs.grid}
               width={this.canvasWidth}
               height={this.canvasHeight}
-            ></canvas>
-
-            <canvas
-              id='preview'
-              ref={this.myRefs.preview}
-              width={this.previewWidth}
-              height={this.previewHeight}
             ></canvas>
           </div>
         </div>

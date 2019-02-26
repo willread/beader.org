@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import store from 'store';
 
@@ -7,11 +7,16 @@ import api from './api';
 import './App.scss';
 import { googleClientId, googleRedirectUri } from './config.js';
 
+const images = {
+  logo: require('./images/logo.png'),
+}
+
 export const UserContext = React.createContext();
 
 class App extends Component {
   state = {
     user: undefined,
+    search: undefined,
   };
 
   logout() {
@@ -50,11 +55,18 @@ class App extends Component {
     // TODO: Handle failure
   }
 
+  search(e) {
+    e.preventDefault();
+    this.props.history.push(`/patterns?search=${this.state.search}`);
+  }
+
   render() {
     return (
       <div>
         <header className='navbar'>
-          <div className='logo'>beader</div>
+          <div className='logo'>
+            <img src={images.logo} width='73' height='21' alt='Beader.org Logo' />
+          </div>
 
           <div className='menu-left'>
             <Link to='/'>Pattern Gallery</Link>
@@ -62,6 +74,12 @@ class App extends Component {
             {this.state.user &&
               <Link to={`/patterns/user/${this.state.user._id}`}>My Patterns</Link>
             }
+          </div>
+
+          <div className='search'>
+            <form onSubmit={(e) => this.search(e)}>
+              <input type='text' value={this.state.search} onChange={(e) => this.setState({search: e.target.value})} placeholder='Search...'></input>
+            </form>
           </div>
 
           <div className='menu-right'>
@@ -78,12 +96,14 @@ class App extends Component {
             }
           </div>
         </header>
-        <UserContext.Provider value={this.state.user}>
-          {this.props.children}
-        </UserContext.Provider>
+        <div class='app-content'>
+          <UserContext.Provider value={this.state.user}>
+            {this.props.children}
+          </UserContext.Provider>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

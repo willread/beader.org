@@ -3,7 +3,6 @@ TODO
 
 [ ] Mobile testing
 [ ] Usernames / email addresses messed up
-[ ] Fix lighten / darken calls in scss
 [ ] Ads
 [ ] Multiple favicon resolutions
 [ ] manifest.json / index.html theme colors
@@ -12,8 +11,6 @@ TODO
 New Features
 ============
 
-[ ] Search
-[ ] Posted dates
 [ ] Edit patterns
 [ ] Pagination
 [ ] Componentize css

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import * as moment from 'moment';
 
 import  api from '../api';
 import { UserContext } from '../App';
@@ -79,6 +80,7 @@ class Pattern extends Component {
                       <Link to={`/patterns/user/${pattern.user._id}`} className='pattern-header-user'>
                         by {pattern.user.displayName}
                       </Link>
+                      <div className='pattern-header-date'>{moment(pattern.createdOn).format('MMM D YYYY')}</div>
                       <div className='pattern-header-description'>{pattern.description}</div>
                       {user._id === pattern.user._id && <button onClick={() => this.delete()} className='delete-button'>Delete This Pattern</button>}
                     </div>

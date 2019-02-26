@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import queryString  from 'query-string';
+import * as moment from 'moment';
 
 import api from '../api';
 import { titleSuffix } from '../config';
@@ -56,6 +57,14 @@ class Patterns extends Component {
   render() {
     const { patterns, showPrevious, showNext, loading, page, search } = this.state;
 
+    let previousUrl = `/patterns?page=${page - 1}`;
+    let nextUrl = `/patterns?page=${page + 1}`;
+
+    if (search) {
+      nextUrl += `&search=${search}`;
+      previousUrl += `&search=${search}`;
+    }
+
     return (
       <div>
         <LoadingIndicator loading={loading}></LoadingIndicator>
@@ -69,6 +78,7 @@ class Patterns extends Component {
                   <div className="pattern-tile-meta">
                     <div className="pattern-tile-name">{pattern.name}</div>
                     <div className="pattern-tile-user">by {pattern.user.displayName}</div>
+                    <div className="pattern-tile-date">{moment(pattern.createdOn).format('MMM D YYYY')}</div>
                   </div>
                 </Link>
               </div>
@@ -81,8 +91,8 @@ class Patterns extends Component {
         }
 
         <div className="pagination footer-navigation">
-          {showPrevious && <Link to={`/patterns?page=${page - 1}&search=${search}`} className='footer-link previous'>Previous Page</Link>}
-          {showNext && <Link to={`/patterns?page=${page + 1}&search=${search}`} className='footer-link next'>Next Page</Link>}
+          {showPrevious && <Link to={previousUrl} className='footer-link previous'>Previous Page</Link>}
+          {showNext && <Link to={nextUrl} className='footer-link next'>Next Page</Link>}
         </div>
 
         <div className="footer-ads">

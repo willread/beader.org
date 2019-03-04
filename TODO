@@ -2,13 +2,18 @@ TODO
 ====
 
 [ ] Mobile testing
-[ ] Usernames / email addresses messed up
 [ ] Ads
 [ ] Multiple favicon resolutions
 [ ] manifest.json / index.html theme colors
-[ ] Deprecate aurelia folder
 [ ] Sticky preview not working
 [ ] Clear search on submit
+[ ] Horizontal resizing distorting patterns
+[ ] Clean delete / edit buttons on Pattern view
+[ ] Disable save until pattern name entered
+[ ] Kick users out of editor if not their pattern
+[ ] Navigating from /designer/:id to /designer not changing views
+[ ] Migrate to digitalocean
+[ ] Final google auth configs for production before deploying
 
 New Features
 ============
@@ -33,3 +38,4 @@ Changelog
 [ ] Pattern preview is sticky
 [ ] Patterns now show creation date
 [ ] Search
+[ ] Editing patterns

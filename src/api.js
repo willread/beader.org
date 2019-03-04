@@ -10,6 +10,10 @@ function post(path, body) {
   return performRequest('post', path, body);
 }
 
+function put(path, body) {
+  return performRequest('put', path, body);
+}
+
 function del(path) {
   return performRequest('delete', path, undefined, false);
 }
@@ -35,5 +39,6 @@ function performRequest(method, path, body, json = true) {
 export default {
     get,
     post,
-    del
+    del,
+    put,
 };

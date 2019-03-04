@@ -43,7 +43,7 @@ class App extends Component {
       const result = await api.post('/auth', {
         code: response.code,
         clientId: googleClientId,
-        redirectUri: googleRedirectUri
+        redirectUri: googleRedirectUri,
       });
 
       store.set('token', result.token);
@@ -69,8 +69,8 @@ class App extends Component {
           </div>
 
           <div className='menu-left'>
-            <Link to='/'>Pattern Gallery</Link>
-            <Link to='/designer' className='new-pattern'>New Pattern</Link>
+            <Link to='/'>Gallery</Link>
+            <Link to='/designer' className='new-pattern'>Designer</Link>
             {this.state.user &&
               <Link to={`/patterns/user/${this.state.user._id}`}>My Patterns</Link>
             }
@@ -92,11 +92,14 @@ class App extends Component {
                   onSuccess={this.onGoogleSuccess.bind(this)}
                   onFailure={this.onGoogleFailure.bind(this)}
                   responseType='code'></GoogleLogin>
-              : <button onClick={() => this.logout()}>Log Out</button>
+              : <span>
+                  <span className='welcome'>Welcome, {this.state.user.displayName}</span>
+                  <button onClick={() => this.logout()}>Log Out</button>
+                </span>
             }
           </div>
         </header>
-        <div class='app-content'>
+        <div className='app-content'>
           <UserContext.Provider value={this.state.user}>
             {this.props.children}
           </UserContext.Provider>

@@ -4,6 +4,8 @@ import api from '../api';
 import { UserContext } from '../App';
 import { titleSuffix } from '../config';
 
+import LoadingIndicator from './LoadingIndicator';
+
 const images = {
   alignPixel: require('../images/align-pixel.png'),
   alignNormal: require('../images/align-normal.png'),
@@ -42,6 +44,8 @@ class Designer extends Component {
     saving: false,
     oldColor: '000000',
     showPalette: false,
+    loading: false,
+    id: undefined,
   };
 
   constructor(props) {
@@ -55,6 +59,26 @@ class Designer extends Component {
       preview: React.createRef(),
       grid: React.createRef(),
     };
+  }
+
+  async fetchPattern() {
+    this.setState({loading: true});
+
+    await api.get(`/patterns/${this.props.match.params.id}`)
+      .then(response => {
+        this.setState({
+          pattern: response.pattern,
+          width: response.width,
+          height: response.height,
+          previousWidth: response.width,
+          previousHeight: response.height,
+          name: response.name,
+          description: response.description,
+          align: response.align,
+          loading: false,
+          id: response._id,
+        });
+      });
   }
 
   initPattern() {
@@ -83,14 +107,20 @@ class Designer extends Component {
     });
   }
 
-  componentDidMount() {
-    this.initPattern();
+  async componentDidMount() {
+    if (this.props.match.params.id) {
+      await this.fetchPattern();
+    } else {
+      this.initPattern();
+    }
     this.renderPalette();
-    document.title = `New Pattern${titleSuffix}`;
+    document.title = this.state.id ? `Editing Pattern${titleSuffix}` : `New Pattern${titleSuffix}`;
   }
 
   componentDidUpdate() {
-    this.renderGrid();
+    if (!this.state.loading) {
+      this.renderGrid();
+    }
   }
 
   renderPalette() {
@@ -330,27 +360,39 @@ class Designer extends Component {
       return alert('Pattern must have more than one color!');
     }
 
-    api.post(`/patterns`, {
+    const body = {
       name: this.state.name,
       description: '',
       width: this.state.width,
       height: this.state.height,
       align: this.state.align,
       pattern: this.state.pattern,
-    })
-    .then(response => {
-      this.setState({saving: false});
-      this.props.history.push(`/pattern/${response._id}`);
-    })
-    .catch(error => {
-      alert('Error: ' + error);
-      this.setState({saving: false});
-    });
+    };
+    let apiCall;
+
+    if (this.state.id) {
+      body._id = this.state.id;
+      apiCall = api.put(`/patterns/${this.state.id}`, body)
+    } else {
+      apiCall = api.post(`/patterns`, body);
+    }
+
+    apiCall
+      .then(response => {
+        this.setState({saving: false});
+        this.props.history.push(`/pattern/${response._id}`);
+      })
+      .catch(error => {
+        alert('Error: ' + error);
+        this.setState({saving: false});
+      });
   }
 
   render() {
-    const {color, align,  width, height, name, saving, mode} = this.state;
+    const {color, align,  width, height, name, saving, mode, loading} = this.state;
     const {paletteWidth, paletteHeight} = this;
+
+    if (loading) { return (<LoadingIndicator loading={loading}></LoadingIndicator>); }
 
     return (
       <UserContext.Consumer>{user =>

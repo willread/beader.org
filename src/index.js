@@ -16,6 +16,7 @@ ReactDOM.render(
     <Analytics id="UA-89265200-1">
       <App>
         <Switch>
+          <Route path='/designer/:id' exact component={Designer} />
           <Route path='/designer' exact component={Designer} />
           <Route path='/patterns' exact component={Patterns} />
           <Route path='/pattern/:id' exact component={Pattern} />

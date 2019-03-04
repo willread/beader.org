@@ -383,7 +383,7 @@ class Designer extends Component {
         this.props.history.push(`/pattern/${response._id}`);
       })
       .catch(error => {
-        alert('Error: ' + error);
+        alert(error);
         this.setState({saving: false});
       });
   }

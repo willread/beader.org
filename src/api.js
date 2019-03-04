@@ -33,7 +33,15 @@ function performRequest(method, path, body, json = true) {
   }
 
   return window.fetch(`${apiPath}${path}`, params)
-    .then(response => json ? response.json() : response);
+    .then(response => {
+      if (response.ok) {
+        return json ? response.json() : response
+      } else {
+        return response.json().then(json => {
+          throw Error(json.message);
+        });
+      }
+    });
 }
 
 export default {

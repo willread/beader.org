@@ -14,9 +14,11 @@ const images = {
 export const UserContext = React.createContext();
 
 class App extends Component {
+  searchRef =React.createRef();
+
   state = {
     user: undefined,
-    search: undefined,
+    search: '',
   };
 
   logout() {
@@ -56,8 +58,11 @@ class App extends Component {
   }
 
   search(e) {
+    const search = this.state.search;
     e.preventDefault();
-    this.props.history.push(`/patterns?search=${this.state.search}`);
+    this.setState({search: ''});
+    this.searchRef.current.blur();
+    this.props.history.push(`/patterns?search=${search}`);
   }
 
   render() {
@@ -78,7 +83,7 @@ class App extends Component {
 
           <div className='search'>
             <form onSubmit={(e) => this.search(e)}>
-              <input type='text' value={this.state.search} onChange={(e) => this.setState({search: e.target.value})} placeholder='Search...'></input>
+              <input type='text' ref={this.searchRef} value={this.state.search} onChange={(e) => this.setState({search: e.target.value})} placeholder='Search...'></input>
             </form>
           </div>
 

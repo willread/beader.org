@@ -35,7 +35,7 @@ class Designer extends Component {
     height: 10,
     previousWidth: 10,
     previousHeight: 10,
-    name: 'Untitled Pattern',
+    name: '',
     align: 'normal',
     mode: 'brush',
     color: '000000',
@@ -516,10 +516,10 @@ class Designer extends Component {
                   </select>
                 </div>
 
-                <input value={name} onChange={e => this.setState({name: e.target.value})} type='text' placeholder='Pattern Name' />
+                <input value={name} onChange={e => this.setState({name: e.target.value})} type='text' placeholder='Pattern Name...' />
                 {!user && <button disabled className='save-button'>Sign In To Save</button>}
                 {user &&
-                  <button onClick={() => this.save()} disabled={saving} className='save-button'>
+                  <button onClick={() => this.save()} disabled={saving || !name} className='save-button'>
                     <span>{saving ? 'Saving...' : 'Save'}</span>
                   </button>
                 }

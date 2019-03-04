@@ -335,7 +335,6 @@ a:hover .pattern-tile-name {
     position: relative;
 
     button {
-      display: inline-block;
       float: left;
       width: 60px;
       height: 40px;
@@ -355,9 +354,6 @@ a:hover .pattern-tile-name {
         background: #936DEF;
       }
 
-      &:hover {
-        background: lighten(#936DEF, 10%);
-      }
     }
   }
 
@@ -380,9 +376,10 @@ a:hover .pattern-tile-name {
 
     &:disabled {
       opacity: 0.5;
+      cursor: not-allowed;
     }
 
-    &:hover {
+    &:not(:disabled):hover {
       background: lighten(#5A3BDA, 10%);
     }
   }

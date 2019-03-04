@@ -10,7 +10,6 @@ TODO
 [ ] Horizontal resizing distorting patterns
 [ ] Dragging off side of pattern colors incorrect cell
 [ ] Clean delete / edit buttons on Pattern view
-[ ] Navigating from /designer/:id to /designer not changing views
 [ ] Migrate to digitalocean
 [ ] Final google auth configs for production before deploying
 

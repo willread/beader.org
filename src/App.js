@@ -75,7 +75,7 @@ class App extends Component {
 
           <div className='menu-left'>
             <Link to='/'>Gallery</Link>
-            <Link to='/designer' className='new-pattern'>Designer</Link>
+            <Link to='/designer/new' className='new-pattern'>Designer</Link>
             {this.state.user &&
               <Link to={`/patterns/user/${this.state.user._id}`}>My Patterns</Link>
             }

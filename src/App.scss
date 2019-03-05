@@ -2,6 +2,14 @@
 
 $mobileWidth: 640px;
 
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -64,6 +72,12 @@ body {
     font-size: 14px;
     margin-right: 20px;
     line-height: 50px;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 50px;
+    float: left;
   }
 
   button {
@@ -119,22 +133,16 @@ body {
   }
 }
 
-@media screen and (max-width: $mobileWidth) {
-  .navbar {
-    a.new-pattern {
-      display: none /* HACK: Hide pattern editor on mobile */;
-    }
-  }
-}
-
 .pattern-tiles-container {
   margin: 10px auto;
   width: 900px;
+  max-width: 100%;
+  text-align: center;
 
   .pattern-tile {
     margin-right: 10px;
     margin-bottom: 10px;
-    float: left;
+    display: inline-block;
   }
 }
 
@@ -274,33 +282,6 @@ a.pattern-tile {
 
 a:hover .pattern-tile-name {
   color: #5A3BDA;
-}
-
-@media screen and (max-width: $mobileWidth) {
-  .pattern-tiles-container {
-    width: 100%;
-    margin-left: 10px;
-  }
-
-  .pattern-tile {
-    width: calc(50% - 15px);
-    height: auto;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
-
-  .pattern-tile-full {
-    width: calc(100% - 20px);
-  }
-
-  .pattern-tiles-container-small {
-    .pattern-tile {
-      width: 100px;
-    }
-  }
 }
 
 .tools {
@@ -461,7 +442,6 @@ a:hover .pattern-tile-name {
   clear: both;
   text-align: center;
   margin: 40px 0;
-  padding-top: 40px;
 
   .footer-link {
     font-size: 17px;
@@ -469,6 +449,8 @@ a:hover .pattern-tile-name {
 
     &:hover {
       color: #666;
+      font-size: 17px;
+      font-weight: 600;
     }
 
     &:nth-child(2) {
@@ -516,27 +498,21 @@ a:hover .pattern-tile-name {
 
 .loading-indicator-wrapper {
   display: block;
-  text-align: center;
 
   .loading-indicator {
-    display: inline-block;
+    display: block;
     background: #fff;
     border-radius: 5px;
     padding: 5px;
-    margin: 30px 0;
+    width: 70px;
+    height: 70px;
+    margin: 30px auto;
     filter: hue-rotate(60deg);
   }
 
   img {
     width: 60px;
     height: 60px;
-  }
-}
-
-
-@media screen and (max-width: 1024px) {
-  #preview {
-    display: none;
   }
 }
 
@@ -590,4 +566,56 @@ a:hover .pattern-tile-name {
   width: 100%;
   height: 100px;
   margin: 20px 0;
+}
+
+@media screen and (max-width: 700px) {
+  .navbar {
+    .menu-right {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .welcome {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $mobileWidth) {
+  .navbar {
+    input[type=text] {
+      width: calc(100% - 98px); // Room for logo
+      max-width: 300px;
+    }
+
+    .menu-left, .menu-right {
+      display: none;
+    }
+  }
+
+  .pattern-tiles-container {
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .pattern-tile {
+    width: calc(50% - 15px);
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .pattern-tile-full {
+    width: calc(100% - 20px);
+  }
+
+  .pattern-tiles-container-small {
+    .pattern-tile {
+      width: 100px;
+    }
+  }
 }

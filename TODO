@@ -1,7 +1,6 @@
 TODO
 ====
 
-[ ] Mobile testing
 [ ] Migrate to digitalocean
 [ ] Final google auth configs for production before deploying
 
@@ -17,6 +16,7 @@ New Features
 [ ] Componentize css
 [ ] Center patterns vertically
 [ ] News section
+[ ] Mobile support for designer
 
 API
 ===

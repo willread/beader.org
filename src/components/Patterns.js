@@ -72,16 +72,14 @@ class Patterns extends Component {
         {!loading && patterns.length > 0 &&
           <div className="pattern-tiles-container">
             {patterns.map(pattern => (
-              <div key={pattern._id}>
-                <Link to={`/pattern/${pattern._id}`} className='pattern-tile'>
-                  <img src={`${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}`} alt={pattern.name}/>
-                  <div className="pattern-tile-meta">
-                    <div className="pattern-tile-name">{pattern.name}</div>
-                    <div className="pattern-tile-user">by {pattern.user.displayName}</div>
-                    <div className="pattern-tile-date">{moment(pattern.createdOn).format('MMM D YYYY')}</div>
-                  </div>
-                </Link>
-              </div>
+              <Link to={`/pattern/${pattern._id}`} className='pattern-tile' key={pattern._id}>
+                <img src={`${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')}`} alt={pattern.name}/>
+                <div className="pattern-tile-meta">
+                  <div className="pattern-tile-name">{pattern.name}</div>
+                  <div className="pattern-tile-user">by {pattern.user.displayName}</div>
+                  <div className="pattern-tile-date">{moment(pattern.createdOn).format('MMM D YYYY')}</div>
+                </div>
+              </Link>
             ))}
           </div>
         }

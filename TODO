@@ -1,15 +1,14 @@
 TODO
 ====
 
-[ ] Horizontal resizing distorting patterns
 [ ] Mobile testing
-[ ] Dragging off side of pattern colors incorrect cell
 [ ] Migrate to digitalocean
 [ ] Final google auth configs for production before deploying
 
 [ ] Sticky preview not working
 [ ] Ads
 [ ] Multiple favicon resolutions
+[ ] Dragging off side of pattern colors incorrect cell
 
 New Features
 ============

@@ -106,7 +106,7 @@ class Designer extends Component {
 
     this.setState({
       pattern: newPattern,
-      previewWidth: this.state.width,
+      previousWidth: this.state.width,
       previousHeight: this.state.height
     });
   }
@@ -133,6 +133,9 @@ class Designer extends Component {
       this.init();
     } else {
       if (!this.state.loading) {
+        if (this.state.width !== this.state.previousWidth || this.state.height !== this.state.previousHeight) {
+          this.initPattern();
+        }
         this.renderGrid();
       }
     }

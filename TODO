@@ -2,8 +2,6 @@ TODO
 ====
 
 [ ] Migrate to digitalocean
-[ ] Final google auth configs for production before deploying
-
 [ ] Sticky preview not working
 [ ] Ads
 [ ] Multiple favicon resolutions

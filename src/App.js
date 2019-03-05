@@ -69,9 +69,9 @@ class App extends Component {
     return (
       <div>
         <header className='navbar'>
-          <div className='logo'>
+          <Link to='/' className='logo'>
             <img src={images.logo} width='73' height='21' alt='Beader.org Logo' />
-          </div>
+          </Link>
 
           <div className='menu-left'>
             <Link to='/'>Gallery</Link>

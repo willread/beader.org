@@ -1,17 +1,18 @@
 TODO
 ====
 
+[ ] Horizontal resizing distorting patterns
 [ ] Mobile testing
 [ ] Clicking logo goes to home
 [ ] Better page title for homepage
-[ ] Ads
-[ ] Multiple favicon resolutions
-[ ] Sticky preview not working
-[ ] Horizontal resizing distorting patterns
 [ ] Dragging off side of pattern colors incorrect cell
 [ ] Clean delete / edit buttons on Pattern view
 [ ] Migrate to digitalocean
 [ ] Final google auth configs for production before deploying
+
+[ ] Sticky preview not working
+[ ] Ads
+[ ] Multiple favicon resolutions
 
 New Features
 ============

@@ -44,7 +44,7 @@ class Patterns extends Component {
 
     const response = await api.get(url);
 
-    document.title = `Page ${page}${titleSuffix}`;
+    document.title = page > 1 ? `Page ${page}${titleSuffix}` : 'Beader';
 
     this.setState({
       patterns: response.patterns,

@@ -3,7 +3,6 @@ TODO
 
 [ ] Horizontal resizing distorting patterns
 [ ] Mobile testing
-[ ] Better page title for homepage
 [ ] Dragging off side of pattern colors incorrect cell
 [ ] Clean delete / edit buttons on Pattern view
 [ ] Migrate to digitalocean

@@ -1,6 +1,11 @@
 TODO
 ====
 
+[ ] Mobile layout scrolling
+[ ] Uncaught errors when not logged in
+[ ] Remove console.log calls
+[ ] Switch to hash urls
+
 [ ] Migrate to digitalocean
 [ ] Sticky preview not working
 [ ] Ads

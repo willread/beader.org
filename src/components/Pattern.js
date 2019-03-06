@@ -82,7 +82,7 @@ class Pattern extends Component {
                       </Link>
                       <div className='pattern-header-date'>{moment(pattern.createdOn).format('MMM D YYYY')}</div>
                       <div className='pattern-header-description'>{pattern.description}</div>
-                      {user._id === pattern.user._id && <div className='user-actions'>
+                      {user && user._id === pattern.user._id && <div className='user-actions'>
                         <button onClick={() => this.delete()} className='delete-button'>Delete</button>
                         <Link to={`/designer/${pattern._id}`}>Edit</Link>
                       </div>}

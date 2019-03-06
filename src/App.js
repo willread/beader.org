@@ -40,10 +40,10 @@ class App extends Component {
   async fetchUser() {
     const user = await api.get('/auth')
       .catch(e => {
-        console.log('caught', e);
+        //
       });
 
-    if (user._id) {
+    if (user && user._id) {
       this.setState({user});
     } else {
       this.setState({user: undefined});

@@ -214,8 +214,10 @@ a.pattern-tile {
   margin-top: 5px;
   font-weight: 600;
   line-height: 16px;
-  max-height: 32px;
+  max-height: 16px;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .pattern-tile-user {
@@ -549,7 +551,7 @@ a:hover .pattern-tile-name {
 
 @media screen and (max-width: $mobileWidth) {
   .pattern-header {
-    width: 100%;
+    width: calc(100% - 10px);
     margin: 20px 10px;
   }
 }

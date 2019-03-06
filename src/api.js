@@ -37,9 +37,10 @@ function performRequest(method, path, body, json = true) {
       if (response.ok) {
         return json ? response.json() : response
       } else {
-        return response.json().then(json => {
-          throw Error(json.message);
-        });
+        return response.json()
+          .then(json => {
+            throw Error(json.message);
+          });
       }
     });
 }

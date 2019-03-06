@@ -27,11 +27,21 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const oldToken = store.get('aurelia_token');
+
+    if (oldToken) {
+      store.remove('aurelia_token');
+      store.set('token', oldToken);
+    }
+
     this.fetchUser();
   }
 
   async fetchUser() {
-    const user = await api.get('/auth');
+    const user = await api.get('/auth')
+      .catch(e => {
+        console.log('caught', e);
+      });
 
     if (user._id) {
       this.setState({user});

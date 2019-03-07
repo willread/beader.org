@@ -1,8 +1,8 @@
 TODO
 ====
 
+[ ] Handle patterns with no created date
 [ ] Proper SPA support for GH-pages (http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/)
-[ ] Migrate to digitalocean
 [ ] Sticky preview not working
 [ ] Ads
 [ ] Multiple favicon resolutions

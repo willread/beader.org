@@ -77,7 +77,7 @@ class Patterns extends Component {
                 <div className="pattern-tile-meta">
                   <div className="pattern-tile-name">{pattern.name}</div>
                   <div className="pattern-tile-user">by {pattern.user.displayName}</div>
-                  <div className="pattern-tile-date">{moment(pattern.createdOn).format('MMM D YYYY')}</div>
+                  <div className="pattern-tile-date">{moment(pattern.createdDate).format('MMM D YYYY')}</div>
                 </div>
               </Link>
             ))}

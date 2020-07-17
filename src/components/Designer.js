@@ -52,6 +52,10 @@ class Designer extends Component {
   paletteHeight = 300;
   paletteCols = 16;
   paletteRows = 16;
+  minWidth = 10;
+  maxWidth = 40;
+  minHeight = 10;
+  maxHeight = 40;
 
   state = initialState();
 
@@ -442,7 +446,7 @@ class Designer extends Component {
 
   render() {
     const {color, align,  width, height, name, saving, mode, loading} = this.state;
-    const {paletteWidth, paletteHeight} = this;
+    const {paletteWidth, paletteHeight, minWidth, maxWidth, minHeight, maxHeight} = this;
 
     if (loading) { return (<LoadingIndicator loading={loading}></LoadingIndicator>); }
 
@@ -496,37 +500,7 @@ class Designer extends Component {
               <div className='right'>
                 <div className='select'>
                   <select value={width} onChange={e => this.setState({width: e.target.value})}>
-                    <option value='10'>10</option>
-                    <option value='11'>11</option>
-                    <option value='12'>12</option>
-                    <option value='13'>13</option>
-                    <option value='14'>14</option>
-                    <option value='15'>15</option>
-                    <option value='16'>16</option>
-                    <option value='17'>17</option>
-                    <option value='18'>18</option>
-                    <option value='19'>19</option>
-                    <option value='20'>20</option>
-                    <option value='21'>21</option>
-                    <option value='22'>22</option>
-                    <option value='23'>23</option>
-                    <option value='24'>24</option>
-                    <option value='25'>25</option>
-                    <option value='26'>26</option>
-                    <option value='27'>27</option>
-                    <option value='28'>28</option>
-                    <option value='29'>29</option>
-                    <option value='30'>30</option>
-                    <option value='31'>31</option>
-                    <option value='32'>32</option>
-                    <option value='33'>33</option>
-                    <option value='34'>34</option>
-                    <option value='35'>35</option>
-                    <option value='36'>36</option>
-                    <option value='37'>37</option>
-                    <option value='38'>38</option>
-                    <option value='39'>39</option>
-                    <option value='40'>40</option>
+                    {(new Array(maxWidth - minWidth + 1)).fill().map((_, index) => (<option key={index} value={index + minWidth}>{index + minWidth}</option>) )}
                   </select>
                 </div>
 
@@ -534,37 +508,7 @@ class Designer extends Component {
 
                 <div className='select'>
                   <select value={height} onChange={e => this.setState({height: e.target.value})}>
-                    <option value='10'>10</option>
-                    <option value='11'>11</option>
-                    <option value='12'>12</option>
-                    <option value='13'>13</option>
-                    <option value='14'>14</option>
-                    <option value='15'>15</option>
-                    <option value='16'>16</option>
-                    <option value='17'>17</option>
-                    <option value='18'>18</option>
-                    <option value='19'>19</option>
-                    <option value='20'>20</option>
-                    <option value='21'>21</option>
-                    <option value='22'>22</option>
-                    <option value='23'>23</option>
-                    <option value='24'>24</option>
-                    <option value='25'>25</option>
-                    <option value='26'>26</option>
-                    <option value='27'>27</option>
-                    <option value='28'>28</option>
-                    <option value='29'>29</option>
-                    <option value='30'>30</option>
-                    <option value='31'>31</option>
-                    <option value='32'>32</option>
-                    <option value='33'>33</option>
-                    <option value='34'>34</option>
-                    <option value='35'>35</option>
-                    <option value='36'>36</option>
-                    <option value='37'>37</option>
-                    <option value='38'>38</option>
-                    <option value='39'>39</option>
-                    <option value='40'>40</option>
+                    {(new Array(maxHeight - minHeight + 1)).fill().map((_, index) => (<option key={index} value={index + minHeight}>{index + minHeight}</option>) )}
                   </select>
                 </div>
 

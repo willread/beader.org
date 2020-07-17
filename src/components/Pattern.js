@@ -91,7 +91,7 @@ class Pattern extends Component {
                 }
 
                 <div className='pattern-tile pattern-tile-full'>
-                  <img src={pattern.imageUrl} alt={pattern.name}/>
+                  <div className='img' style={{backgroundImage: `url(${pattern.imageUrl})`}}></div>
                 </div>
 
                 <div className='pattern-tiles-container pattern-tiles-container-small'>
@@ -102,7 +102,7 @@ class Pattern extends Component {
                       {userPatterns.map(pattern => (
                         <span key={pattern._id}>
                           <Link to={`/pattern/${pattern._id}`} className='pattern-tile pattern-tile-small'>
-                            <img src={pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_100,h_100')} alt={pattern.name} />
+                            <div className='img' style={{backgroundImage: `url(${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_100,h_100,c_fit')})`}}></div>
                           </Link>
                         </span>
                       ))}

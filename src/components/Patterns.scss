@@ -37,9 +37,13 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     text-decoration: none;
 
-    img {
+    .img {
       width: 150px;
       height: 150px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: transparent;
     }
   }
 
@@ -56,7 +60,7 @@
     height: 720px;
     margin: 20px auto;
 
-    img {
+    .img {
       width: 700px;
       height: 700px;
     }
@@ -66,7 +70,7 @@
     width: 120px;
     height: 120px;
 
-    img {
+    .img {
       width: 100px;
       height: 100px;
     }

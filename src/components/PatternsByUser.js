@@ -67,7 +67,7 @@ class PatternsByUser extends Component {
                     <h3 className='pattern-tiles-container-header'>Patterns By {patterns[0].user.displayName}</h3>
                     {patterns.map(pattern =>
                       <Link to={`/pattern/${pattern._id}`} className='pattern-tile' key={pattern._id}>
-                        <img src={pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150')} alt={pattern.name} />
+                        <div className='img' style={{backgroundImage: `url(${pattern.imageUrl.replace('/upload', '/upload/c_thumb,w_150,h_150,c_fit')})`}}></div>
                         <div className='pattern-tile-name'>{pattern.name}</div>
                         <div className='pattern-tile-user'>by {pattern.user.displayName}</div>
                       </Link>

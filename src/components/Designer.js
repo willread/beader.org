@@ -239,7 +239,10 @@ class Designer extends Component {
 
   updatedSelected(e) {
     const xy = this.getXY(e);
-    this.setState({ selectedX: xy[0], selectedY: xy[1] });
+
+    if (xy[0] !== this.state.selectedX || xy[1] !== this.state.selectedY) {
+      this.setState({ selectedX: xy[0], selectedY: xy[1] });
+    }
   }
 
   getXY(e) {
@@ -368,8 +371,8 @@ class Designer extends Component {
           context.strokeStyle = '#ddd';
         }
 
-        if (isSelected && !cellColor) {
-          context.fillStyle = '#ddd';
+        if (isSelected && cellColor === this.clearColor) {
+          context.fillStyle = '#eee';
         } else {
           context.fillStyle = '#' + (cellColor || this.clearColor);
         }

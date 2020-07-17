@@ -64,6 +64,8 @@ class Designer extends Component {
       preview: React.createRef(),
       grid: React.createRef(),
     };
+
+    this.stopDrawing = this.stopDrawing.bind(this);
   }
 
   async fetchPattern() {
@@ -126,6 +128,12 @@ class Designer extends Component {
       this.renderPalette();
       document.title = `${this.state.id ? 'Editing Pattern' : 'New Pattern'}${config.titleSuffix}`;
     });
+
+    document.addEventListener('mouseup', this.stopDrawing);
+  }
+
+  async componentWillUnmount() {
+    document.removeEventListener('mouseup', this.stopDrawing);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -263,7 +271,7 @@ class Designer extends Component {
     if (this.state.mode === 'brush') {
       const xy = this.getXY(e);
 
-      this.stopDrawing(e);
+      this.stopDrawing();
       this.draw(...xy);
     }
 
@@ -283,7 +291,9 @@ class Designer extends Component {
   }
 
   draw(x, y) {
-    this.setPatternCell(x, y, this.state.color);
+    if (x >= 0 && y >= 0 && x < this.state.width && y < this.state.height) {
+      this.setPatternCell(x, y, this.state.color);
+    }
   }
 
   fill(x, y) {
@@ -557,9 +567,7 @@ class Designer extends Component {
 
             <canvas
               onMouseMove={e => this.drag(e)}
-              onClick={e => this.click(e)}
-              onMouseDown={e => this.startDrawing(e)}
-              onMouseLeave={e => this.stopDrawing(e)}
+              onMouseDown={e => { this.click(e); this.startDrawing(); }}
               id='grid'
               ref={this.myRefs.grid}
               width={this.canvasWidth}

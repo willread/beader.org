@@ -1,0 +1,19 @@
+.loading-indicator-wrapper {
+    display: block;
+
+    .loading-indicator {
+      display: block;
+      background: #fff;
+      border-radius: 5px;
+      padding: 5px;
+      width: 70px;
+      height: 70px;
+      margin: 30px auto;
+      filter: hue-rotate(60deg);
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }

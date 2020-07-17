@@ -4,6 +4,7 @@ import api from '../api';
 import { UserContext } from '../App';
 import config from '../config';
 
+import './Designer.scss';
 import LoadingIndicator from './LoadingIndicator';
 
 const images = {

@@ -6,6 +6,7 @@ import  api from '../api';
 import { UserContext } from '../App';
 import config from '../config';
 
+import './Patterns.scss';
 import LoadingIndicator from './LoadingIndicator';
 
 class Pattern extends Component {

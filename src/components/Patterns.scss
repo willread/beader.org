@@ -1,0 +1,181 @@
+@import '../constants';
+
+.pattern-tiles-container {
+    margin: 10px auto;
+    width: 900px;
+    max-width: 100%;
+    text-align: center;
+
+    .pattern-tile {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+  }
+
+  .pattern-tiles-container-small {
+    width: 720px;
+    margin: 0 auto;
+    text-align: center;
+
+    .pattern-tile {
+      float: none;
+      display: inline-block;
+    }
+  }
+
+  .pattern-tiles-container-header {
+    font-size: 22px;
+  }
+
+  .pattern-tile {
+    width: 170px;
+    height: 230px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  a.pattern-tile {
+    transition: transform 0.15s;
+
+    &:hover {
+      transform: scale(1.025);
+    }
+  }
+
+  .pattern-tile-full {
+    width: 720px;
+    height: 720px;
+    margin: 20px auto;
+
+    img {
+      width: 700px;
+      height: 700px;
+    }
+  }
+
+  .pattern-tile-small {
+    width: 120px;
+    height: 120px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .pattern-tile-meta {
+    height: 47px;
+  }
+
+  .pattern-tile-name {
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 600;
+    line-height: 16px;
+    max-height: 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .pattern-tile-user {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 15px;
+    max-height: 15px;
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+
+  .pattern-tile-date {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 10px;
+    max-height: 15px;
+    overflow: hidden;
+    color: rgba(#000, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .user-actions {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    a, button {
+      display: inline-block;
+      border: 0;
+      outline: none;
+      border-radius: 4px;
+      background: #5A3BDA;
+      line-height: 20px;
+      padding: 0 15px;
+      border: 0;
+      outline: none;
+      color: #fff;
+      font-size: 11px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-shadow: 0 1px 0 rgba(#000, 0.55);
+      cursor: hand;
+      cursor: pointer;
+
+      & + * {
+        margin-left: 10px;
+      }
+
+      &:hover {
+        background: lighten(#5A3BDA, 10%);
+      }
+
+      &.delete-button {
+        background: #df2512;
+
+        &:hover {
+          background: lighten(#df2512, 20%);
+        }
+      }
+    }
+  }
+
+  a:hover .pattern-tile-name {
+    color: #5A3BDA;
+  }
+
+  @media screen and (max-width: $mobileWidth) {
+    .pattern-tiles-container {
+      width: calc(100% - 10px);
+      margin-left: 10px;
+    }
+
+    .pattern-tile {
+      width: calc(50% - 15px);
+      height: auto;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .pattern-tile-full {
+      width: calc(100% - 20px);
+    }
+
+    .pattern-tiles-container-small {
+      .pattern-tile {
+        width: 100px;
+      }
+    }
+  }

@@ -5,6 +5,8 @@ import * as moment from 'moment';
 
 import api from '../api';
 import config from '../config';
+
+import './Patterns.scss';
 import LoadingIndicator from './LoadingIndicator';
 
 class Patterns extends Component {

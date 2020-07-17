@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import gif from '../images/loading.gif';
 
+import './LoadingIndicator.scss';
+
 class LoadingIndicator extends Component {
   render() {
     return (

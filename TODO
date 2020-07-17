@@ -2,8 +2,6 @@ TODO
 ====
 
 [ ] Dragging off side of pattern colors incorrect cell
-[ ] Componentize css
-[ ] p
 [ ] Center patterns vertically
 [ ] News section
 [ ] Mobile support for designer
@@ -25,3 +23,4 @@ Changelog
 July 17 / 2020
 
 [✓] Preview not sticking
+[✓] Componentize css

@@ -1,6 +1,6 @@
 import store from 'store';
 
-import { apiPath } from './config';
+import config from './config';
 
 function get(path) {
   return performRequest('get', path, null);
@@ -32,7 +32,7 @@ function performRequest(method, path, body, json = true) {
     params.body = JSON.stringify(body);
   }
 
-  return window.fetch(`${apiPath}${path}`, params)
+  return window.fetch(`${config.apiPath}${path}`, params)
     .then(response => {
       if (response.ok) {
         return json ? response.json() : response

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import api from '../api';
 import { UserContext } from '../App';
-import { titleSuffix } from '../config';
+import config from '../config';
 
 import LoadingIndicator from './LoadingIndicator';
 
@@ -123,7 +123,7 @@ class Designer extends Component {
         this.initPattern();
       }
       this.renderPalette();
-      document.title = this.state.id ? `Editing Pattern${titleSuffix}` : `New Pattern${titleSuffix}`;
+      document.title = `${this.state.id ? 'Editing Pattern' : 'New Pattern'}${config.titleSuffix}`;
     });
   }
 

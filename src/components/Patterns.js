@@ -4,7 +4,7 @@ import queryString  from 'query-string';
 import * as moment from 'moment';
 
 import api from '../api';
-import { titleSuffix } from '../config';
+import config from '../config';
 import LoadingIndicator from './LoadingIndicator';
 
 class Patterns extends Component {
@@ -44,7 +44,7 @@ class Patterns extends Component {
 
     const response = await api.get(url);
 
-    document.title = page > 1 ? `Page ${page}${titleSuffix}` : 'Beader';
+    document.title = page > 1 ? `Page ${page}${config.titleSuffix}` : 'Beader';
 
     this.setState({
       patterns: response.patterns,

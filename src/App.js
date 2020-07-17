@@ -5,7 +5,7 @@ import store from 'store';
 
 import api from './api';
 import './App.scss';
-import { googleClientId, googleRedirectUri } from './config.js';
+import config from './config.js';
 
 const images = {
   logo: require('./images/logo.png'),
@@ -54,8 +54,8 @@ class App extends Component {
     if (response.code) {
       const result = await api.post('/auth', {
         code: response.code,
-        clientId: googleClientId,
-        redirectUri: googleRedirectUri,
+        clientId: config.googleClientId,
+        redirectUri: config.googleRedirectUri,
       });
 
       store.set('token', result.token);
@@ -100,7 +100,7 @@ class App extends Component {
           <div className='menu-right'>
             {!this.state.user
               ? <GoogleLogin
-                  clientId={googleClientId}
+                  clientId={config.googleClientId}
                   render={props => (
                     <button onClick={() => props.onClick()}>Sign in with Google</button>
                   )}

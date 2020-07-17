@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import api from '../api';
 import { UserContext } from '../App';
-import { titleSuffix } from '../config';
+import config from '../config';
 
 import LoadingIndicator from './LoadingIndicator';
 
@@ -40,9 +40,9 @@ class PatternsByUser extends Component {
     const response = await api.get(`/patterns/user/${this.props.match.params.id}?page=${page}&limit=${this.limit}`);
 
     if (response.patterns.length) {
-      document.title = `Patterns By ${response.patterns[0].user.displayName}${titleSuffix}`;
+      document.title = `Patterns By ${response.patterns[0].user.displayName}${config.titleSuffix}`;
     } else {
-      document.title = `No Patterns Found${titleSuffix}`;
+      document.title = `No Patterns Found${config.titleSuffix}`;
     }
 
     this.setState({

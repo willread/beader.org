@@ -4,7 +4,7 @@ import * as moment from 'moment';
 
 import  api from '../api';
 import { UserContext } from '../App';
-import { titleSuffix } from '../config';
+import config from '../config';
 
 import LoadingIndicator from './LoadingIndicator';
 
@@ -35,7 +35,7 @@ class Pattern extends Component {
     api.get(`/patterns/${this.props.match.params.id}`)
       .then(pattern => {
         this.setState({pattern});
-        document.title = `${pattern.name}${titleSuffix}`;
+        document.title = `${pattern.name}${config.titleSuffix}`;
         this.fetchUserPatterns(pattern.user._id);
       })
       .catch(err => {

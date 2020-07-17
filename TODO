@@ -1,22 +1,27 @@
 TODO
 ====
 
-[ ] Proper SPA support for GH-pages (http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/)
-[ ] Sticky preview not working
-[ ] Ads
-[ ] Multiple favicon resolutions
 [ ] Dragging off side of pattern colors incorrect cell
-
-New Features
-============
-
-[ ] Pagination
 [ ] Componentize css
+[ ] p
 [ ] Center patterns vertically
 [ ] News section
 [ ] Mobile support for designer
+Future
+======
+
+[ ] Multiple favicon resolutions
+[ ] Proper SPA support for GH-pages (http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/)
+[ ] Pagination
 
 API
 ===
 
 [ ] /patterns/user/:id ignoring page and limit params
+
+Changelog
+=========
+
+July 17 / 2020
+
+[✓] Preview not sticking

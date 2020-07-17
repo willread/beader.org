@@ -545,12 +545,14 @@ class Designer extends Component {
           </div>
 
           <div className='grid-wrapper'>
-            <canvas
-              id='preview'
-              ref={this.myRefs.preview}
-              width={this.previewWidth}
-              height={this.previewHeight}
-            ></canvas>
+            <div className='preview'>
+              <canvas
+                id='preview'
+                ref={this.myRefs.preview}
+                width={this.previewWidth}
+                height={this.previewHeight}
+              ></canvas>
+            </div>
 
             <canvas
               onMouseMove={e => this.drag(e)}

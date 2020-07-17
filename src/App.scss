@@ -475,24 +475,20 @@ a:hover .pattern-tile-name {
 }
 
 .grid-wrapper {
-  display: block;
-  margin: 0 auto;
+  display: flex;
   padding: 25px;
-  border-radius: 2px;
   position: relative;
 }
 
 #grid {
   display: block;
-  position: absolute;
-  left: 50%;
-  margin-left: -350px;
-  top: 25px;
+  margin: 0 auto;
 }
 
-#preview {
+.preview {
+  width: 150px;
+  height: 150px;
   position: sticky;
-  left: 25px;
   top: 25px;
   padding: 5px;
   background: transparent;

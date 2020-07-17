@@ -23,6 +23,8 @@ const initialState = () => {
     height: 10,
     previousWidth: 10,
     previousHeight: 10,
+    selectedX: -1,
+    selectedY: -1,
     name: '',
     align: 'normal',
     mode: 'brush',
@@ -229,10 +231,15 @@ class Designer extends Component {
     this.setState({drawing: false});
   }
 
-  drag(e) {
+  drag() {
     if (this.state.drawing && this.state.mode === 'brush') {
-      this.draw(...this.getXY(e));
+      this.draw(this.state.selectedX, this.state.selectedY);
     }
+  }
+
+  updatedSelected(e) {
+    const xy = this.getXY(e);
+    this.setState({ selectedX: xy[0], selectedY: xy[1] });
   }
 
   getXY(e) {
@@ -343,6 +350,8 @@ class Designer extends Component {
 
     for (let x = 0; x < this.state.width; x++) {
       for (let y = 0; y < this.state.height; y++) {
+        const isSelected = this.state.selectedX === x && this.state.selectedY === y;
+        const cellColor = this.getPatternCell(x, y);
         context.beginPath();
 
         if(this.state.align === 'pixel'){
@@ -351,10 +360,21 @@ class Designer extends Component {
           context.arc(x * size + size / 2 + (!(y % 2) ? horizontalOffset : 0) + centeringOffset, y * size + size / 2 + (x % 2 ? verticalOffset : 0), size / 2 - 1, 0, 2 * Math.PI, false);
         }
 
-        context.fillStyle = '#' + (this.getPatternCell(x, y) || this.clearColor);
-        context.fill();
         context.lineWidth = 1;
-        context.strokeStyle = '#ddd';
+
+        if (isSelected) {
+          context.strokeStyle = '#aaa';
+        } else {
+          context.strokeStyle = '#ddd';
+        }
+
+        if (isSelected && !cellColor) {
+          context.fillStyle = '#ddd';
+        } else {
+          context.fillStyle = '#' + (cellColor || this.clearColor);
+        }
+
+        context.fill();
         context.stroke();
       }
     }
@@ -566,8 +586,9 @@ class Designer extends Component {
             </div>
 
             <canvas
-              onMouseMove={e => this.drag(e)}
+              onMouseMove={e => { this.updatedSelected(e); this.drag(); }}
               onMouseDown={e => { this.click(e); this.startDrawing(); }}
+              onMouseOut={e => this.updatedSelected(e)}
               id='grid'
               ref={this.myRefs.grid}
               width={this.canvasWidth}

@@ -1,7 +1,6 @@
 TODO
 ====
 
-[ ] Change cursor and highlight current cell
 [ ] Center patterns vertically
 [ ] Make designer responsive
 [ ] News section
@@ -23,6 +22,7 @@ Changelog
 
 July 17 / 2020
 
+[✓] Change cursor and highlight current cell
 [✓] Pressing mouse button down not changing color until mouse is dragged or button is released
 [✓] Dragging off side of pattern while drawing sometimes colors incorrect cell
 [✓] Preview not sticking

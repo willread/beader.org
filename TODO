@@ -1,7 +1,6 @@
 TODO
 ====
 
-[ ] Handle patterns with no created date
 [ ] Proper SPA support for GH-pages (http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/)
 [ ] Sticky preview not working
 [ ] Ads
@@ -21,14 +20,3 @@ API
 ===
 
 [ ] /patterns/user/:id ignoring page and limit params
-
-Changelog
-=========
-
-[ ] Enforced https
-[ ] New color scheme
-[ ] Pattern preview is sticky
-[ ] Patterns now show creation date
-[ ] Search
-[ ] Editing patterns
-[ ] Force names
